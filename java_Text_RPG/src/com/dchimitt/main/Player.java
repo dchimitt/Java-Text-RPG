@@ -11,10 +11,10 @@ public class Player extends Character {
 	public String[] defUpgrades = {"Fragile", "Vulnerable", "Squishy", "Soft", "Resilient", "Sturdy", "Durable", "Tough", "Hardy", "Fortified", "Impenetrable", "Invincible"};
 	public String[] abilityUpgrades = {};
 	public String[] offensiveMagUpgrades = {};
-	public String[] defensiveMagUpgrades = {};
+	public String[] supportMagUpgrades = {};
 	
 	// variables to store number of skills added to each of the above options
-	public int numAtkUpgrades, numAbilityUpgrades, numOffensiveMagUpgrades, numDefensiveMagUpgrades, numDefUpgrades;
+	public int numAtkUpgrades, numAbilityUpgrades, numOffensiveMagUpgrades, numSupportMagUpgrades, numDefUpgrades;
 	
 	// Player constructor
 	public Player (String name) {
@@ -24,7 +24,7 @@ public class Player extends Character {
 		this.numAtkUpgrades = 0;
 		this.numAbilityUpgrades = 0;
 		this.numOffensiveMagUpgrades = 0;
-		this.numDefensiveMagUpgrades = 0;
+		this.numSupportMagUpgrades = 0;
 		this.numDefUpgrades = 0;
 		// allow player to choose two upgrades at the start of game
 		chooseUpgrade();
@@ -54,11 +54,11 @@ public class Player extends Character {
 	public void chooseUpgrade() {
 		GameLogic.clearConsole();
 		GameLogic.printHeader("Choose an upgrade:");
-		System.out.println("(1) " + atkUpgrades[numAtkUpgrades]);
-		System.out.println("(2) " + defUpgrades[numDefUpgrades]);
-		System.out.println("(3) " + abilityUpgrades[numAbilityUpgrades]);
-		System.out.println("(4) " + offensiveMagUpgrades[numOffensiveMagUpgrades]);
-		System.out.println("(5) " + defensiveMagUpgrades[numDefensiveMagUpgrades]);
+		System.out.println("(1) Attack damage increase - " + atkUpgrades[numAtkUpgrades]);
+		System.out.println("(2) Defense increase - " + defUpgrades[numDefUpgrades]);
+		System.out.println("(3) Ability selection - " + abilityUpgrades[numAbilityUpgrades]);
+		System.out.println("(4) Offensive magic skill selection - " + offensiveMagUpgrades[numOffensiveMagUpgrades]);
+		System.out.println("(5) Support magic skill selection - " + supportMagUpgrades[numSupportMagUpgrades]);
 		
 		// obtain input as player's upgrade choice
 		int input = GameLogic.userInput("--> ", 5);
@@ -82,7 +82,7 @@ public class Player extends Character {
 			numOffensiveMagUpgrades++;
 		}
 		else {
-			GameLogic.printHeader("You chose " + defUpgrades[numDefUpgrades] + "!");
+			GameLogic.printHeader("You chose " + supportMagUpgrades[numSupportMagUpgrades] + "!");
 			numDefUpgrades++;
 		}
 		GameLogic.typeToContinue();
