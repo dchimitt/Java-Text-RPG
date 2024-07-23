@@ -49,7 +49,6 @@ public class GameLogic {
 		String name; 
 		
 		// print title
-		clearConsole();
 		printSeperator(40);
 		printSeperator(30);
 		System.out.println("TALES OF SORROW");
