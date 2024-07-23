@@ -38,4 +38,9 @@ public class GameLogic {
 		System.out.println(title);
 		printSeperator(30);
 	}
+	
+	public static void typeToContinue() {
+		System.out.println("\nPress any key and hit enter to continue.");
+		in.next(); // this will take the next token entered
+	}
 }
