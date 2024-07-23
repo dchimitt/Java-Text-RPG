@@ -61,15 +61,8 @@ public class Player extends Character {
 		System.out.println("(5) " + defensiveMagUpgrades[numDefensiveMagUpgrades]);
 		
 		// obtain input as player's upgrade choice
-		int input;
+		int input = GameLogic.userInput("--> ", 5);
 		GameLogic.clearConsole();
-		
-		// ensures user input is between 1-5
-		do {
-			input = GameLogic.userInput("-->", 5);
-			if (input < 1 || input > 5) 
-				System.out.println("Invalid input. Please choose an integer from 1 to 5.");
-		} while (input < 1 || input > 5);
 		
 		// TO-DO: allow player to say wrong choice and add error-handling for choices other than Y/y, N/n
 		if (input == 1) {
@@ -92,5 +85,6 @@ public class Player extends Character {
 			GameLogic.printHeader("You chose " + defUpgrades[numDefUpgrades] + "!");
 			numDefUpgrades++;
 		}
+		GameLogic.typeToContinue();
 	}
 }
