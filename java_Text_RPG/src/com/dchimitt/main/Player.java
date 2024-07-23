@@ -14,7 +14,7 @@ public class Player extends Character {
 	public Player (String name) {
 		// super keyword to use the constructor from superclass
         // starting maximumHp is 100 and exp is 0
-		super(name, 100, 0); 
+		super(name, 100, 15, 0); 
 	}
 
 	@Override
