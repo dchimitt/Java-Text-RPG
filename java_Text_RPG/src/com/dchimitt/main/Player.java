@@ -83,7 +83,7 @@ public class Player extends Character {
 		}
 		else {
 			GameLogic.printHeader("You chose " + supportMagUpgrades[numSupportMagUpgrades] + "!");
-			numDefUpgrades++;
+			numSupportMagUpgrades++;
 		}
 		GameLogic.typeToContinue();
 	}
