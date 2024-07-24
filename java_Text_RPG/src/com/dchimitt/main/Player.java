@@ -213,7 +213,7 @@ public class Player extends Character {
 		GameLogic.printHeader("Choose an upgrade. You will be able to read a description of your selection before making your final choice: ");
 		System.out.println("(1) Abilities --> Skills that utilize strength and dexterity to inflict damage. These have cooldowns.");
 		System.out.println("(2) Offensive Magic --> Spells that decimate your enemies. These consume mana.");
-		System.out.println("(3) Defensive Magic --> Spells with varying effects that support your character. These consume mana.");
+		System.out.println("(3) Support Magic --> Spells with varying effects that support your character. These consume mana.");
 		
 		// obtain input as player's upgrade choice
 		int input = GameLogic.userInput("--> ", 3);
@@ -221,7 +221,7 @@ public class Player extends Character {
 		
         if (input == 1) {
         	for (Abilities abilities : Abilities.values()) 
-        		System.out.println(abilities + " - Level " + abilities.requiredAbilityLevel + " required.");
+        		System.out.println(abilities.getAbilityName() + ": " + abilities.getAbilityDescription() + " - Level " + abilities.requiredAbilityLevel + " required.");
             for (int i = lastLearnedAbilityIndex + 1; i < Abilities.values().length; i++) {
                 Abilities ability = Abilities.values()[i];
                 if (ability.canLearnAbility(level)) {
@@ -249,7 +249,7 @@ public class Player extends Character {
         }
         else if (input == 2) {
         	for (OffMagSpells offSpell : OffMagSpells.values()) 
-        		System.out.println(offSpell + " - Level " + offSpell.requiredOffMagLevel + " required.");
+        		System.out.println(offSpell.getOffMagName() + ": " + offSpell.getOffMagDescription() + " - Level " + offSpell.requiredOffMagLevel + " required.");
             for (int i = lastLearnedOffMagIndex + 1; i < OffMagSpells.values().length; i++) {
                 OffMagSpells offSpell = OffMagSpells.values()[i];
                 if (offSpell.canLearnOffMag(level)) {
@@ -277,7 +277,7 @@ public class Player extends Character {
         }
 		else {
 			for (SuppMagSpells suppSpell : SuppMagSpells.values()) 
-        		System.out.println(suppSpell + " - Level " + suppSpell.requiredSuppMagLevel + " required.");
+				System.out.println(suppSpell.getSuppMagName() + ": " + suppSpell.getSuppMagDescription() + " - Level " + suppSpell.requiredSuppMagLevel + " required.");
             for (int i = lastLearnedSuppMagIndex + 1; i < SuppMagSpells.values().length; i++) {
                 SuppMagSpells suppSpell = SuppMagSpells.values()[i];
                 if (suppSpell.canLearnSuppMag(level)) {
