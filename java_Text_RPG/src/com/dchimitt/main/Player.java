@@ -6,7 +6,31 @@ public class Player extends Character {
 	
 	public static Scanner in = new Scanner(System.in);
 	
-	// enums used to access abilities, offensive magic spells, and support magic spells
+	public enum Abilities {
+		STRENGTH("Strength", 10),
+		AGILITY("Agility", 15),
+		ENDURANCE("Endurance", 20),
+		REFLEXES("Reflexes", 25);
+		
+		// instance variables for each ability
+		private final String abilityName;
+		private final int requiredAbilityLevel;
+		
+		// Constructor
+		Abilities(String abilityName, int requiredLevel) {
+			this.abilityName = abilityName;
+			this.requiredAbilityLevel = requiredLevel;
+		}
+		
+		// getter methods
+		public String getAbilityName() {
+			return abilityName;
+		}		
+		public int getRequiredAbilityLevel() {
+			return requiredAbilityLevel;
+		}
+	}
+	
 	public enum OffMagSpells {
 		ICE_SPIKE("Ice Spike", 3),
 		FIREBALL("Fireball", 5),
@@ -14,11 +38,11 @@ public class Player extends Character {
 		LIGHTNING_BOLT("Lightning Bolt", 8),
 		METEOR_SHOWER("Meteor Shower", 10);
 			
-		// instance variables for each spell
+		// instance variables for each offensive spell
 		private final String offMagName;
 		private final int requiredOffMagLevel;
 		
-		// constructor to initialize required level for each spell
+		// Constructor
 		OffMagSpells(String offMagName, int requiredLevel) {
 			this.offMagName = offMagName;
 			this.requiredOffMagLevel = requiredLevel;
@@ -52,7 +76,30 @@ public class Player extends Character {
         }
 	 */
 	
-	
+	public enum DefMagSpells {
+		SHIELD("Shield", 3),
+		PROTECT("Fireball", 5),
+		BARRIER("Teleport", 7),
+		ABSORB("Lightning Bolt", 8);
+			
+		// instance variables for each defensive spell
+		private final String defMagName;
+		private final int requiredDefMagLevel;
+		
+		// Constructor
+		DefMagSpells(String defMagName, int requiredLevel) {
+			this.defMagName = defMagName;
+			this.requiredDefMagLevel = requiredLevel;
+		}
+		
+		// getter methods
+		public String getDefMagName() {
+			return defMagName;
+		}		
+		public int getRequiredDefMagLevel() {
+			return requiredDefMagLevel;
+		}
+	}	
 	/*
 	// progressive skills that player can select in attack, abilities, magic, and defense
 	public String[] atkUpgrades = {"Feeble", "Weak", "Novice", "Developed", "Competent", "Skilled", "Proficient", "Formidable", "Strong", "Mighty", "Powerful", "Herculean"};
