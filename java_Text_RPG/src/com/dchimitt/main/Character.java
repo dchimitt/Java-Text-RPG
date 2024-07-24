@@ -22,6 +22,7 @@ public abstract class Character {
 	
 	// abstract methods
 	public abstract int attack();
+	public abstract int useAbility();
 	public abstract int useMagic();
 	public abstract int defend();
 }
