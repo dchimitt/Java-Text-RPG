@@ -206,7 +206,7 @@ public class Player extends Character {
 		System.out.println("You've chosen your last stat point.");
 		GameLogic.typeToContinue();				
 	}
-	
+
 	// allows player to choose an upgrade
 	public void chooseUpgrade() {
 		GameLogic.clearConsole();
