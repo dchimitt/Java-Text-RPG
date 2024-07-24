@@ -11,19 +11,21 @@ public class Player extends Character {
 	private int lastLearnedSuppMagIndex = -1;
 	
 	public enum Abilities {
-		STRENGTH("Strength", 2, false),
-		AGILITY("Agility", 3, false),
-		ENDURANCE("Endurance", 5, false),
-		REFLEXES("Reflexes", 8, false);
+		STRENGTH("Strength", "Placeholder", 1, false),
+		AGILITY("Agility", "Placeholder", 3, false),
+		ENDURANCE("Endurance", "Placeholder", 5, false),
+		REFLEXES("Reflexes", "Placeholder", 8, false);
 		
 		// instance variables for each ability
 		private final String abilityName;
+		private final String abilityDescription;
 		private final int requiredAbilityLevel;
 		private boolean learnedAbility;
 		
 		// Constructor
-		Abilities(String abilityName, int requiredLevel, boolean learnedAbility) {
+		Abilities(String abilityName, String abilityDescription, int requiredLevel, boolean learnedAbility) {
 			this.abilityName = abilityName;
+			this.abilityDescription = abilityDescription;
 			this.requiredAbilityLevel = requiredLevel;
 			this.learnedAbility = learnedAbility;
 		}
@@ -32,6 +34,9 @@ public class Player extends Character {
 		public String getAbilityName() {
 			return abilityName;
 		}		
+		public String getAbilityDescription() {
+			return abilityDescription;
+		}
 		public int getRequiredAbilityLevel() {
 			return requiredAbilityLevel;
 		}
@@ -47,30 +52,37 @@ public class Player extends Character {
 	}
 	
 	public enum OffMagSpells {
-		ICE_SPIKE("Ice Spike", 1, false),
-		FIREBALL("Fireball", 3, false),
-		TELEPORT("Teleport", 5, false),
-		LIGHTNING_BOLT("Lightning Bolt", 8, false),
-		METEOR_SHOWER("Meteor Shower", 11, false);
+		ICE_SPIKE("Ice Spike", "Placeholder", 1, false),
+		FIREBALL("Fireball", "Placeholder", 3, false),
+		TELEPORT("Teleport", "Placeholder", 5, false),
+		LIGHTNING_BOLT("Lightning Bolt", "Placeholder", 8, false),
+		METEOR_SHOWER("Meteor Shower", "Placeholder", 11, false);
 			
 		// instance variables for each offensive spell
 		private final String offMagName;
+		private final String offMagDescription;
 		private final int requiredOffMagLevel;
 		private boolean learnedOffMag;
 		
 		// Constructor
-		OffMagSpells(String offMagName, int requiredLevel, boolean learnedOffMag) {
+		OffMagSpells(String offMagName, String offMagDescription, int requiredLevel, boolean learnedOffMag) {
 			this.offMagName = offMagName;
+			this.offMagDescription = offMagDescription;
 			this.requiredOffMagLevel = requiredLevel;
+			this.learnedOffMag = learnedOffMag;
 		}
 		
 		// getter methods
 		public String getOffMagName() {
 			return offMagName;
 		}		
+		public String getOffMagDescription() {
+			return offMagDescription;
+		}
 		public int getRequiredOffMagLevel() {
 			return requiredOffMagLevel;
 		}
+		
 		// check if offensive spell can be learned
 		public boolean canLearnOffMag(int playerLevel) {
 			return !learnedOffMag && playerLevel >= requiredOffMagLevel;
@@ -82,19 +94,21 @@ public class Player extends Character {
 	}
 
 	public enum SuppMagSpells {
-		SHIELD("Shield", 1, false),
-		PROTECT("Fireball", 3, false),
-		BARRIER("Teleport", 5, false),
-		ABSORB("Lightning Bolt", 8, false);
+		SHIELD("Shield", "Placeholder", 1, false),
+		PROTECT("Fireball", "Placeholder", 3, false),
+		BARRIER("Teleport", "Placeholder", 5, false),
+		ABSORB("Lightning Bolt", "Placeholder", 8, false);
 			
 		// instance variables for each defensive spell
 		private final String suppMagName;
+		private final String suppMagDescription;
 		private final int requiredSuppMagLevel;
 		private boolean learnedSuppMag;
 		
 		// Constructor
-		SuppMagSpells(String suppMagName, int requiredLevel, boolean learnedSuppMag) {
+		SuppMagSpells(String suppMagName, String suppMagDescription, int requiredLevel, boolean learnedSuppMag) {
 			this.suppMagName = suppMagName;
+			this.suppMagDescription = suppMagDescription;
 			this.requiredSuppMagLevel = requiredLevel;
 			this.learnedSuppMag = learnedSuppMag;
 		}
@@ -103,6 +117,9 @@ public class Player extends Character {
 		public String getSuppMagName() {
 			return suppMagName;
 		}		
+		public String getSuppMagDescription() {
+			return suppMagDescription;
+		}
 		public int getRequiredDefMagLevel() {
 			return requiredSuppMagLevel;
 		}
@@ -218,6 +235,13 @@ public class Player extends Character {
                         GameLogic.typeToContinue();
                         return;
                     }
+                    else if (response.equals("N")) 
+                    	chooseUpgrade();
+                    else {
+                    	System.out.println("Invalid input, returning to selections.");
+                    	GameLogic.typeToContinue();
+                    	chooseUpgrade();
+                    }
                 }
             }
             System.out.println("No new abilities to learn at the moment.");
@@ -239,6 +263,13 @@ public class Player extends Character {
                         GameLogic.typeToContinue();
                         return;
                     }
+                    else if (response.equals("N")) 
+                    	chooseUpgrade();
+                    else {
+                    	System.out.println("Invalid input, returning to selections.");
+                    	GameLogic.typeToContinue();
+                    	chooseUpgrade();
+                    }
                 }
             }
             System.out.println("No new offensive magic spells to learn at the moment.");
@@ -259,6 +290,13 @@ public class Player extends Character {
                         lastLearnedSuppMagIndex = i; // Update last learned index
                         GameLogic.typeToContinue();
                         return;
+                    }
+                    else if (response.equals("N")) 
+                    	chooseUpgrade();
+                    else {
+                    	System.out.println("Invalid input, returning to selections.");
+                    	GameLogic.typeToContinue();
+                    	chooseUpgrade();
                     }
                 }
             }
