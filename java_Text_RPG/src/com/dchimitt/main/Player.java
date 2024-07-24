@@ -7,10 +7,10 @@ public class Player extends Character {
 	public static Scanner in = new Scanner(System.in);
 	
 	public enum Abilities {
-		STRENGTH("Strength", 10),
-		AGILITY("Agility", 15),
-		ENDURANCE("Endurance", 20),
-		REFLEXES("Reflexes", 25);
+		STRENGTH("Strength", 1),
+		AGILITY("Agility", 3),
+		ENDURANCE("Endurance", 5),
+		REFLEXES("Reflexes", 8);
 		
 		// instance variables for each ability
 		private final String abilityName;
@@ -32,11 +32,11 @@ public class Player extends Character {
 	}
 	
 	public enum OffMagSpells {
-		ICE_SPIKE("Ice Spike", 3),
-		FIREBALL("Fireball", 5),
-		TELEPORT("Teleport", 7),
+		ICE_SPIKE("Ice Spike", 1),
+		FIREBALL("Fireball", 3),
+		TELEPORT("Teleport", 5),
 		LIGHTNING_BOLT("Lightning Bolt", 8),
-		METEOR_SHOWER("Meteor Shower", 10);
+		METEOR_SHOWER("Meteor Shower", 11);
 			
 		// instance variables for each offensive spell
 		private final String offMagName;
@@ -77,9 +77,9 @@ public class Player extends Character {
 	 */
 	
 	public enum DefMagSpells {
-		SHIELD("Shield", 3),
-		PROTECT("Fireball", 5),
-		BARRIER("Teleport", 7),
+		SHIELD("Shield", 1),
+		PROTECT("Fireball", 3),
+		BARRIER("Teleport", 5),
 		ABSORB("Lightning Bolt", 8);
 			
 		// instance variables for each defensive spell
@@ -100,30 +100,13 @@ public class Player extends Character {
 			return requiredDefMagLevel;
 		}
 	}	
-	/*
-	// progressive skills that player can select in attack, abilities, magic, and defense
-	public String[] atkUpgrades = {"Feeble", "Weak", "Novice", "Developed", "Competent", "Skilled", "Proficient", "Formidable", "Strong", "Mighty", "Powerful", "Herculean"};
-	public String[] defUpgrades = {"Fragile", "Vulnerable", "Squishy", "Soft", "Resilient", "Sturdy", "Durable", "Tough", "Hardy", "Fortified", "Impenetrable", "Invincible"};
-	public String[] abilityUpgrades = {};
-	public String[] offensiveMagUpgrades = {};
-	public String[] supportMagUpgrades = {};
-	
-	// variables to store number of skills added to each of the above options
-	public int numAtkUpgrades, numAbilityUpgrades, numOffensiveMagUpgrades, numSupportMagUpgrades, numDefUpgrades;
-	*/
 	
 	// Player constructor
 	public Player (String name) {
 		// super keyword to use the constructor from superclass
         // params: name, str, dex, int, starting hp pool, starting mana pool, level, current exp, exp to level
 		super(name, 1, 1, 1, 16, 5, 1, 0, 12); 
-		/*
-		this.numAtkUpgrades = 0;
-		this.numAbilityUpgrades = 0;
-		this.numOffensiveMagUpgrades = 0;
-		this.numSupportMagUpgrades = 0;
-		this.numDefUpgrades = 0;
-		*/
+
 		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
 		pickThreeStats();
 		// chooseUpgrade();
@@ -162,7 +145,6 @@ public class Player extends Character {
 		
 		// obtain input as player's three stat choices
 		int firstStat = GameLogic.userInput("--> ", 3);
-		GameLogic.clearConsole();
 		if (firstStat == 1) 
 			strength++;
 		else if (firstStat == 2)
@@ -172,7 +154,6 @@ public class Player extends Character {
 		
 		System.out.println("You've picked your first stat point. You have two upgrades remaining: ");
 		int secondStat = GameLogic.userInput("--> ", 3);
-		GameLogic.clearConsole();
 		if (secondStat == 1) 
 			strength++;
 		else if (secondStat == 2)
@@ -182,7 +163,6 @@ public class Player extends Character {
 		
 		System.out.println("You've chosen two stat points. Pick your last: ");
 		int thirdStat = GameLogic.userInput("--> ", 3);
-		GameLogic.clearConsole();
 		if (thirdStat == 1) 
 			strength++;
 		else if (thirdStat == 2)
