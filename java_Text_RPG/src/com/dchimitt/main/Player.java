@@ -6,8 +6,12 @@ public class Player extends Character {
 	
 	public static Scanner in = new Scanner(System.in);
 	
+	private int lastLearnedAbilityIndex = -1;
+	private int lastLearnedOffMagIndex = -1;
+	private int lastLearnedSuppMagIndex = -1;
+	
 	public enum Abilities {
-		STRENGTH("Strength", 1, false),
+		STRENGTH("Strength", 2, false),
 		AGILITY("Agility", 3, false),
 		ENDURANCE("Endurance", 5, false),
 		REFLEXES("Reflexes", 8, false);
@@ -76,59 +80,40 @@ public class Player extends Character {
 			learnedOffMag = true;
 		}
 	}
-	/*  EXAMPLE OF HOW TO USE ENUM:
-	 *  // Accessing enum constants
-        System.out.println("Defensive Magic Spells:");
-        for (DefMagSpells spell : DefMagSpells.values()) {
-            System.out.println(spell.getSpellName() + " - Required Level: " + spell.getRequiredLevel());
-        }
 
-        // Example usage
-        DefMagSpells chosenSpell = DefMagSpells.PROTECT;
-        int playerLevel = 17; // Example player level
-
-        if (playerLevel >= chosenSpell.getRequiredLevel()) {
-            System.out.println("Player casts " + chosenSpell.getSpellName() + "!");
-            // Add casting logic here
-        } else {
-            System.out.println("Player needs to reach level " + chosenSpell.getRequiredLevel() +
-                               " to cast " + chosenSpell.getSpellName() + ".");
-        }
-	 */
-	
-	public enum DefMagSpells {
+	public enum SuppMagSpells {
 		SHIELD("Shield", 1, false),
 		PROTECT("Fireball", 3, false),
 		BARRIER("Teleport", 5, false),
 		ABSORB("Lightning Bolt", 8, false);
 			
 		// instance variables for each defensive spell
-		private final String defMagName;
-		private final int requiredDefMagLevel;
-		private boolean learnedDefMag;
+		private final String suppMagName;
+		private final int requiredSuppMagLevel;
+		private boolean learnedSuppMag;
 		
 		// Constructor
-		DefMagSpells(String defMagName, int requiredLevel, boolean learnedDefMag) {
-			this.defMagName = defMagName;
-			this.requiredDefMagLevel = requiredLevel;
-			this.learnedDefMag = learnedDefMag;
+		SuppMagSpells(String suppMagName, int requiredLevel, boolean learnedSuppMag) {
+			this.suppMagName = suppMagName;
+			this.requiredSuppMagLevel = requiredLevel;
+			this.learnedSuppMag = learnedSuppMag;
 		}
 		
 		// getter methods
-		public String getDefMagName() {
-			return defMagName;
+		public String getSuppMagName() {
+			return suppMagName;
 		}		
 		public int getRequiredDefMagLevel() {
-			return requiredDefMagLevel;
+			return requiredSuppMagLevel;
 		}
 		
 		// check if defensive spell can be learned
-		public boolean canLearnDefMag(int playerLevel) {
-			return !learnedDefMag && playerLevel >= requiredDefMagLevel;
+		public boolean canLearnSuppMag(int playerLevel) {
+			return !learnedSuppMag && playerLevel >= requiredSuppMagLevel;
 		}
 		// mark the defensive spell as learned
-		public void learnDefMag() {
-			learnedDefMag = true;
+		public void learnSuppMag() {
+			learnedSuppMag = true;
 		}
 	}	
 	
@@ -217,44 +202,68 @@ public class Player extends Character {
 		int input = GameLogic.userInput("--> ", 3);
 		GameLogic.clearConsole();
 		
-		if (input == 1) {
-			for (Abilities ability : Abilities.values()) {
-				if (ability.canLearnAbility(level)) {
-					System.out.println("Learning " + ability.getAbilityName() + "...");
-					ability.learnAbility();
-					System.out.println(ability.getAbilityName() + " learned!");
-					GameLogic.typeToContinue();
-					return;
-				}
-			}
-			System.out.println("No new abilities to learn at the moment.");
-			GameLogic.typeToContinue();
-		}
-		else if (input == 2) {
-			for (OffMagSpells offSpell : OffMagSpells.values()) {
-				if (offSpell.canLearnOffMag(level)) {
-					System.out.println("Learning " + offSpell.getOffMagName() + "...");
-					offSpell.learnOffMag();
-					System.out.println(offSpell.getOffMagName() + " learned!");
-					GameLogic.typeToContinue();
-					return;
-				}
-			}
-			System.out.println("No new offensive magic spells to learn at the moment.");
-			GameLogic.typeToContinue();
-		}
+        if (input == 1) {
+        	for (Abilities abilities : Abilities.values()) 
+        		System.out.println(abilities + " - Level " + abilities.requiredAbilityLevel + " required.");
+            for (int i = lastLearnedAbilityIndex + 1; i < Abilities.values().length; i++) {
+                Abilities ability = Abilities.values()[i];
+                if (ability.canLearnAbility(level)) {
+                    System.out.println("Would you like to learn " + ability.getAbilityName() + "? (Y/N)");
+                    String response = in.nextLine().trim().toUpperCase();
+                    if (response.equals("Y")) {
+                        System.out.println("Learning " + ability.getAbilityName() + "...");
+                        ability.learnAbility();
+                        System.out.println(ability.getAbilityName() + " learned!");
+                        lastLearnedAbilityIndex = i; // Update last learned index
+                        GameLogic.typeToContinue();
+                        return;
+                    }
+                }
+            }
+            System.out.println("No new abilities to learn at the moment.");
+            GameLogic.typeToContinue();
+        }
+        else if (input == 2) {
+        	for (OffMagSpells offSpell : OffMagSpells.values()) 
+        		System.out.println(offSpell + " - Level " + offSpell.requiredOffMagLevel + " required.");
+            for (int i = lastLearnedOffMagIndex + 1; i < OffMagSpells.values().length; i++) {
+                OffMagSpells offSpell = OffMagSpells.values()[i];
+                if (offSpell.canLearnOffMag(level)) {
+                    System.out.println("Would you like to learn " + offSpell.getOffMagName() + "? (Y/N)");
+                    String response = in.nextLine().trim().toUpperCase();
+                    if (response.equals("Y")) {
+                        System.out.println("Learning " + offSpell.getOffMagName() + "...");
+                        offSpell.learnOffMag();
+                        System.out.println(offSpell.getOffMagName() + " learned!");
+                        lastLearnedOffMagIndex = i; // Update last learned index
+                        GameLogic.typeToContinue();
+                        return;
+                    }
+                }
+            }
+            System.out.println("No new offensive magic spells to learn at the moment.");
+            GameLogic.typeToContinue();
+        }
 		else {
-			for (DefMagSpells defSpell : DefMagSpells.values()) {
-				if (defSpell.canLearnDefMag(level)) {
-					System.out.println("Learning " + defSpell.getDefMagName() + "...");
-					defSpell.learnDefMag();
-					System.out.println(defSpell.getDefMagName() + " learned!");
-					GameLogic.typeToContinue();
-					return;
-				}
-			}
-			System.out.println("No new defensive magic spells to learn at the moment.");
-			GameLogic.typeToContinue();
+			for (SuppMagSpells suppSpell : SuppMagSpells.values()) 
+        		System.out.println(suppSpell + " - Level " + suppSpell.requiredSuppMagLevel + " required.");
+            for (int i = lastLearnedSuppMagIndex + 1; i < SuppMagSpells.values().length; i++) {
+                SuppMagSpells suppSpell = SuppMagSpells.values()[i];
+                if (suppSpell.canLearnSuppMag(level)) {
+                    System.out.println("Would you like to learn " + suppSpell.getSuppMagName() + "? (Y/N)");
+                    String response = in.nextLine().trim().toUpperCase();
+                    if (response.equals("Y")) {
+                        System.out.println("Learning " + suppSpell.getSuppMagName() + "...");
+                        suppSpell.learnSuppMag();
+                        System.out.println(suppSpell.getSuppMagName() + " learned!");
+                        lastLearnedSuppMagIndex = i; // Update last learned index
+                        GameLogic.typeToContinue();
+                        return;
+                    }
+                }
+            }
+            System.out.println("No new support magic spells to learn at the moment.");
+            GameLogic.typeToContinue();
 		}
 	}
 }
