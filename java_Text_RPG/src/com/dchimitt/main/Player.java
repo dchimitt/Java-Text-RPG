@@ -28,7 +28,7 @@ public class Player extends Character {
 		this.numDefUpgrades = 0;
 		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
 		pickThreeStats();
-		chooseUpgrade();
+		// chooseUpgrade();
 	}
 
 	@Override
@@ -96,6 +96,7 @@ public class Player extends Character {
 		GameLogic.typeToContinue();				
 	}
 	
+	/*
 	// allows player to upgrade one path
 	public void chooseUpgrade() {
 		GameLogic.clearConsole();
@@ -133,4 +134,5 @@ public class Player extends Character {
 		}
 		GameLogic.typeToContinue();
 	}
+	*/
 }
