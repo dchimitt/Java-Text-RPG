@@ -6,6 +6,54 @@ public class Player extends Character {
 	
 	public static Scanner in = new Scanner(System.in);
 	
+	// enums used to access abilities, offensive magic spells, and support magic spells
+	public enum OffMagSpells {
+		ICE_SPIKE("Ice Spike", 3),
+		FIREBALL("Fireball", 5),
+		TELEPORT("Teleport", 7),
+		LIGHTNING_BOLT("Lightning Bolt", 8),
+		METEOR_SHOWER("Meteor Shower", 10);
+			
+		// instance variables for each spell
+		private final String offMagName;
+		private final int requiredOffMagLevel;
+		
+		// constructor to initialize required level for each spell
+		OffMagSpells(String offMagName, int requiredLevel) {
+			this.offMagName = offMagName;
+			this.requiredOffMagLevel = requiredLevel;
+		}
+		
+		// getter methods
+		public String getOffMagName() {
+			return offMagName;
+		}		
+		public int getRequiredOffMagLevel() {
+			return requiredOffMagLevel;
+		}
+	}
+	/*  EXAMPLE OF HOW TO USE ENUM:
+	 *  // Accessing enum constants
+        System.out.println("Defensive Magic Spells:");
+        for (DefMagSpells spell : DefMagSpells.values()) {
+            System.out.println(spell.getSpellName() + " - Required Level: " + spell.getRequiredLevel());
+        }
+
+        // Example usage
+        DefMagSpells chosenSpell = DefMagSpells.PROTECT;
+        int playerLevel = 17; // Example player level
+
+        if (playerLevel >= chosenSpell.getRequiredLevel()) {
+            System.out.println("Player casts " + chosenSpell.getSpellName() + "!");
+            // Add casting logic here
+        } else {
+            System.out.println("Player needs to reach level " + chosenSpell.getRequiredLevel() +
+                               " to cast " + chosenSpell.getSpellName() + ".");
+        }
+	 */
+	
+	
+	/*
 	// progressive skills that player can select in attack, abilities, magic, and defense
 	public String[] atkUpgrades = {"Feeble", "Weak", "Novice", "Developed", "Competent", "Skilled", "Proficient", "Formidable", "Strong", "Mighty", "Powerful", "Herculean"};
 	public String[] defUpgrades = {"Fragile", "Vulnerable", "Squishy", "Soft", "Resilient", "Sturdy", "Durable", "Tough", "Hardy", "Fortified", "Impenetrable", "Invincible"};
@@ -15,17 +63,20 @@ public class Player extends Character {
 	
 	// variables to store number of skills added to each of the above options
 	public int numAtkUpgrades, numAbilityUpgrades, numOffensiveMagUpgrades, numSupportMagUpgrades, numDefUpgrades;
+	*/
 	
 	// Player constructor
 	public Player (String name) {
 		// super keyword to use the constructor from superclass
         // params: name, str, dex, int, starting hp pool, starting mana pool, level, current exp, exp to level
 		super(name, 1, 1, 1, 16, 5, 1, 0, 12); 
+		/*
 		this.numAtkUpgrades = 0;
 		this.numAbilityUpgrades = 0;
 		this.numOffensiveMagUpgrades = 0;
 		this.numSupportMagUpgrades = 0;
 		this.numDefUpgrades = 0;
+		*/
 		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
 		pickThreeStats();
 		// chooseUpgrade();
