@@ -19,8 +19,8 @@ public class Player extends Character {
 	// Player constructor
 	public Player (String name) {
 		// super keyword to use the constructor from superclass
-        // starting maximumHp is 100 and exp is 0
-		super(name, 100, 15, 0); 
+        // params: name, str, dex, int, starting hp pool, starting mana pool, level, current exp, exp to level
+		super(name, 1, 1, 1, 16, 5, 1, 0, 12); 
 		this.numAtkUpgrades = 0;
 		this.numAbilityUpgrades = 0;
 		this.numOffensiveMagUpgrades = 0;
