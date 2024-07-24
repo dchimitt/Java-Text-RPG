@@ -7,19 +7,21 @@ public class Player extends Character {
 	public static Scanner in = new Scanner(System.in);
 	
 	public enum Abilities {
-		STRENGTH("Strength", 1),
-		AGILITY("Agility", 3),
-		ENDURANCE("Endurance", 5),
-		REFLEXES("Reflexes", 8);
+		STRENGTH("Strength", 1, false),
+		AGILITY("Agility", 3, false),
+		ENDURANCE("Endurance", 5, false),
+		REFLEXES("Reflexes", 8, false);
 		
 		// instance variables for each ability
 		private final String abilityName;
 		private final int requiredAbilityLevel;
+		private boolean learnedAbility;
 		
 		// Constructor
-		Abilities(String abilityName, int requiredLevel) {
+		Abilities(String abilityName, int requiredLevel, boolean learnedAbility) {
 			this.abilityName = abilityName;
 			this.requiredAbilityLevel = requiredLevel;
+			this.learnedAbility = learnedAbility;
 		}
 		
 		// getter methods
@@ -29,21 +31,31 @@ public class Player extends Character {
 		public int getRequiredAbilityLevel() {
 			return requiredAbilityLevel;
 		}
+		
+		// check if ability can be learned
+		public boolean canLearnAbility(int playerLevel) {
+			return !learnedAbility && playerLevel >= requiredAbilityLevel;
+		}
+		// mark the ability as learned
+		public void learnAbility() {
+			learnedAbility = true;
+		}
 	}
 	
 	public enum OffMagSpells {
-		ICE_SPIKE("Ice Spike", 1),
-		FIREBALL("Fireball", 3),
-		TELEPORT("Teleport", 5),
-		LIGHTNING_BOLT("Lightning Bolt", 8),
-		METEOR_SHOWER("Meteor Shower", 11);
+		ICE_SPIKE("Ice Spike", 1, false),
+		FIREBALL("Fireball", 3, false),
+		TELEPORT("Teleport", 5, false),
+		LIGHTNING_BOLT("Lightning Bolt", 8, false),
+		METEOR_SHOWER("Meteor Shower", 11, false);
 			
 		// instance variables for each offensive spell
 		private final String offMagName;
 		private final int requiredOffMagLevel;
+		private boolean learnedOffMag;
 		
 		// Constructor
-		OffMagSpells(String offMagName, int requiredLevel) {
+		OffMagSpells(String offMagName, int requiredLevel, boolean learnedOffMag) {
 			this.offMagName = offMagName;
 			this.requiredOffMagLevel = requiredLevel;
 		}
@@ -54,6 +66,14 @@ public class Player extends Character {
 		}		
 		public int getRequiredOffMagLevel() {
 			return requiredOffMagLevel;
+		}
+		// check if offensive spell can be learned
+		public boolean canLearnOffMag(int playerLevel) {
+			return !learnedOffMag && playerLevel >= requiredOffMagLevel;
+		}
+		// mark the offensive spell as learned
+		public void learnOffMag() {
+			learnedOffMag = true;
 		}
 	}
 	/*  EXAMPLE OF HOW TO USE ENUM:
@@ -77,19 +97,21 @@ public class Player extends Character {
 	 */
 	
 	public enum DefMagSpells {
-		SHIELD("Shield", 1),
-		PROTECT("Fireball", 3),
-		BARRIER("Teleport", 5),
-		ABSORB("Lightning Bolt", 8);
+		SHIELD("Shield", 1, false),
+		PROTECT("Fireball", 3, false),
+		BARRIER("Teleport", 5, false),
+		ABSORB("Lightning Bolt", 8, false);
 			
 		// instance variables for each defensive spell
 		private final String defMagName;
 		private final int requiredDefMagLevel;
+		private boolean learnedDefMag;
 		
 		// Constructor
-		DefMagSpells(String defMagName, int requiredLevel) {
+		DefMagSpells(String defMagName, int requiredLevel, boolean learnedDefMag) {
 			this.defMagName = defMagName;
 			this.requiredDefMagLevel = requiredLevel;
+			this.learnedDefMag = learnedDefMag;
 		}
 		
 		// getter methods
@@ -98,6 +120,15 @@ public class Player extends Character {
 		}		
 		public int getRequiredDefMagLevel() {
 			return requiredDefMagLevel;
+		}
+		
+		// check if defensive spell can be learned
+		public boolean canLearnDefMag(int playerLevel) {
+			return !learnedDefMag && playerLevel >= requiredDefMagLevel;
+		}
+		// mark the defensive spell as learned
+		public void learnDefMag() {
+			learnedDefMag = true;
 		}
 	}	
 	
