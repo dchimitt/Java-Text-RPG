@@ -37,6 +37,12 @@ public class Player extends Character {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public int useAbility() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public int useMagic() {
