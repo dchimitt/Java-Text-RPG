@@ -140,7 +140,7 @@ public class Player extends Character {
 
 		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
 		pickThreeStats();
-		// chooseUpgrade();
+		chooseUpgrade();
 	}
 
 	@Override
@@ -205,43 +205,56 @@ public class Player extends Character {
 		GameLogic.typeToContinue();				
 	}
 	
-	/*
-	// allows player to upgrade one path
+	// allows player to choose an upgrade
 	public void chooseUpgrade() {
 		GameLogic.clearConsole();
-		GameLogic.printHeader("Choose an upgrade: ");
-		System.out.println("(1) Attack damage increase - " + atkUpgrades[numAtkUpgrades]);
-		System.out.println("(2) Defense increase - " + defUpgrades[numDefUpgrades]);
-		System.out.println("(3) Ability selection - " + abilityUpgrades[numAbilityUpgrades]);
-		System.out.println("(4) Offensive magic skill selection - " + offensiveMagUpgrades[numOffensiveMagUpgrades]);
-		System.out.println("(5) Support magic skill selection - " + supportMagUpgrades[numSupportMagUpgrades]);
+		GameLogic.printHeader("Choose an upgrade. You will be able to read a description of your selection before making your final choice: ");
+		System.out.println("(1) Abilities --> Skills that utilize strength and dexterity to inflict damage. These have cooldowns.");
+		System.out.println("(2) Offensive Magic --> Spells that decimate your enemies. These consume mana.");
+		System.out.println("(3) Defensive Magic --> Spells with varying effects that support your character. These consume mana.");
 		
 		// obtain input as player's upgrade choice
-		int input = GameLogic.userInput("--> ", 5);
+		int input = GameLogic.userInput("--> ", 3);
 		GameLogic.clearConsole();
 		
-		// TO-DO: allow player to say wrong choice and add error-handling for choices other than Y/y, N/n
 		if (input == 1) {
-			GameLogic.printHeader("You chose " + atkUpgrades[numAtkUpgrades] + "!");
-			numAtkUpgrades++;			
+			for (Abilities ability : Abilities.values()) {
+				if (ability.canLearnAbility(level)) {
+					System.out.println("Learning " + ability.getAbilityName() + "...");
+					ability.learnAbility();
+					System.out.println(ability.getAbilityName() + " learned!");
+					GameLogic.typeToContinue();
+					return;
+				}
+			}
+			System.out.println("No new abilities to learn at the moment.");
+			GameLogic.typeToContinue();
 		}
 		else if (input == 2) {
-			GameLogic.printHeader("You chose " + defUpgrades[numDefUpgrades] + "!");
-			numDefUpgrades++;
-		}
-		else if (input == 3) {
-			GameLogic.printHeader("You chose " + abilityUpgrades[numAbilityUpgrades] + "!");
-			numAbilityUpgrades++;
-		}
-		else if (input == 4) {
-			GameLogic.printHeader("You chose " + offensiveMagUpgrades[numOffensiveMagUpgrades] + "!");
-			numOffensiveMagUpgrades++;
+			for (OffMagSpells offSpell : OffMagSpells.values()) {
+				if (offSpell.canLearnOffMag(level)) {
+					System.out.println("Learning " + offSpell.getOffMagName() + "...");
+					offSpell.learnOffMag();
+					System.out.println(offSpell.getOffMagName() + " learned!");
+					GameLogic.typeToContinue();
+					return;
+				}
+			}
+			System.out.println("No new offensive magic spells to learn at the moment.");
+			GameLogic.typeToContinue();
 		}
 		else {
-			GameLogic.printHeader("You chose " + supportMagUpgrades[numSupportMagUpgrades] + "!");
-			numSupportMagUpgrades++;
+			for (DefMagSpells defSpell : DefMagSpells.values()) {
+				if (defSpell.canLearnDefMag(level)) {
+					System.out.println("Learning " + defSpell.getDefMagName() + "...");
+					defSpell.learnDefMag();
+					System.out.println(defSpell.getDefMagName() + " learned!");
+					GameLogic.typeToContinue();
+					return;
+				}
+			}
+			System.out.println("No new defensive magic spells to learn at the moment.");
+			GameLogic.typeToContinue();
 		}
-		GameLogic.typeToContinue();
 	}
-	*/
 }
