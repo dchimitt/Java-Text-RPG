@@ -26,9 +26,8 @@ public class Player extends Character {
 		this.numOffensiveMagUpgrades = 0;
 		this.numSupportMagUpgrades = 0;
 		this.numDefUpgrades = 0;
-		// allow player to choose two upgrades at the start of game
-		chooseUpgrade();
-		System.out.println("Please choose another upgrade: ");
+		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
+		pickThreeStats();
 		chooseUpgrade();
 	}
 
@@ -56,10 +55,51 @@ public class Player extends Character {
 		return 0;
 	}
 	
+	public void pickThreeStats() {
+		GameLogic.clearConsole();
+		GameLogic.printHeader("You've earned three stat points! Type a number and enter three times to choose your upgrades: ");
+		System.out.println("(1) Strength --> increases physical attack power, increases maximum health pool, and affects various abilities.");
+		System.out.println("(2) Dexterity --> increases critical hit chance (150% damage on critical) and affects various abilities.");
+		System.out.println("(3) Intelligence --> increases magical attack power and maximum mana pool.");
+		
+		// obtain input as player's three stat choices
+		int firstStat = GameLogic.userInput("--> ", 3);
+		GameLogic.clearConsole();
+		if (firstStat == 1) 
+			strength++;
+		else if (firstStat == 2)
+			dexterity++;
+		else
+			intelligence++;
+		
+		System.out.println("You've picked your first stat point. You have two upgrades remaining: ");
+		int secondStat = GameLogic.userInput("--> ", 3);
+		GameLogic.clearConsole();
+		if (secondStat == 1) 
+			strength++;
+		else if (secondStat == 2)
+			dexterity++;
+		else
+			intelligence++;
+		
+		System.out.println("You've chosen two stat points. Pick your last: ");
+		int thirdStat = GameLogic.userInput("--> ", 3);
+		GameLogic.clearConsole();
+		if (thirdStat == 1) 
+			strength++;
+		else if (thirdStat == 2)
+			dexterity++;
+		else
+			intelligence++;
+		
+		System.out.println("You've chosen your last stat point.");
+		GameLogic.typeToContinue();				
+	}
+	
 	// allows player to upgrade one path
 	public void chooseUpgrade() {
 		GameLogic.clearConsole();
-		GameLogic.printHeader("Choose an upgrade:");
+		GameLogic.printHeader("Choose an upgrade: ");
 		System.out.println("(1) Attack damage increase - " + atkUpgrades[numAtkUpgrades]);
 		System.out.println("(2) Defense increase - " + defUpgrades[numDefUpgrades]);
 		System.out.println("(3) Ability selection - " + abilityUpgrades[numAbilityUpgrades]);
