@@ -15,7 +15,7 @@ public class Player extends Character {
 		AGILITY("Agility", "Placeholder", 3, false),
 		ENDURANCE("Endurance", "Placeholder", 5, false),
 		REFLEXES("Reflexes", "Placeholder", 8, false);
-		
+	
 		// instance variables for each ability
 		private final String abilityName;
 		private final String abilityDescription;
