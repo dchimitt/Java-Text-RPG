@@ -126,7 +126,7 @@ public class Player extends Character {
 		public String getSuppMagDescription() {
 			return suppMagDescription;
 		}
-		public int getRequiredDefMagLevel() {
+		public int getRequiredSuppMagLevel() {
 			return requiredSuppMagLevel;
 		}
 		
