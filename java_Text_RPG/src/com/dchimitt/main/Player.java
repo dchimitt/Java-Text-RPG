@@ -191,7 +191,7 @@ public class Player extends Character {
 		else
 			intelligence++;
 		
-		System.out.println("You've picked your first stat point. You have two upgrades remaining: ");
+		System.out.println("You've picked your first stat point. You have two stat increases remaining: ");
 		int secondStat = GameLogic.userInput("--> ", 3);
 		if (secondStat == 1) 
 			strength++;
@@ -200,17 +200,14 @@ public class Player extends Character {
 		else
 			intelligence++;
 		
-		System.out.println("You've chosen two stat points. Pick your last: ");
+		System.out.println("You've chosen two stat points. Pick your last stat increase: ");
 		int thirdStat = GameLogic.userInput("--> ", 3);
 		if (thirdStat == 1) 
 			strength++;
 		else if (thirdStat == 2)
 			dexterity++;
 		else
-			intelligence++;
-		
-		System.out.println("You've chosen your last stat point.");
-		GameLogic.typeToContinue();				
+			intelligence++;			
 	}
 
 	// allows player to choose an upgrade
