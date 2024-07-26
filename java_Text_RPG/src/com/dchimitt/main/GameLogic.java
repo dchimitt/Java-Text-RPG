@@ -73,9 +73,12 @@ public class GameLogic {
 			if (input == 1)
 				pickedName = true;
 		} while (!pickedName);
-		
+					
 		// create new player object
 		player = new Player(name);
+		
+		// print introduction for main story
+		MainStory.printIntroduction();
 		
 		// set isRunning to true so game loop can continue
 		isRunning = true;
@@ -96,6 +99,7 @@ public class GameLogic {
 		System.out.println(player.name + "\tHP: " + player.currentHp + "/" + player.maximumHp);
 		printSeperator(20);
 		System.out.println("EXP: " + player.currentExp + "/" + player.expToLevel);
+		printSeperator(20);
 		
 		// printing chosen upgrades (abilities, offensive/support spells)
 		// TO-DO: IMPLEMENT
