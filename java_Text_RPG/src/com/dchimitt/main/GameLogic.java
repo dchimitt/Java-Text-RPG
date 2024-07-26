@@ -96,13 +96,28 @@ public class GameLogic {
 	public static void characterSheet() {
 		clearConsole();
 		printHeader("CHARACTER SHEET");
-		System.out.println(player.name + "\tHP: " + player.currentHp + "/" + player.maximumHp);
-		printSeperator(20);
+		System.out.println(player.name);
+		System.out.println("Level: " + player.level);
+		System.out.println("HP: " + player.currentHp + "/" + player.maximumHp);
 		System.out.println("EXP: " + player.currentExp + "/" + player.expToLevel);
 		printSeperator(20);
 		
-		// printing chosen upgrades (abilities, offensive/support spells)
+		// print out abilities
+		// NOTE: currently cannot reference learnedAbility value in Player class. Fix.
+		/*
+		System.out.println("Abilities: " );
+		for (Player.Abilities abilities : Player.Abilities.values()) {
+			if (Player.Abilities.learnedAbility) {
+				
+			}
+		}
+		
+		// print out offensive magic
 		// TO-DO: IMPLEMENT
+		 
+		// print out offensive magic
+		// TO-DO: IMPLEMENT
+		*/
 		
 		typeToContinue();
 	}
