@@ -10,7 +10,7 @@ public class Player extends Character {
 	private int lastLearnedOffMagIndex = -1;
 	private int lastLearnedSuppMagIndex = -1;
 	
-	public enum Abilities {
+	public static enum Abilities {
 		STRENGTH("Strength", "Placeholder", 3, 1, false),
 		AGILITY("Agility", "Placeholder", 5, 3, false),
 		ENDURANCE("Endurance", "Placeholder", 4, 5, false),
@@ -21,7 +21,7 @@ public class Player extends Character {
 		private final String abilityDescription;
 		private final int abilityCooldown;
 		private final int requiredAbilityLevel;
-		private boolean learnedAbility;
+		public boolean learnedAbility;
 		
 		// Constructor
 		Abilities(String abilityName, String abilityDescription, int abilityCooldown, int requiredLevel, boolean learnedAbility) {
@@ -228,6 +228,7 @@ public class Player extends Character {
             for (int i = lastLearnedAbilityIndex + 1; i < Abilities.values().length; i++) {
                 Abilities ability = Abilities.values()[i];
                 if (ability.canLearnAbility(level)) {
+                	System.out.println();
                     System.out.println("Would you like to learn " + ability.getAbilityName() + "? (Y/N)");
                     String response = in.nextLine().trim().toUpperCase();
                     if (response.equals("Y")) {
@@ -256,6 +257,7 @@ public class Player extends Character {
             for (int i = lastLearnedOffMagIndex + 1; i < OffMagSpells.values().length; i++) {
                 OffMagSpells offSpell = OffMagSpells.values()[i];
                 if (offSpell.canLearnOffMag(level)) {
+                	System.out.println();
                     System.out.println("Would you like to learn " + offSpell.getOffMagName() + "? (Y/N)");
                     String response = in.nextLine().trim().toUpperCase();
                     if (response.equals("Y")) {
@@ -284,6 +286,7 @@ public class Player extends Character {
             for (int i = lastLearnedSuppMagIndex + 1; i < SuppMagSpells.values().length; i++) {
                 SuppMagSpells suppSpell = SuppMagSpells.values()[i];
                 if (suppSpell.canLearnSuppMag(level)) {
+                	System.out.println();
                     System.out.println("Would you like to learn " + suppSpell.getSuppMagName() + "? (Y/N)");
                     String response = in.nextLine().trim().toUpperCase();
                     if (response.equals("Y")) {
