@@ -106,7 +106,7 @@ public class GameLogic {
 		boolean foundAbility = false;
 		System.out.println("Abilities: " );	
 		for (Player.Abilities abilities : Player.Abilities.values()) {
-			if (abilities.learnedAbility) {
+			if (abilities.getLearnedAbility()) {
 				System.out.println(abilities.getAbilityName() + " - " + abilities.getAbilityDescription());	
 				foundAbility = true;
 			}
@@ -119,7 +119,7 @@ public class GameLogic {
 		boolean foundOffMag = false;
 		System.out.println("Offensive Spells: " );	
 		for (Player.OffMagSpells offMag : Player.OffMagSpells.values()) {
-			if (offMag.learnedOffMag) {
+			if (offMag.getLearnedOffMag()) {
 				System.out.println(offMag.getOffMagName() + " - " + offMag.getOffMagDescription());
 				foundOffMag = true;
 			}
@@ -132,7 +132,7 @@ public class GameLogic {
 		boolean foundSuppMag = false;
 		System.out.println("Support Spells: " );	
 		for (Player.SuppMagSpells suppMag : Player.SuppMagSpells.values()) {
-			if (suppMag.learnedSuppMag) {
+			if (suppMag.getLearnedSuppMag()) {
 				System.out.println(suppMag.getSuppMagName() + " - " + suppMag.getSuppMagDescription());
 				foundSuppMag = true;
 			}
