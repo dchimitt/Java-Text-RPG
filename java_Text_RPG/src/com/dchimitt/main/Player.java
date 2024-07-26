@@ -53,7 +53,7 @@ public class Player extends Character {
 		}
 	}
 	
-	public enum OffMagSpells {
+	public static enum OffMagSpells {
 		ICE_SPIKE("Ice Spike", "Placeholder", 3, 1, false),
 		FIREBALL("Fireball", "Placeholder", 5, 3, false),
 		TELEPORT("Teleport", "Placeholder", 12, 5, false),
@@ -65,7 +65,7 @@ public class Player extends Character {
 		private final String offMagDescription;
 		private final int offMagManaCost;
 		private final int requiredOffMagLevel;
-		private boolean learnedOffMag;
+		public boolean learnedOffMag;
 		
 		// Constructor
 		OffMagSpells(String offMagName, String offMagDescription, int offMagManaCost, int requiredLevel, boolean learnedOffMag) {
@@ -97,7 +97,7 @@ public class Player extends Character {
 		}
 	}
 
-	public enum SuppMagSpells {
+	public static enum SuppMagSpells {
 		SHIELD("Shield", "Placeholder", 4, 1, false),
 		PROTECT("Fireball", "Placeholder", 6, 3, false),
 		BARRIER("Teleport", "Placeholder", 10, 5, false),
@@ -108,7 +108,7 @@ public class Player extends Character {
 		private final String suppMagDescription;
 		private final int suppMagManaCost;
 		private final int requiredSuppMagLevel;
-		private boolean learnedSuppMag;
+		public boolean learnedSuppMag;
 		
 		// Constructor
 		SuppMagSpells(String suppMagName, String suppMagDescription, int suppMagManaCost, int requiredLevel, boolean learnedSuppMag) {
