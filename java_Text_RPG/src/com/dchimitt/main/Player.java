@@ -21,7 +21,7 @@ public class Player extends Character {
 		private final String abilityDescription;
 		private final int abilityCooldown;
 		private final int requiredAbilityLevel;
-		public boolean learnedAbility;
+		private boolean learnedAbility;
 		
 		// Constructor
 		Abilities(String abilityName, String abilityDescription, int abilityCooldown, int requiredLevel, boolean learnedAbility) {
@@ -41,6 +41,9 @@ public class Player extends Character {
 		}
 		public int getRequiredAbilityLevel() {
 			return requiredAbilityLevel;
+		}
+		public boolean getLearnedAbility() {
+			return learnedAbility;
 		}
 		
 		// check if ability can be learned
@@ -65,7 +68,7 @@ public class Player extends Character {
 		private final String offMagDescription;
 		private final int offMagManaCost;
 		private final int requiredOffMagLevel;
-		public boolean learnedOffMag;
+		private boolean learnedOffMag;
 		
 		// Constructor
 		OffMagSpells(String offMagName, String offMagDescription, int offMagManaCost, int requiredLevel, boolean learnedOffMag) {
@@ -85,6 +88,9 @@ public class Player extends Character {
 		}
 		public int getRequiredOffMagLevel() {
 			return requiredOffMagLevel;
+		}
+		public boolean getLearnedOffMag() {
+			return learnedOffMag;
 		}
 		
 		// check if offensive spell can be learned
@@ -108,7 +114,7 @@ public class Player extends Character {
 		private final String suppMagDescription;
 		private final int suppMagManaCost;
 		private final int requiredSuppMagLevel;
-		public boolean learnedSuppMag;
+		private boolean learnedSuppMag;
 		
 		// Constructor
 		SuppMagSpells(String suppMagName, String suppMagDescription, int suppMagManaCost, int requiredLevel, boolean learnedSuppMag) {
@@ -128,6 +134,9 @@ public class Player extends Character {
 		}
 		public int getRequiredSuppMagLevel() {
 			return requiredSuppMagLevel;
+		}
+		public boolean getLearnedSuppMag() {
+			return learnedSuppMag;
 		}
 		
 		// check if defensive spell can be learned
