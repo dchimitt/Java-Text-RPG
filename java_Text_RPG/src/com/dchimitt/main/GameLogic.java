@@ -103,25 +103,46 @@ public class GameLogic {
 		printSeperator(20);
 		
 		// print out abilities
-		// NOTE: currently cannot reference learnedAbility value in Player class. Fix.
-		
-		System.out.println("Abilities: " );
-		/*
+		boolean foundAbility = false;
+		System.out.println("Abilities: " );	
 		for (Player.Abilities abilities : Player.Abilities.values()) {
-			if (Player.Abilities.learnedAbility) {
-				
+			if (abilities.learnedAbility) {
+				System.out.print(abilities.getAbilityName() + ", ");	
+				foundAbility = true;
 			}
 		}
-		*/
+		if (foundAbility == false)
+			System.out.println("N/A");
+		System.out.println();
+		GameLogic.printSeperator(20);
 		
-		/*
 		// print out offensive magic
-		// TO-DO: IMPLEMENT
+		boolean foundOffMag = false;
+		System.out.println("Offensive Spells: " );	
+		for (Player.OffMagSpells offMag : Player.OffMagSpells.values()) {
+			if (offMag.learnedOffMag) {
+				System.out.print(offMag.getOffMagName() + ", ");
+				foundOffMag = true;
+			}
+		}
+		if (foundOffMag == false)
+			System.out.println("N/A");
+		System.out.println();
+		GameLogic.printSeperator(20);
 		 
 		// print out offensive magic
-		// TO-DO: IMPLEMENT
-		*/
-		
+		boolean foundSuppMag = false;
+		System.out.println("Support Spells: " );	
+		for (Player.SuppMagSpells suppMag : Player.SuppMagSpells.values()) {
+			if (suppMag.learnedSuppMag) {
+				System.out.print(suppMag.getSuppMagName() + ", ");
+				foundSuppMag = true;
+			}
+		}
+		if (foundSuppMag == false)
+			System.out.println("N/A");
+		System.out.println();
+		GameLogic.printSeperator(20);
 		typeToContinue();
 	}
 	
