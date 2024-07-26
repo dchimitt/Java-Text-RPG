@@ -6,6 +6,8 @@ public class GameLogic {
 	static Scanner in = new Scanner(System.in);
 	static Player player;
 	
+	public static boolean isRunning;
+	
 	// method to get user input 
 	public static int userInput(String prompt, int userChoices) {
 		int input;
@@ -75,7 +77,54 @@ public class GameLogic {
 		// create new player object
 		player = new Player(name);
 		
+		// set isRunning to true so game loop can continue
+		isRunning = true;
+		
 		// start main game loop
-		// gameLoop();
+		gameLoop();
+	}
+	
+	// method to continue game
+	public static void continueGame() {
+		
+	}
+	
+	// print character sheet
+	public static void characterSheet() {
+		clearConsole();
+		printHeader("CHARACTER SHEET");
+		System.out.println(player.name + "\tHP: " + player.currentHp + "/" + player.maximumHp);
+		printSeperator(20);
+		System.out.println("EXP: " + player.currentExp + "/" + player.expToLevel);
+		
+		// printing chosen upgrades (abilities, offensive/support spells)
+		// TO-DO: IMPLEMENT
+		
+		typeToContinue();
+	}
+	
+	// print main menu
+	public static void printMenu() {
+		clearConsole();
+		printHeader("MENU");
+		System.out.println("Choose an action:");
+		printSeperator(20);
+		System.out.println("(1) Continue the game");
+		System.out.println("(1) Open your character sheet");
+		System.out.println("(1) Exit game");		
+	}
+	
+	// main game loop
+	public static void gameLoop() {
+		while(isRunning) {
+			printMenu();
+			int input = userInput("--> ", 3);
+			if (input == 1) 
+				continueGame();
+			else if (input == 2) 
+				characterSheet();
+			else
+				isRunning = false;
+		}
 	}
 }
