@@ -129,8 +129,8 @@ public class GameLogic {
 		System.out.println("Choose an action:");
 		printSeperator(20);
 		System.out.println("(1) Continue the game");
-		System.out.println("(1) Open your character sheet");
-		System.out.println("(1) Exit game");		
+		System.out.println("(2) Open your character sheet");
+		System.out.println("(3) Exit game");		
 	}
 	
 	// main game loop
