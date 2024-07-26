@@ -107,13 +107,12 @@ public class GameLogic {
 		System.out.println("Abilities: " );	
 		for (Player.Abilities abilities : Player.Abilities.values()) {
 			if (abilities.learnedAbility) {
-				System.out.print(abilities.getAbilityName() + ", ");	
+				System.out.println(abilities.getAbilityName() + " - " + abilities.getAbilityDescription());	
 				foundAbility = true;
 			}
 		}
 		if (foundAbility == false)
 			System.out.println("N/A");
-		System.out.println();
 		GameLogic.printSeperator(20);
 		
 		// print out offensive magic
@@ -121,13 +120,12 @@ public class GameLogic {
 		System.out.println("Offensive Spells: " );	
 		for (Player.OffMagSpells offMag : Player.OffMagSpells.values()) {
 			if (offMag.learnedOffMag) {
-				System.out.print(offMag.getOffMagName() + ", ");
+				System.out.println(offMag.getOffMagName() + " - " + offMag.getOffMagDescription());
 				foundOffMag = true;
 			}
 		}
 		if (foundOffMag == false)
 			System.out.println("N/A");
-		System.out.println();
 		GameLogic.printSeperator(20);
 		 
 		// print out offensive magic
@@ -135,13 +133,12 @@ public class GameLogic {
 		System.out.println("Support Spells: " );	
 		for (Player.SuppMagSpells suppMag : Player.SuppMagSpells.values()) {
 			if (suppMag.learnedSuppMag) {
-				System.out.print(suppMag.getSuppMagName() + ", ");
+				System.out.println(suppMag.getSuppMagName() + " - " + suppMag.getSuppMagDescription());
 				foundSuppMag = true;
 			}
 		}
 		if (foundSuppMag == false)
 			System.out.println("N/A");
-		System.out.println();
 		GameLogic.printSeperator(20);
 		typeToContinue();
 	}
@@ -150,8 +147,6 @@ public class GameLogic {
 	public static void printMenu() {
 		clearConsole();
 		printHeader("MENU");
-		System.out.println("Choose an action:");
-		printSeperator(20);
 		System.out.println("(1) Continue the game");
 		System.out.println("(2) Open your character sheet");
 		System.out.println("(3) Exit game");		
