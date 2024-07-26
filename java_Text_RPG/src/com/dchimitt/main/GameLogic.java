@@ -104,14 +104,17 @@ public class GameLogic {
 		
 		// print out abilities
 		// NOTE: currently cannot reference learnedAbility value in Player class. Fix.
-		/*
+		
 		System.out.println("Abilities: " );
+		/*
 		for (Player.Abilities abilities : Player.Abilities.values()) {
 			if (Player.Abilities.learnedAbility) {
 				
 			}
 		}
+		*/
 		
+		/*
 		// print out offensive magic
 		// TO-DO: IMPLEMENT
 		 
