@@ -94,6 +94,7 @@ public class GameLogic {
 	// method to continue game
 	public static void continueGame() {
 		int newPlayerPosition = actOneMap.movePlayerTo(ActOneMap.Direction.NORTH);
+		System.out.println("Player moved to position: " + newPlayerPosition);
 	}
 	
 	// print character sheet
