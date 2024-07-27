@@ -1,11 +1,11 @@
 package com.dchimitt.main;
-import com.dchimitt.main.ActOneMap;
 import java.util.Scanner;
 
 // will never create object of this class, so everything here is static
 public class GameLogic {
 	static Scanner in = new Scanner(System.in);
 	static Player player;
+	static ActOneMap actOneMap;
 	
 	public static boolean isRunning;
 	
@@ -93,7 +93,7 @@ public class GameLogic {
 	
 	// method to continue game
 	public static void continueGame() {
-		
+		int newPlayerPosition = actOneMap.movePlayerTo(ActOneMap.Direction.NORTH);
 	}
 	
 	// print character sheet
