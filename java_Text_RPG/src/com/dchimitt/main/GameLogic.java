@@ -1,4 +1,5 @@
 package com.dchimitt.main;
+import com.dchimitt.main.ActOneMap;
 import java.util.Scanner;
 
 // will never create object of this class, so everything here is static
@@ -73,7 +74,10 @@ public class GameLogic {
 			if (input == 1)
 				pickedName = true;
 		} while (!pickedName);
-					
+		
+		// initialize the map for act one
+		ActOneMap.initializeActOneMap();
+		
 		// create new player object
 		player = new Player(name, 0, 12);
 		
