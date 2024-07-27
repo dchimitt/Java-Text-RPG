@@ -11,35 +11,35 @@ public class Room extends Thing {
 		this.w = w;
 	}
 	
-	public int getN() {
+	public int getNorth() {
 		return n;
 	}
 	
-	public void setN(int n) {
+	public void setNorth(int n) {
 		this.n = n;
 	}
 	
-	public int getS() {
+	public int getSouth() {
 		return s;
 	}
 	
-	public void setS(int s) {
+	public void setSouth(int s) {
 		this.s = s;
 	}
 	
-	public int getE() {
+	public int getEast() {
 		return e;
 	}
 	
-	public void setE(int e) {
+	public void setEast(int e) {
 		this.e = e;
 	}
 	
-	public int getW() {
+	public int getWest() {
 		return w;
 	}
 	
-	public void setW(int w) {
+	public void setWest(int w) {
 		this.w = w;
 	}
 }
