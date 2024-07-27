@@ -29,7 +29,7 @@ public class ActOneMap {
 		}
 	}
 	
-	public static Room getActOneMapLocation()
+	public static Room getActOneMapStartingRoom()
 	{
 		return actOneMap.get(0);
 	}
