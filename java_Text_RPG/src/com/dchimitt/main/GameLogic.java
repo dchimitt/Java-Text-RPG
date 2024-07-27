@@ -75,7 +75,7 @@ public class GameLogic {
 		} while (!pickedName);
 					
 		// create new player object
-		player = new Player(name);
+		player = new Player(name, 0, 12);
 		
 		// print introduction for main story
 		MainStory.printIntroduction();
