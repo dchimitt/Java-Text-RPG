@@ -1,5 +1,5 @@
 package com.dchimitt.main;
-import java.util.Scanner;
+import java.util.*;
 
 // NOTE: @Override means inherited methods from abstract superclass differ
 public class Player extends Character {
@@ -150,10 +150,13 @@ public class Player extends Character {
 	}	
 	
 	// Player constructor
-	public Player (String name) {
+	public Player (String name, int currentExp, int expToLevel) {
 		// super keyword to use the constructor from superclass
-        // params: name, str, dex, int, starting hp pool, starting mana pool, level, current exp, exp to level
-		super(name, 1, 1, 1, 16, 5, 1, 0, 12); 
+        // params: name, str, dex, int, starting hp pool, starting mana pool, level, starting room in act one
+		super(name, 1, 1, 1, 16, 5, 1, xx); 
+		// currentExp and expToLevel not needed in any other subclasses of Character, so initialize here for Player subclass only
+		this.currentExp = currentExp;
+		this.expToLevel = expToLevel;
 
 		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
 		pickThreeStats();
