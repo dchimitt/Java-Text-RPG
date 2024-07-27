@@ -13,7 +13,7 @@ public class ActOneMap {
 		public static final int NOEXIT = -1;
 	};
 	
-	private int currentPlayerPosition = 0;
+	private int currentPlayerPosition;
 	private static ArrayList <Room> actOneMap;
 	
 	List<String> input = new ArrayList<>(Arrays.asList("n", "s", "e", "w"));
@@ -28,6 +28,11 @@ public class ActOneMap {
 			actOneMap.add(new Room("Placeholder3", "description3", 0, Direction.NOEXIT, 3, Direction.NOEXIT));
 			actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 2));
 		}
+	}
+	
+	public ActOneMap() {
+		initializeActOneMap();
+		currentPlayerPosition = 0;
 	}
 		
 	public static Room getActOneMapStartingRoom()
