@@ -17,14 +17,16 @@ public class ActOneMap {
 	
 	List<String> input = new ArrayList<>(Arrays.asList("n", "s", "e", "w"));
 	
-	public ActOneMap() {
-		this.actOneMap = new ArrayList<Room>();
+	public static void initializeActOneMap() {
+		if (actOneMap == null) {
+			actOneMap = new ArrayList<Room>();
 		
-		// add rooms to the act one map
-		actOneMap.add(new Room("Placeholder1", "description1", Direction.NOEXIT, 2, Direction.NOEXIT, 1));
-		actOneMap.add(new Room("Placeholder2", "description2", Direction.NOEXIT, Direction.NOEXIT, 0, Direction.NOEXIT));
-		actOneMap.add(new Room("Placeholder3", "description3", 0, Direction.NOEXIT, Direction.NOEXIT, 3));
-		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, 2, Direction.NOEXIT));
+			// add rooms to the act one map
+			actOneMap.add(new Room("Placeholder1", "description1", Direction.NOEXIT, 2, 1, Direction.NOEXIT));
+			actOneMap.add(new Room("Placeholder2", "description2", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 0));
+			actOneMap.add(new Room("Placeholder3", "description3", 0, Direction.NOEXIT, 3, Direction.NOEXIT));
+			actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 2));
+		}
 	}
 	
 	public static Room getActOneMapLocation()
