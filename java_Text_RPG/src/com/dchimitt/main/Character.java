@@ -17,7 +17,7 @@ public abstract class Character {
 		this.maximumMana = maximumMana;
 		this.currentMana = maximumMana;
 		this.level = level;
-		this.startingRoom = ActOneMap.getActOneMapLocation();
+		this.startingRoom = startingRoom;
 	}
 	
 	// abstract methods
