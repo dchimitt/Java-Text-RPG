@@ -13,6 +13,7 @@ public class ActOneMap {
 		public static final int NOEXIT = -1;
 	};
 	
+	private int currentPlayerPosition = 0;
 	private static ArrayList <Room> actOneMap;
 	
 	List<String> input = new ArrayList<>(Arrays.asList("n", "s", "e", "w"));
@@ -28,9 +29,37 @@ public class ActOneMap {
 			actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 2));
 		}
 	}
-	
+		
 	public static Room getActOneMapStartingRoom()
 	{
 		return actOneMap.get(0);
 	}
+	
+	public int movePlayerTo(Direction direction) {
+		Room currentRoom = actOneMap.get(currentPlayerPosition);
+		int newPlayerPosition = Direction.NOEXIT; // default set to -1 to handle invalid moves
+		
+		switch (direction) {
+		case NORTH:
+			newPlayerPosition = currentRoom.getN();
+			break;
+		case SOUTH:
+			newPlayerPosition = currentRoom.getS();
+			break;
+		case EAST:
+			newPlayerPosition = currentRoom.getE();
+			break;
+		case WEST:
+			newPlayerPosition = currentRoom.getW();
+			break;			
+		}
+		
+		if (newPlayerPosition != Direction.NOEXIT) 
+			currentPlayerPosition = newPlayerPosition;
+		else
+			System.out.println("You cannot move in that direction!");
+		
+		return currentPlayerPosition;
+	}
+	
 }
