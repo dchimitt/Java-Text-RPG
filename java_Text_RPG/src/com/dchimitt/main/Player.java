@@ -196,7 +196,7 @@ public class Player extends Character {
 		System.out.println("(3) Intelligence --> increases magical attack power and maximum mana pool.");
 		
 		// obtain input as player's three stat choices
-		int firstStat = GameLogic.userInput("--> ", 3);
+		int firstStat = GameLogic.intUserInput("--> ", 3);
 		if (firstStat == 1) 
 			strength++;
 		else if (firstStat == 2)
@@ -205,7 +205,7 @@ public class Player extends Character {
 			intelligence++;
 		
 		System.out.println("You've picked your first stat point. You have two stat increases remaining: ");
-		int secondStat = GameLogic.userInput("--> ", 3);
+		int secondStat = GameLogic.intUserInput("--> ", 3);
 		if (secondStat == 1) 
 			strength++;
 		else if (secondStat == 2)
@@ -214,7 +214,7 @@ public class Player extends Character {
 			intelligence++;
 		
 		System.out.println("You've chosen two stat points. Pick your last stat increase: ");
-		int thirdStat = GameLogic.userInput("--> ", 3);
+		int thirdStat = GameLogic.intUserInput("--> ", 3);
 		if (thirdStat == 1) 
 			strength++;
 		else if (thirdStat == 2)
@@ -232,7 +232,7 @@ public class Player extends Character {
 		System.out.println("(3) Support Magic --> Spells with varying effects that support your character. These consume mana.");
 		
 		// obtain input as player's upgrade choice
-		int input = GameLogic.userInput("--> ", 3);
+		int input = GameLogic.intUserInput("--> ", 3);
 		GameLogic.clearConsole();
 		
         if (input == 1) {
