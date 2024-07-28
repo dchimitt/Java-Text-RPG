@@ -5,7 +5,7 @@ public class MainStory {
 	public static void printIntroduction() {
 		GameLogic.clearConsole();
 		GameLogic.printSeperator(30);
-		System.out.println("Welcome, fresh mea- I mean, " + GameLogic.player.name);
+		System.out.println("Welcome, " + GameLogic.player.name);
 		System.out.println("PLACEHOLDER");
 		System.out.println("PLACEHOLDER");
 		System.out.println("PLACEHOLDER");
