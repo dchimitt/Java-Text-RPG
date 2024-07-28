@@ -92,6 +92,7 @@ public class GameLogic {
 	
 	// method to continue game
 	public static void continueGame() {
+		GameLogic.clearConsole();
 		do {
 			System.out.println("Type N, S, E, or W to move in a direction.");
 			String directionInput = in.next().trim().toUpperCase();
