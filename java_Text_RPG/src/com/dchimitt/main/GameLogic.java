@@ -12,7 +12,7 @@ public class GameLogic {
 	public static boolean isRunning;
 	
 	// method to get input when integers are required
-	public static int userInput(String prompt, int userChoices) {
+	public static int intUserInput(String prompt, int userChoices) {
 		int input;
 		do {
 			System.out.println(prompt);
@@ -72,7 +72,7 @@ public class GameLogic {
 			printHeader("Your name is " + name + ".\nIs that correct?");
 			System.out.println("(1) Yes!");
 			System.out.println("(2) No, let me change it.");
-			int input = userInput("--> ", 2);
+			int input = intUserInput("--> ", 2);
 			if (input == 1)
 				pickedName = true;
 		} while (!pickedName);
@@ -177,7 +177,7 @@ public class GameLogic {
 	public static void gameLoop() {
 		while(isRunning) {
 			printMenu();
-			int input = userInput("--> ", 3);
+			int input = intUserInput("--> ", 3);
 			if (input == 1) 
 				continueGame();
 			else if (input == 2) 
