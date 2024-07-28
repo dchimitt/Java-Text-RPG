@@ -4,10 +4,10 @@ import java.util.ArrayList;
 public class ActOneMap {
 	
 	public enum Direction {
-		NORTH,
-		SOUTH,
-		EAST,
-		WEST;
+		NORTH, 
+		SOUTH, 
+		EAST,  
+		WEST; 
 		
 		// named variable so not confused with -1 later
 		public static final int NOEXIT = -1;
@@ -19,7 +19,7 @@ public class ActOneMap {
 	public ActOneMap() {
 		actOneMap = new ArrayList<Room>();
 		
-		// add rooms to the act one map
+		// Adding rooms to the ArrayList. Integers indicate the indices of the connecting rooms in directions of order (North, South, East, West)
 		actOneMap.add(new Room("Placeholder1", "description1", Direction.NOEXIT, 2, 1, Direction.NOEXIT));
 		actOneMap.add(new Room("Placeholder2", "description2", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 0));
 		actOneMap.add(new Room("Placeholder3", "description3", 0, Direction.NOEXIT, 3, Direction.NOEXIT));
