@@ -11,7 +11,7 @@ public class GameLogic {
 	
 	public static boolean isRunning;
 	
-	// method to get user input 
+	// method to get input when integers are required
 	public static int userInput(String prompt, int userChoices) {
 		int input;
 		do {
