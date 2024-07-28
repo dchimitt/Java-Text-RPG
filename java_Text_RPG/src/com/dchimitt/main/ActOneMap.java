@@ -67,10 +67,12 @@ public class ActOneMap {
 			break;			
 		}
 		
-		if (newPlayerPosition != Direction.NOEXIT) 
+		if (newPlayerPosition != Direction.NOEXIT) {
 			currentPlayerPosition = newPlayerPosition;
+			System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
+		}
 		else
-			System.out.println("You cannot move in that direction!");
+			System.out.println("A mountain blocks your path!");
 		
 		return currentPlayerPosition;
 	}
