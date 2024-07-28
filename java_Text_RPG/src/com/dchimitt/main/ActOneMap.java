@@ -1,5 +1,5 @@
 package com.dchimitt.main;
-import java.util.*;
+import java.util.ArrayList;
 
 public class ActOneMap {
 	
@@ -14,11 +14,9 @@ public class ActOneMap {
 	};
 	
 	private int currentPlayerPosition = 0;
-	private static ArrayList <Room> actOneMap;
+	private ArrayList <Room> actOneMap;
 	
-	List<String> input = new ArrayList<>(Arrays.asList("n", "s", "e", "w"));
-	
-	public static void initializeActOneMap() {
+	public ActOneMap() {
 		actOneMap = new ArrayList<Room>();
 		
 		// add rooms to the act one map
@@ -27,8 +25,8 @@ public class ActOneMap {
 		actOneMap.add(new Room("Placeholder3", "description3", 0, Direction.NOEXIT, 3, Direction.NOEXIT));
 		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 2));
 	}
-		
-	public static Room getActOneMapStartingRoom()
+	
+	public Room getActOneMapStartingRoom()
 	{
 		return actOneMap.get(0);
 	}
@@ -59,5 +57,4 @@ public class ActOneMap {
 		
 		return currentPlayerPosition;
 	}
-	
 }
