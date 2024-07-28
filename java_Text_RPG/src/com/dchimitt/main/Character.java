@@ -4,10 +4,9 @@ public abstract class Character {
 	// attributes that all players, enemies, and bosses must have
 	public String name;
 	public int strength, dexterity, intelligence, maximumHp, currentHp, maximumMana, currentMana, level, currentExp, expToLevel;
-	public Room startingRoom;
 	
 	// Character constructor
-	public Character(String name, int strength, int dexterity, int intelligence, int maximumHp, int maximumMana, int level, Room startingRoom) {
+	public Character(String name, int strength, int dexterity, int intelligence, int maximumHp, int maximumMana, int level) {
 		this.name = name;
 		this.strength = strength;
 		this.dexterity = dexterity;
@@ -17,7 +16,6 @@ public abstract class Character {
 		this.maximumMana = maximumMana;
 		this.currentMana = maximumMana;
 		this.level = level;
-		this.startingRoom = startingRoom;
 	}
 	
 	// abstract methods
