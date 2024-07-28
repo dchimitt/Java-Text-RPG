@@ -59,9 +59,9 @@ public class ActOneMap {
 		actOneMap.add(new Room("IDK YET:", " E-4", 28, 44, 37, 35));     	                                                                    // 36
 		actOneMap.add(new Room("SOME TOWN:", " E-5", 29, 45, 38, 36));                                   	                                    // 37
 		actOneMap.add(new Room("Reizart Cave Exit:", " E-6", Direction.NOEXIT, Direction.NOEXIT, 39, 37));     	                                // 38 (BOSS)
-		actOneMap.add(new Room("Reizart Cave:", "E-7", 31, Direction.NOEXIT, Direction.NOEXIT, 38));     	                                    // 39
-		actOneMap.add(new Room("IDK YET:", "F-0", 32, 48, 41, Direction.NOEXIT));     	                                                        // 40
-		actOneMap.add(new Room("IDK YET:", "F-1", 33, 49, 42, 40));     	                                                                    // 41
+		actOneMap.add(new Room("Reizart Cave:", " E-7", 31, Direction.NOEXIT, Direction.NOEXIT, 38));     	                                    // 39
+		actOneMap.add(new Room("IDK YET:", " F-0", 32, 48, 41, Direction.NOEXIT));     	                                                        // 40
+		actOneMap.add(new Room("IDK YET:", " F-1", 33, 49, 42, 40));     	                                                                    // 41
 	}
 	
 	public Room getActOneMapStartingRoom()
