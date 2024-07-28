@@ -120,6 +120,7 @@ public class GameLogic {
 		System.out.println(player.name);
 		System.out.println("Level: " + player.level);
 		System.out.println("HP: " + player.currentHp + "/" + player.maximumHp);
+		System.out.println("MP: " + player.currentMana + "/" + player.maximumMana);
 		System.out.println("EXP: " + player.currentExp + "/" + player.expToLevel);
 		printSeperator(20);
 		
@@ -183,6 +184,7 @@ public class GameLogic {
 			else if (input == 2) 
 				characterSheet();
 			else
+				// add save functionality here
 				isRunning = false;
 		}
 	}
