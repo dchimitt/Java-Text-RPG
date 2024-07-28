@@ -40,7 +40,28 @@ public class ActOneMap {
 		actOneMap.add(new Room("Mountain", "", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     	                // 17
 		actOneMap.add(new Room("Mountain", "", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     	                // 18
 		actOneMap.add(new Room("Mountain", "", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     	                // 19
-		actOneMap.add(new Room("Mountain", "", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     	                // 20		
+		actOneMap.add(new Room("Mountain", "", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     	                // 20
+		actOneMap.add(new Room("Mountain", "", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     	                // 21
+		actOneMap.add(new Room("Reizart Cave:", " C-6", 14, Direction.NOEXIT, 23, Direction.NOEXIT));                                 			// 22
+		actOneMap.add(new Room("Reizart Cave:", " C-7", Direction.NOEXIT, 31, Direction.NOEXIT, 22));                                           // 23
+		actOneMap.add(new Room("IDK YET:", " D-0", Direction.NOEXIT, 32, 25, Direction.NOEXIT));                                                // 24
+		actOneMap.add(new Room("IDK YET:", " D-1", Direction.NOEXIT, 33, 26, 24));                                    	 	                    // 25
+		actOneMap.add(new Room("IDK YET:", " D-2", Direction.NOEXIT, 34, 27, 25));                                                              // 26
+		actOneMap.add(new Room("IDK YET:", " D-3", Direction.NOEXIT, 35, 28, 26));     	                										// 27
+		actOneMap.add(new Room("IDK YET:", " D-4", Direction.NOEXIT, 36, 29, 27));     	                										// 28
+		actOneMap.add(new Room("IDK YET:", " D-5", Direction.NOEXIT, 37, Direction.NOEXIT, 28));                                   	            // 29
+		actOneMap.add(new Room("Mountain", "", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));                        // 30
+		actOneMap.add(new Room("Reizart Cave:", " D-7", 23, 39, Direction.NOEXIT, Direction.NOEXIT));                                           // 31
+		actOneMap.add(new Room("IDK YET:", " E-0", 24, 40, 33, Direction.NOEXIT));                                                    		    // 32
+		actOneMap.add(new Room("IDK YET:", " E-1", 25, 41, 34, 32));                                    	 	                                // 33
+		actOneMap.add(new Room("IDK YET:", " E-2", 26, 42, 35, 33));                         													// 34
+		actOneMap.add(new Room("IDK YET:", " E-3", 27, 43, 36, 34));     	                                                                    // 35
+		actOneMap.add(new Room("IDK YET:", " E-4", 28, 44, 37, 35));     	                                                                    // 36
+		actOneMap.add(new Room("SOME TOWN:", " E-5", 29, 45, 38, 36));                                   	                                    // 37
+		actOneMap.add(new Room("Reizart Cave Exit:", " E-6", Direction.NOEXIT, Direction.NOEXIT, 39, 37));     	                                // 38 (BOSS)
+		actOneMap.add(new Room("Reizart Cave:", "E-7", 31, Direction.NOEXIT, Direction.NOEXIT, 38));     	                                    // 39
+		actOneMap.add(new Room("IDK YET:", "F-0", 32, 48, 41, Direction.NOEXIT));     	                                                        // 40
+		actOneMap.add(new Room("IDK YET:", "F-1", 33, 49, 42, 40));     	                                                                    // 41
 	}
 	
 	public Room getActOneMapStartingRoom()
