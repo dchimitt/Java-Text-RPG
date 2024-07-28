@@ -153,7 +153,8 @@ public class Player extends Character {
 	public Player (String name, int currentExp, int expToLevel) {
 		// super keyword to use the constructor from superclass
         // params: name, str, dex, int, starting hp pool, starting mana pool, level
-		super(name, 1, 1, 1, 16, 5, 1); 
+		super(name, 1, 1, 1, 16, 5, 1, GameLogic.mapOne.getActOneMapStartingRoom()); 
+		
 		// currentExp and expToLevel not needed in any other subclasses of Character, so initialize here for Player subclass only
 		this.currentExp = currentExp;
 		this.expToLevel = expToLevel;
