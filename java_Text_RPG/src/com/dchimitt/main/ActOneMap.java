@@ -20,10 +20,28 @@ public class ActOneMap {
 		actOneMap = new ArrayList<Room>();
 		
 		// Adding rooms to the ArrayList. Integers indicate the indices of the connecting rooms in directions of order (North, South, East, West)
-		actOneMap.add(new Room("Placeholder1", "description1", Direction.NOEXIT, 2, 1, Direction.NOEXIT));                    // 0
-		actOneMap.add(new Room("Placeholder2", "description2", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 0));     // 1
-		actOneMap.add(new Room("Placeholder3", "description3", 0, Direction.NOEXIT, 3, Direction.NOEXIT));                    // 2
-		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, 2));     // 3
+		actOneMap.add(new Room("Placeholder1", "description1", Direction.NOEXIT, 8, 1, Direction.NOEXIT));                                   // 0
+		actOneMap.add(new Room("Placeholder2", "description2", Direction.NOEXIT, 9, 2, 0));                                                  // 1
+		actOneMap.add(new Room("Placeholder3", "description3", Direction.NOEXIT, 10, 3, 1));                                                 // 2
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, 11, 4, 2));                                                 // 3
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, 12, Direction.NOEXIT, 3));                                  // 4
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 5
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 6
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 7
+		actOneMap.add(new Room("Placeholder4", "description4", 0, Direction.NOEXIT, 9, Direction.NOEXIT));                                   // 8
+		actOneMap.add(new Room("Placeholder4", "description4", 1, Direction.NOEXIT, 10, 8));                                                 // 9
+		actOneMap.add(new Room("Placeholder4", "description4", 2, Direction.NOEXIT, 11, 9));                                                 // 10
+		actOneMap.add(new Room("Placeholder4", "description4", 3, Direction.NOEXIT, 12, 10));                                                // 11
+		actOneMap.add(new Room("Placeholder4", "description4", 4, Direction.NOEXIT, 13, 11));                                                // 12
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, 14, 12));                                 // 13
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, 22, Direction.NOEXIT, 13));                                 // 14
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 15
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 16
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 17
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 18
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 19
+		actOneMap.add(new Room("Placeholder4", "description4", Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT, Direction.NOEXIT));     // 20
+		
 	}
 	
 	public Room getActOneMapStartingRoom()
