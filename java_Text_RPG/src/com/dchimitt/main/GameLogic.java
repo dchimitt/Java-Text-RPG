@@ -1,11 +1,13 @@
 package com.dchimitt.main;
 import java.util.Scanner;
 
+import com.dchimitt.main.ActOneMap.Direction;
+
 // will never create object of this class, so everything here is static
 public class GameLogic {
 	static Scanner in = new Scanner(System.in);
 	static Player player;
-	static ActOneMap actOneMap;
+	static ActOneMap mapOne = new ActOneMap();
 	
 	public static boolean isRunning;
 	
@@ -75,10 +77,7 @@ public class GameLogic {
 				pickedName = true;
 		} while (!pickedName);
 		
-		// initialize the map for act one
-		ActOneMap.initializeActOneMap();
-		
-		// create new player object
+		// create new player object and set location to first room of act one
 		player = new Player(name, 0, 12);
 		
 		// print introduction for main story
@@ -93,8 +92,25 @@ public class GameLogic {
 	
 	// method to continue game
 	public static void continueGame() {
-		int newPlayerPosition = actOneMap.movePlayerTo(ActOneMap.Direction.NORTH);
-		System.out.println("Player moved to position: " + newPlayerPosition);
+		do {
+			System.out.println("Type N, S, E, or W to move in a direction.");
+			String directionInput = in.next().trim().toUpperCase();
+			if (directionInput.equals("N"))
+				mapOne.movePlayerTo(Direction.NORTH);
+			else if (directionInput.equals("S"))
+				mapOne.movePlayerTo(Direction.SOUTH);
+			else if (directionInput.equals("E"))
+				mapOne.movePlayerTo(Direction.EAST);
+			else if (directionInput.equals("W"))
+				mapOne.movePlayerTo(Direction.WEST);
+		} while (!isInFight());
+		System.out.println("You've encountered a monster!");
+		GameLogic.typeToContinue();
+	}
+	
+	public static boolean isInFight()
+	{
+		return false;
 	}
 	
 	// print character sheet
