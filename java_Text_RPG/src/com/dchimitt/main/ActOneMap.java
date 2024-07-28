@@ -69,6 +69,7 @@ public class ActOneMap {
 		
 		if (newPlayerPosition != Direction.NOEXIT) {
 			currentPlayerPosition = newPlayerPosition;
+			currentRoom = actOneMap.get(currentPlayerPosition);
 			System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
 		}
 		else
