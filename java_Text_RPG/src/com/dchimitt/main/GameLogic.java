@@ -170,7 +170,7 @@ public class GameLogic {
 		printHeader("MENU");
 		System.out.println("(1) Continue the game");
 		System.out.println("(2) Open your character sheet");
-		System.out.println("(3) Exit game");		
+		System.out.println("(3) Save and exit game");		
 	}
 	
 	// main game loop
