@@ -90,9 +90,21 @@ public class GameLogic {
 		gameLoop();
 	}
 	
+	/*
+	public static void checkAct() {
+		if (defeatedActOneBoss == false)
+			player.currentAct = 1;
+		if (defeatedActOneBoss == true && defeatedActTwoBoss == false)
+			player.currentAct = 2;
+		if (deafeatedActTwoBoss == true && defeatedActThreeBoss == false)
+			player.currentAct = 3;
+	}
+	*/
+	
 	// method to continue game
 	public static void continueGame() {
 		GameLogic.clearConsole();
+		//checkAct();
 		System.out.println("Type N, S, E, or W to move in a direction.");
 		do {
 			String directionInput = in.next().trim().toUpperCase();
