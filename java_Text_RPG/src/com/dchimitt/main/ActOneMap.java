@@ -13,8 +13,8 @@ public class ActOneMap {
 		public static final int NOEXIT = -1;
 	};
 	
-	private int currentPlayerPosition = 0;
-	private ArrayList <Room> actOneMap;
+	private static int currentPlayerPosition = 0;
+	private static ArrayList <Room> actOneMap;
 	
 	public ActOneMap() {
 		actOneMap = new ArrayList<Room>();
@@ -67,6 +67,11 @@ public class ActOneMap {
 	public Room getActOneMapStartingRoom()
 	{
 		return actOneMap.get(0);
+	}
+	
+	public static Room getCurrentPlayerPosition() {
+		Room currentRoom = actOneMap.get(currentPlayerPosition);
+		return currentRoom;
 	}
 	
 	public int movePlayerTo(Direction direction) {
