@@ -1,10 +1,6 @@
 package com.dchimitt.main;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import dialogue.ActOneDialogue;
 import mainStory.MainStory;
 import maps.ActOneMap;
@@ -213,32 +209,6 @@ public class GameLogic {
 		System.out.println("(4) Save and exit game.");
 	}
 	
-	public static void saveGame() {
-		try {
-			FileOutputStream fos = new FileOutputStream("Adv.sav");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(game);
-			oos.flush();
-			oos.close();
-			System.out.println("Game saved.");
-		} catch (Exception e) {
-			System.out.println("Serialization error! Can't save data." + e.getClass() + ": " + e.getMessage());			
-		}
-	}
-	
-	public static void loadGame() {
-		try {
-			FileInputStream fis = new FileInputStream("Adv.sav");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			game = (GameLogic) ois.readObject();
-			ois.close();
-			System.out.println("--Game loaded--");
-		} catch (Exception e) {
-			System.out.println("Serialization error! Can't load data.");
-			System.out.println(e.getClass() + ": " + e.getMessage());
-		}
-	}
-	
 	// main game loop
 	public static void gameLoop() {
 		while(isRunning) {
@@ -249,9 +219,9 @@ public class GameLogic {
 			else if (input == 2) 
 				characterSheet();
 			else if (input == 3)
-				saveGame();
+				AdventureGame.saveGame();
 			else {
-				saveGame();
+				AdventureGame.saveGame();
 				isRunning = false;
 			}
 		}
