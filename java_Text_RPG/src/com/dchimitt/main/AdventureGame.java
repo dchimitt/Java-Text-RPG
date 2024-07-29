@@ -50,7 +50,9 @@ public class AdventureGame implements java.io.Serializable {
 		int selection = GameLogic.intUserInput("-->", 2); 
 		if (selection == 1) 
 			GameLogic.startGame();
-		else
+		else {
 			loadGame();
+			GameLogic.gameLoop();
+		}
 	}
 }
