@@ -155,14 +155,9 @@ public class Player extends Character {
         // params: name, str, dex, int, starting hp pool, starting mana pool, level
 		super(name, 1, 1, 1, 16, 5, 1, GameLogic.mapOne.getActOneMapStartingRoom()); 
 		
-		// currentExp and expToLevel not needed in any other subclasses of Character, so initialize here for Player subclass only
 		this.currentExp = currentExp;
 		this.expToLevel = expToLevel;
 		this.currentAct = currentAct;
-
-		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
-		pickThreeStats();
-		chooseUpgrade();
 	}
 
 	@Override
