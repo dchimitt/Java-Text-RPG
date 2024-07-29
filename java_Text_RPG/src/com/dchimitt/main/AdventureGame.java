@@ -16,7 +16,7 @@ public class AdventureGame implements java.io.Serializable {
 			oos.writeObject(game);
 			oos.flush();
 			oos.close();
-			System.out.println("Game saved.");
+			System.out.println("--Game saved--");
 		} catch (Exception e) {
 			System.out.println("Serialization error! Can't save data." + e.getClass() + ": " + e.getMessage());			
 		}
@@ -29,6 +29,7 @@ public class AdventureGame implements java.io.Serializable {
 			game = (AdventureGame) ois.readObject();
 			ois.close();
 			System.out.println("--Game loaded--");
+			GameLogic.gameLoop();
 		} catch (Exception e) {
 			System.out.println("Serialization error! Can't load data.");
 			System.out.println(e.getClass() + ": " + e.getMessage());
