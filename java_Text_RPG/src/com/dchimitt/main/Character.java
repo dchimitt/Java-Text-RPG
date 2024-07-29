@@ -3,7 +3,7 @@ package com.dchimitt.main;
 public abstract class Character {
 	// attributes that all players, enemies, and bosses must have
 	public String name;
-	public int strength, dexterity, intelligence, maximumHp, currentHp, maximumMana, currentMana, level;
+	public int strength, dexterity, intelligence, maximumHp, currentHp, maximumMana, currentMana, level, currentExp, expToLevel, currentAct;
 	public Room currentRoomInAct;
 	
 	// Character constructor
