@@ -1,7 +1,10 @@
 package com.dchimitt.main;
 import java.util.Scanner;
 
-import com.dchimitt.main.ActOneMap.Direction;
+import dialogue.ActOneDialogue;
+import mainStory.MainStory;
+import maps.ActOneMap;
+import maps.ActOneMap.Direction;
 
 // will never create object of this class, so everything here is static
 public class GameLogic {

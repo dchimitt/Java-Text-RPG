@@ -1,5 +1,7 @@
-package com.dchimitt.main;
+package maps;
 import java.util.ArrayList;
+
+import com.dchimitt.main.Room;
 
 public class ActOneMap {
 	

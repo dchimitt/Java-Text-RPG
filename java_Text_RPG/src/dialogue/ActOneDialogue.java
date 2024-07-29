@@ -1,4 +1,6 @@
-package com.dchimitt.main;
+package dialogue;
+
+import com.dchimitt.main.GameLogic;
 
 public class ActOneDialogue {
 	public static void momIntroDialogue() {
