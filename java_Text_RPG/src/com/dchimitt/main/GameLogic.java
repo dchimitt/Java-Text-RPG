@@ -65,15 +65,6 @@ public class GameLogic {
 		boolean pickedName = false;
 		String name; 
 		
-		// print title
-		printSeperator(40);
-		printSeperator(30);
-		System.out.println("TALES OF SORROW");
-		System.out.println("TEXT RPG BY DANIEL CHIMITT");
-		printSeperator(30);
-		printSeperator(40);
-		typeToContinue();
-		
 		// allow player to choose name
 		do {
 			clearConsole();
