@@ -218,8 +218,10 @@ public class GameLogic {
 				continueGame();
 			else if (input == 2) 
 				characterSheet();
-			else if (input == 3)
+			else if (input == 3) {
 				AdventureGame.saveGame();
+				typeToContinue();
+			}
 			else {
 				AdventureGame.saveGame();
 				isRunning = false;
