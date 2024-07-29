@@ -1,4 +1,5 @@
 package actOneEnemies;
+
 import com.dchimitt.main.Character;
 import com.dchimitt.main.Room;
 
