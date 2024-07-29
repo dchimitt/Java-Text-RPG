@@ -78,7 +78,7 @@ public class GameLogic {
 		} while (!pickedName);
 		
 		// create new player object and set location to first room of act one
-		player = new Player(name, 0, 12);
+		player = new Player(name, 0, 12, 1);
 		
 		// print introduction for main story
 		MainStory.printIntroduction();
