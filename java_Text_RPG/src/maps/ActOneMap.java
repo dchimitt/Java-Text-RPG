@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import com.dchimitt.main.Room;
 
-public class ActOneMap {
+public class ActOneMap implements java.io.Serializable {
 	
 	public enum Direction {
 		NORTH, 

@@ -2,7 +2,7 @@ package mainStory;
 import com.dchimitt.main.GameLogic;
 
 // stores methods to print out sections of main storyline
-public class MainStory {
+public class MainStory implements java.io.Serializable {
 	public static void printIntroduction() {
 		GameLogic.clearConsole();
 		GameLogic.printSeperator(30);

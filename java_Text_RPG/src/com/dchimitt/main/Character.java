@@ -1,6 +1,6 @@
 package com.dchimitt.main;
 
-public abstract class Character {
+public abstract class Character implements java.io.Serializable {
 	// attributes that all players, enemies, and bosses must have
 	public String name;
 	public int strength, dexterity, intelligence, maximumHp, currentHp, maximumMana, currentMana, level, currentExp, expToLevel, currentAct;

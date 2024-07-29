@@ -1,6 +1,6 @@
 package com.dchimitt.main;
 
-public class Thing {
+public class Thing implements java.io.Serializable {
 	// superclass Thing to extend to all objects used
 	
 	private String name;

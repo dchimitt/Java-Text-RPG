@@ -1,6 +1,6 @@
 package com.dchimitt.main;
 
-public class Room extends Thing {
+public class Room extends Thing implements java.io.Serializable {
 	private int n, s, w, e;
 	
 	public Room(String name, String description, int n, int s, int e, int w) {

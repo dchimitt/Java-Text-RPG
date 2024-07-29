@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class AdventureGame {
+public class AdventureGame implements java.io.Serializable {
 	
 	static AdventureGame game;
 	

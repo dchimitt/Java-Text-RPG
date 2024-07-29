@@ -2,7 +2,7 @@ package com.dchimitt.main;
 import java.util.*;
 
 // NOTE: @Override means inherited methods from abstract superclass differ
-public class Player extends Character {
+public class Player extends Character implements java.io.Serializable {
 	
 	public static Scanner in = new Scanner(System.in);
 	

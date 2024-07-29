@@ -3,7 +3,7 @@ package actOneEnemies;
 import com.dchimitt.main.Character;
 import com.dchimitt.main.Room;
 
-public class ReizartBat extends Character {
+public class ReizartBat extends Character implements java.io.Serializable {
 
 	public ReizartBat(String name, int strength, int dexterity, int intelligence, int maximumHp, int maximumMana,
 			int level, Room currentRoomInAct) {

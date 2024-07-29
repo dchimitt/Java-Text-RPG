@@ -7,7 +7,7 @@ import maps.ActOneMap;
 import maps.ActOneMap.Direction;
 
 // will never create object of this class, so everything here is static
-public class GameLogic {
+public class GameLogic implements java.io.Serializable {
 	static Scanner in = new Scanner(System.in);
 	static GameLogic game;
 	static Player player;
