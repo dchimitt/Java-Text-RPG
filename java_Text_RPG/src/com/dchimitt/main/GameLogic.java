@@ -113,7 +113,15 @@ public class GameLogic {
 	public static void randomEncounter() {
 		if (player.currentAct == 1) {
 			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
+			if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") 
+				return;
 			if (currentRoom.getName() == "Plains:") {
+				
+			}
+			if (currentRoom.getName() == "Reizart Cave:") {
+				
+			}
+			if (currentRoom.getName() == "IDK YET:") {
 				
 			}
 		}
