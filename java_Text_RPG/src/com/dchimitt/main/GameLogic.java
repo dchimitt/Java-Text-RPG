@@ -83,6 +83,10 @@ public class GameLogic {
 		// print introduction for main story
 		MainStory.printIntroduction();
 		
+		// allow player to choose three stats and one ability, offensive spell, or support spell at the start of game
+		player.pickThreeStats();
+		player.chooseUpgrade();
+		
 		// set isRunning to true so game loop can continue
 		isRunning = true;
 		
@@ -93,7 +97,7 @@ public class GameLogic {
 	/*
 	public static void checkAct() {
 		if (defeatedActOneBoss == false)
-			player.currentAct = 1;
+			
 		if (defeatedActOneBoss == true && defeatedActTwoBoss == false)
 			player.currentAct = 2;
 		if (deafeatedActTwoBoss == true && defeatedActThreeBoss == false)
