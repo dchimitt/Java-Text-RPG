@@ -9,6 +9,10 @@ public class GameLogic {
 	static Player player;
 	static ActOneMap mapOne = new ActOneMap();
 	
+	public static boolean defeatedActOneBoss = false;
+	public static boolean defeatedActTwoBoss = false;
+	public static boolean defeatedActThreeBoss = false;
+	
 	public static boolean isRunning;
 	
 	// method to get input when integers are required
@@ -96,21 +100,20 @@ public class GameLogic {
 		gameLoop();
 	}
 	
-	/*
+	
 	public static void checkAct() {
 		if (defeatedActOneBoss == false)
 			
 		if (defeatedActOneBoss == true && defeatedActTwoBoss == false)
 			player.currentAct = 2;
-		if (deafeatedActTwoBoss == true && defeatedActThreeBoss == false)
+		if (defeatedActTwoBoss == true && defeatedActThreeBoss == false)
 			player.currentAct = 3;
 	}
-	*/
 	
 	// method to continue game
 	public static void continueGame() {
 		GameLogic.clearConsole();
-		//checkAct();
+		checkAct();
 		System.out.println("Type N, S, E, or W to move in a direction.");
 		do {
 			String directionInput = in.next().trim().toUpperCase();
