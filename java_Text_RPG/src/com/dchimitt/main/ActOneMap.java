@@ -94,6 +94,8 @@ public class ActOneMap {
 			System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
 		}
 		else 
+			// fix output later. Unsure how to extract the ArrayList index of the room blocking player due to Direction.NOEXIT being set to -1
+			// Ideally, I would like to show the name of the room (aka object) blocking the player's path for more clarity on map location.
 	        System.out.println("Your path is blocked!");
 	        		
 		return currentPlayerPosition;
