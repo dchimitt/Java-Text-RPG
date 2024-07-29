@@ -87,6 +87,8 @@ public class GameLogic {
 		player.pickThreeStats();
 		player.chooseUpgrade();
 		
+		ActOneDialogue.momIntroDialogue();
+		
 		// set isRunning to true so game loop can continue
 		isRunning = true;
 		

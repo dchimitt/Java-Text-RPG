@@ -1,7 +1,8 @@
 package com.dchimitt.main;
 
 public class ActOneDialogue {
-	public void momIntroDialogue() {
+	public static void momIntroDialogue() {
 		System.out.println("PLACEHOLDER HI SON");
+		GameLogic.typeToContinue();
 	}
 }
