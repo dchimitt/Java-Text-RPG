@@ -110,6 +110,15 @@ public class GameLogic {
 			player.currentAct = 3;
 	}
 	
+	public static void randomEncounter() {
+		if (player.currentAct == 1) {
+			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
+			if (currentRoom.getName() == "Plains:") {
+				
+			}
+		}
+	}
+	
 	// method to continue game
 	public static void continueGame() {
 		GameLogic.clearConsole();
