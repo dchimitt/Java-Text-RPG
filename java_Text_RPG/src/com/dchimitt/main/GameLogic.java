@@ -310,7 +310,7 @@ public class GameLogic implements java.io.Serializable {
 						 * it does "work"
 						 *
 						 * 2) If leaving town by selecting a direction that results in player movement being blocked, player will end up still on the town room but options 
-						 * no longer show.
+						 * no longer show. Also, formatting prints movement blocked but instantly clears console making it confusing for player.
 						 * 
 						 * 3) Random encounters possible when #2 occurs
 						 */
