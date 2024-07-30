@@ -8,4 +8,8 @@ public class ActOneEnemyCreation {
 	public CaveSpider createCaveSpider() {
 		return new CaveSpider("Cave Spider", 2);
 	}
+	
+	public CaveSlug createCaveSlug() {
+		return new CaveSlug("Cave Slug", 2);
+	}
 }
