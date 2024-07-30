@@ -76,6 +76,11 @@ public class ActOneMap implements java.io.Serializable {
 		return currentRoom;
 	}
 	
+	public static void printPlayerPosition() {
+		Room currentRoom = actOneMap.get(currentPlayerPosition);
+		System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
+	}
+	
 	public int movePlayerTo(Direction direction) {
 		Room currentRoom = actOneMap.get(currentPlayerPosition);
 		int newPlayerPosition = Direction.NOEXIT; // default set to -1 to handle invalid moves

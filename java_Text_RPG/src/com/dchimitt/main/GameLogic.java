@@ -241,6 +241,7 @@ public class GameLogic implements java.io.Serializable {
 		GameLogic.clearConsole();
 		checkAct();
 		boolean isInFight = false;
+		ActOneMap.printPlayerPosition();
 		System.out.println("Type N, S, E, or W to move in a direction.");
 		do {
 			String directionInput = in.next().trim().toUpperCase();
@@ -320,8 +321,8 @@ public class GameLogic implements java.io.Serializable {
 		printHeader("MENU");
 		System.out.println("(1) Continue the game");
 		System.out.println("(2) Open your character sheet");
-		System.out.println("(3) Save game.");	
-		System.out.println("(4) Save and exit game.");
+		System.out.println("(3) Save game");	
+		System.out.println("(4) Save and exit game");
 	}
 	
 	// main game loop
