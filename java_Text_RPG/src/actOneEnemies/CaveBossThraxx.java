@@ -34,6 +34,5 @@ public class CaveBossThraxx extends Character implements java.io.Serializable {
 	    int dexterityBonus = (int) (Math.random() * (dexterity + 1));
 	    return baseDefense + dexterityBonus;
 	}
-
 }
 
