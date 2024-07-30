@@ -194,7 +194,7 @@ public class GameLogic implements java.io.Serializable {
 		}
 	}
 	
-	public void checkForBossEncounter() {
+	public static void checkForBossEncounter() {
 		// set act one bosses to undefeated
 		boolean actOneThraxxDefeated = false;
 		boolean actOneSecondBossDefeated = false;
@@ -327,6 +327,9 @@ public class GameLogic implements java.io.Serializable {
 			else if (directionInput.equals("W"))
 				mapOne.movePlayerTo(Direction.WEST);
 			
+			// toggle boss fight if player moves into correct room
+			checkForBossEncounter();
+
 			// if the player is in a town, options to rest, purchase/sell items and gear, and talk to npc
 			// TODO town options infinite loop if player reenters town
 			if (isInTown()) {
