@@ -5,7 +5,7 @@ import com.dchimitt.main.Character;
 public class CaveBat extends Character implements java.io.Serializable {
 
 	public CaveBat(String name, int currentAct) {
-		super(name, 1, 1, 1, 8, 0, 1);
+		super(name, 1, 1, 1, 8, 0, 2);
 		// TODO Auto-generated constructor stub
 	}
 
