@@ -1,5 +1,7 @@
 package com.dchimitt.main;
 
+import actOneEnemies.ActOneEnemyCreation;
+
 import java.util.Scanner;
 import dialogue.ActOneDialogue;
 import mainStory.MainStory;
@@ -98,14 +100,14 @@ public class GameLogic implements java.io.Serializable {
 	
 	public static void checkAct() {
 		if (defeatedActOneBoss == false)
-			
+
 		if (defeatedActOneBoss == true && defeatedActTwoBoss == false)
 			player.currentAct = 2;
 		if (defeatedActTwoBoss == true && defeatedActThreeBoss == false)
 			player.currentAct = 3;
 	}
 	
-	public static void randomEncounter() {
+	public void randomEncounter() {
 		if (player.currentAct == 1) {
 			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
 			if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") 
@@ -114,7 +116,12 @@ public class GameLogic implements java.io.Serializable {
 				
 			}
 			if (currentRoom.getName() == "Reizart Cave:") {
-				
+				int randomNumber = (int) (Math.random() * (3-1+1) + 1); 
+				if (randomNumber == 1) {
+					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
+					Character caveBat = enemy.createCaveBat();
+					startRandomActOneBattle(caveBat);
+				}
 			}
 			if (currentRoom.getName() == "IDK YET:") {
 				
@@ -122,8 +129,68 @@ public class GameLogic implements java.io.Serializable {
 		}
 	}
 	
-	public static void startRandomBattle() {
-		
+	// TODO (possibly make this its own class due to length and complexity of this method
+	public static void startRandomActOneBattle(Character enemy) {
+		while (true) {
+			clearConsole();
+			printHeader(enemy.name + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
+			printHeader(player.name + "\nHP: " + player.currentHp + "/" + player.maximumHp);
+			System.out.println("Choose an action:");
+			printSeperator(20);
+			System.out.println("(1) Attack\n(2) Abilities\n(3)Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
+			int input = intUserInput("--> ", 5);
+			if (input == 1) {
+				int damagePlayerDoes = player.attack() - enemy.defend();
+				int damagePlayerTakes = enemy.attack() - player.defend();
+				if (damagePlayerTakes < 0) {
+					// adding damage if player defends well
+					damagePlayerDoes -= damagePlayerTakes/2;
+					damagePlayerTakes = 0;
+				}
+				if (damagePlayerDoes < 0) 
+					damagePlayerDoes = 0;
+				player.currentHp -= damagePlayerTakes;
+				enemy.currentHp -= damagePlayerDoes;
+				
+				// print information to show what occured this round
+				clearConsole();
+				printHeader("BATTLE");
+				System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
+				printSeperator(20);
+				System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
+				if (player.currentHp <= 0) {
+					// playerDied();
+					break;
+				}
+				else if (enemy.currentHp <= 0) {
+					// player wins the battle
+					clearConsole();
+					printHeader("You defeated the " + enemy.name + "!");
+					player.currentExp += enemy.strength; // TODO Fix exp gained later
+					System.out.println("You earned " + enemy.currentExp + " experience points!");	
+					typeToContinue();
+					break;
+				}
+			}
+			else if (input == 2) {
+				player.useAbility();
+			}
+			else if (input == 3) {
+				player.useMagic();
+			}
+			else if (input == 4) {
+				player.useMagic();
+			}
+			else if (input == 5) {
+				player.defend();
+			}
+			else if (input == 6) {
+				// useItem();
+			}
+			else {
+				
+			}
+		}
 	}
 	
 	// method to continue game
