@@ -30,6 +30,7 @@ public class GameLogic implements java.io.Serializable {
 				input = in.nextInt();				
 			}
 			catch(Exception e) {
+				in.next();
 				input = -1;
 				System.out.println("That is not an integer. Please enter an integer: ");
 			}
