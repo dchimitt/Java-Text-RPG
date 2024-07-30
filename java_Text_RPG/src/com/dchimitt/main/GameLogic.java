@@ -136,6 +136,7 @@ public class GameLogic implements java.io.Serializable {
 			return false;
 	}
 	
+	// TODO: fix random encounters starting on various rooms such as Cave Entrance or towns
 	public static void randomEncounter() {
 		if (player.currentAct == 1) {
 			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
