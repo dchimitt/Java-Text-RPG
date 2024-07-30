@@ -194,6 +194,41 @@ public class GameLogic implements java.io.Serializable {
 		}
 	}
 	
+	public void checkForBossEncounter() {
+		// set act one bosses to undefeated
+		boolean actOneThraxxDefeated = false;
+		boolean actOneSecondBossDefeated = false;
+		boolean actOneThirdBossDefeated = false;
+		
+		// set act two bosses to undefeated
+		boolean actTwoFirstBossDefeated = false;
+		boolean actTwoSecondBossDefeated = false;
+		boolean actTwoThirdBossDefeated = false;
+		
+		// set act three bosses to undefeated
+		boolean actThreeFirstBossDefeated = false;
+		boolean actThreeSecondBossDefeated = false;
+		boolean finalBossOfGameDefeated = false;
+		
+		if (player.currentAct == 1) {
+			Room currentRoom = ActOneMap.getCurrentPlayerPosition();
+			if (currentRoom.getName().equals("Reizart Cave Exit:") && !actOneThraxxDefeated) {
+				ActOneEnemyCreation enemy = new ActOneEnemyCreation();
+				Character caveBossThraxx = enemy.createCaveBossThraxx();
+				ActOneDialogue.fightThraxxDialogue();
+				startBattle(caveBossThraxx);
+				// if (player won the fight)
+				actOneThraxxDefeated = true;
+			}
+		}
+		else if (player.currentAct == 2) {
+			
+		}
+		else {
+			
+		}
+	}
+	
 	// TODO (possibly make this its own class due to length and complexity of this method
 	public static void startBattle(Character enemy) {
 		while (true) {
