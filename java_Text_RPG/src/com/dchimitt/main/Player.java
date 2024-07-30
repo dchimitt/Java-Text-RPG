@@ -162,8 +162,7 @@ public class Player extends Character implements java.io.Serializable {
 
 	@Override
 	public int attack() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) (Math.random() * (level / 2 + strength * 2) + dexterity * 2);
 	}
 	
 	@Override
@@ -180,8 +179,7 @@ public class Player extends Character implements java.io.Serializable {
 
 	@Override
 	public int defend() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) (Math.random() * (level / 2 + strength * 2) + dexterity * 2);
 	}
 	
 	public void pickThreeStats() {
