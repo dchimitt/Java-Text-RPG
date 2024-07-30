@@ -130,7 +130,7 @@ public class GameLogic implements java.io.Serializable {
 	
 	public static boolean isInTown() {
 		Room currentRoom = ActOneMap.getCurrentPlayerPosition();
-		if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") 
+		if (currentRoom.getName().equals("Town of Reizart:") || currentRoom.getName().equals("SOME TOWN:"))
 			return true;
 		else
 			return false;
@@ -305,6 +305,15 @@ public class GameLogic implements java.io.Serializable {
 						// talkToNPC();
 					}
 					else {
+						/* TODO: fix town logic, currently bugged 
+						 * 1) Trying to leave town at the start of game by typing 5 does not work, looping infinitely. However, after leaving town the first time and returning, 
+						 * it does "work"
+						 *
+						 * 2) If leaving town by selecting a direction that results in player movement being blocked, player will end up still on the town room but options 
+						 * no longer show.
+						 * 
+						 * 3) Random encounters possible when #2 occurs
+						 */
 						System.out.println("Which direction would you like to leave town in?");
 						System.out.println("N, S, E, or W?");
 						String townExitInput = in.next().trim().toUpperCase();
