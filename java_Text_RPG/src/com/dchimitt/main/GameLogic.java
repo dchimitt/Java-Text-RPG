@@ -145,10 +145,14 @@ public class GameLogic implements java.io.Serializable {
 				// formula to generate a pseudorandom number from 1 to 2
 				int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
 				if (randomNumber == 1) {
-					
+					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
+					Character plainsGoblin = enemy.createPlainsGoblin();
+					startBattle(plainsGoblin);
 				}
 				else {
-					
+					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
+					Character plainsSnake = enemy.createPlainsSnake();
+					startBattle(plainsSnake);
 				}
 			}
 			if (currentRoom.getName() == "Reizart Cave:") {
@@ -160,10 +164,14 @@ public class GameLogic implements java.io.Serializable {
 					startBattle(caveBat);
 				}
 				else if (randomNumber == 2) {
-					
+					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
+					Character caveSpider = enemy.createCaveSpider();
+					startBattle(caveSpider);
 				}
 				else {
-					
+					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
+					Character caveSlug = enemy.createCaveSlug();
+					startBattle(caveSlug);
 				}
 			}
 			if (currentRoom.getName() == "IDK YET:") {
