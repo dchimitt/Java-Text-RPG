@@ -7,6 +7,9 @@ public class ActOneEnemyCreation {
 	public PlainsGoblin createPlainsGoblin() {
 		return new PlainsGoblin("Plains Goblin", 1);
 	}
+	public PlainsSnake createPlainsSnake() {
+		return new PlainsSnake("Plains Snake", 1);
+	}
 	
 	// Reizart cave monsters
 	public CaveBat createCaveBat() {
