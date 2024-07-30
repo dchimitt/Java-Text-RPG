@@ -107,7 +107,7 @@ public class GameLogic implements java.io.Serializable {
 			player.currentAct = 3;
 	}
 	
-	public void randomEncounter() {
+	public static void randomEncounter() {
 		if (player.currentAct == 1) {
 			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
 			if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") 
@@ -212,6 +212,7 @@ public class GameLogic implements java.io.Serializable {
 	public static void continueGame() {
 		GameLogic.clearConsole();
 		checkAct();
+		boolean isInFight = false;
 		System.out.println("Type N, S, E, or W to move in a direction.");
 		do {
 			String directionInput = in.next().trim().toUpperCase();
@@ -223,14 +224,14 @@ public class GameLogic implements java.io.Serializable {
 				mapOne.movePlayerTo(Direction.EAST);
 			else if (directionInput.equals("W"))
 				mapOne.movePlayerTo(Direction.WEST);
-		} while (!isInFight());
+			
+			// chance of random encounter = 20% (for now)
+			if (Math.random()*10 + 1 <= 2.0) 
+				isInFight = true;				
+		} while (!isInFight);
 		System.out.println("You've encountered a monster!");
 		GameLogic.typeToContinue();
-	}
-	
-	public static boolean isInFight()
-	{
-		return false;
+		randomEncounter();
 	}
 	
 	// print character sheet
