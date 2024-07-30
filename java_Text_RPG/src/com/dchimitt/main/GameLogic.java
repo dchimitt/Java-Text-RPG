@@ -284,8 +284,7 @@ public class GameLogic implements java.io.Serializable {
 				mapOne.movePlayerTo(Direction.WEST);
 			
 			// if the player is in a town, options to rest, purchase/sell items and gear, and talk to npc
-			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
-			if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") {
+			if (isInTown()) {
 				System.out.println("You are in town!\n OPTIONS:");
 				System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
 				int input = intUserInput("-->", 4);
