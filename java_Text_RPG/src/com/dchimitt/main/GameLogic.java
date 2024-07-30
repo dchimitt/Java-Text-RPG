@@ -270,6 +270,7 @@ public class GameLogic implements java.io.Serializable {
 		GameLogic.clearConsole();
 		checkAct();
 		boolean isInFight = false;
+		boolean hasLeftTown = false; // needed to negate town options when player chooses to leave town
 		ActOneMap.printPlayerPosition();
 		System.out.println("Type N, S, E, or W to move in a direction.");
 		do {
@@ -284,10 +285,11 @@ public class GameLogic implements java.io.Serializable {
 				mapOne.movePlayerTo(Direction.WEST);
 			
 			// if the player is in a town, options to rest, purchase/sell items and gear, and talk to npc
-			if (isInTown()) {
+			// TODO town options infinite loop if player reenters town
+			if (isInTown() && !hasLeftTown) {
 				System.out.println("You are in town!\n OPTIONS:");
 				System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
-				int input = intUserInput("-->", 4);
+				int input = intUserInput("-->", 5);
 				// TODO implement methods
 				if (input == 1) {
 					// restAtInn();
@@ -302,13 +304,14 @@ public class GameLogic implements java.io.Serializable {
 					// talkToNPC();
 				}
 				else {
-					// leaveTown();
+					hasLeftTown = true;
 				}
 			}
 			
 			// chance of random encounter = 20% (for now)
 			if (Math.random()*10 + 1 <= 2.0 && !isInTown()) 
-				isInFight = true;				
+				isInFight = true;	
+			
 		} while (!isInFight);
 		System.out.println("You've encountered a monster!");
 		GameLogic.typeToContinue();
