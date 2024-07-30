@@ -96,7 +96,7 @@ public class GameLogic implements java.io.Serializable {
 		
 		// town options appear when first starting the game
 		System.out.println("You are in town!\n OPTIONS:");
-		System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
+		System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear vendor\n(4) Talk to NPC\n(5) Leave town");
 		int input = intUserInput("-->", 4);
 		if (input == 1) {
 			// restAtInn();
@@ -253,6 +253,7 @@ public class GameLogic implements java.io.Serializable {
 					}
 				}
 			}
+			typeToContinue();
 		}
 	}
 	
