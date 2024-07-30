@@ -136,6 +136,20 @@ public class GameLogic implements java.io.Serializable {
 			return false;
 	}
 	
+	// TODO: implement townLastVisited method
+	/*
+	public static Room townLastVisited() {
+		if (isInTown()) {
+			
+		}
+	}
+	*/
+	
+	// TODO: implement playerIsDead method
+	public static void playerIsDead() {
+		
+	}
+	
 	// TODO: fix random encounters starting on various rooms such as Cave Entrance or towns
 	public static void randomEncounter() {
 		if (player.currentAct == 1) {
@@ -259,7 +273,7 @@ public class GameLogic implements java.io.Serializable {
 				printSeperator(20);
 				System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 				if (player.currentHp <= 0) {
-					// playerDied();
+					playerIsDead();
 					break;
 				}
 				else if (enemy.currentHp <= 0) {
