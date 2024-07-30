@@ -188,7 +188,22 @@ public class GameLogic implements java.io.Serializable {
 				// useItem();
 			}
 			else {
+				clearConsole();
 				
+				// 35% chance to run away from fight
+				if (Math.random()*10 + 1 <= 3.5) {
+					printHeader("You ran away from the " + enemy.name + "!");
+					typeToContinue();
+					break;
+				}
+				else {
+					printHeader("You didn't manage to escape.");
+					int failedEscapeDamage = enemy.attack();
+					System.out.println("The enemy strikes your back for " + failedEscapeDamage + " damage!");
+					if (player.currentHp <= 0) {
+						// playerDied();
+					}
+				}
 			}
 		}
 	}
