@@ -136,12 +136,13 @@ public class GameLogic implements java.io.Serializable {
 			return false;
 	}
 	
-	// TODO: implement townLastVisited method
 	/*
+	// TODO: implement townLastVisited method
 	public static Room townLastVisited() {
+		Room lastTown;
 		if (isInTown()) {
-			
-		}
+			lastTown = mapOne.getCurrentPlayerPosition();
+		}	
 	}
 	*/
 	
