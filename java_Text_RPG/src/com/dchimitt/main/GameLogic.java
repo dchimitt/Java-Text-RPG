@@ -344,6 +344,7 @@ public class GameLogic implements java.io.Serializable {
 			
 			// 20% chance to encounter random battle
 			// TODO: implement scaling encounter chance that increases the further a player travels without encountering a battle, increasing to 100% after x amount of movements
+			// TODO: remove chance for encounter is player movement is blocked
 			if (Math.random() <= 0.2 && !isInTown()) 
 				isInFight = true;	
 			
