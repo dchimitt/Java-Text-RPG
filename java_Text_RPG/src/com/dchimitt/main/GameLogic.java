@@ -128,10 +128,18 @@ public class GameLogic implements java.io.Serializable {
 			player.currentAct = 3;
 	}
 	
+	public static boolean isInTown() {
+		Room currentRoom = ActOneMap.getCurrentPlayerPosition();
+		if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") 
+			return true;
+		else
+			return false;
+	}
+	
 	public static void randomEncounter() {
 		if (player.currentAct == 1) {
 			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
-			if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") 
+			if (isInTown()) 
 				return;
 			if (currentRoom.getName() == "Plains:") {
 				// formula to generate a pseudorandom number from 1 to 2
@@ -300,7 +308,7 @@ public class GameLogic implements java.io.Serializable {
 			}
 			
 			// chance of random encounter = 20% (for now)
-			if (Math.random()*10 + 1 <= 2.0) 
+			if (Math.random()*10 + 1 <= 2.0 && !isInTown()) 
 				isInFight = true;				
 		} while (!isInFight);
 		System.out.println("You've encountered a monster!");
