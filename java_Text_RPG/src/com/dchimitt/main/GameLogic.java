@@ -113,19 +113,46 @@ public class GameLogic implements java.io.Serializable {
 			if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") 
 				return;
 			if (currentRoom.getName() == "Plains:") {
-				
+				// formula to generate a pseudorandom number from 1 to 2
+				int randomNumber = (int) (Math.random() * (2-1+1) + 1); 
+				if (randomNumber == 1) {
+					
+				}
+				else {
+					
+				}
 			}
 			if (currentRoom.getName() == "Reizart Cave:") {
+				// formula to generate a pseudorandom number from 1 to 3
 				int randomNumber = (int) (Math.random() * (3-1+1) + 1); 
 				if (randomNumber == 1) {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveBat = enemy.createCaveBat();
 					startBattle(caveBat);
 				}
+				else if (randomNumber == 2) {
+					
+				}
+				else {
+					
+				}
 			}
 			if (currentRoom.getName() == "IDK YET:") {
-				
+				// formula to generate a pseudorandom number from 1 to 2
+				int randomNumber = (int) (Math.random() * (2-1+1) + 1); 
+				if (randomNumber == 1) {
+					
+				}
+				else {
+					
+				}
 			}
+		}
+		else if (player.currentAct == 2) {
+			
+		}
+		else {
+			
 		}
 	}
 	
@@ -137,8 +164,8 @@ public class GameLogic implements java.io.Serializable {
 			printHeader(player.name + "\nHP: " + player.currentHp + "/" + player.maximumHp);
 			System.out.println("Choose an action:");
 			printSeperator(20);
-			System.out.println("(1) Attack\n(2) Abilities\n(3)Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
-			int input = intUserInput("--> ", 5);
+			System.out.println("(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
+			int input = intUserInput("--> ", 7);
 			if (input == 1) {
 				int damagePlayerDoes = player.attack() - enemy.defend();
 				int damagePlayerTakes = enemy.attack() - player.defend();
