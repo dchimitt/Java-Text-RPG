@@ -291,7 +291,7 @@ public class GameLogic implements java.io.Serializable {
 				clearConsole();
 				
 				// 35% chance to run away from fight
-				if (Math.random()*10 + 1 <= 3.5) {
+				if (Math.random() <= 0.35) {
 					printHeader("You ran away from the " + enemy.name + "!");
 					typeToContinue();
 					break;
