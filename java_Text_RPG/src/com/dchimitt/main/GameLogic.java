@@ -76,7 +76,7 @@ public class GameLogic implements java.io.Serializable {
 				pickedName = true;
 		} while (!pickedName);
 		
-		// create new player object and set location to first room of act one
+		// create new player object and set act equal to 1
 		player = new Player(name, 0, 12, 1);
 		
 		// print introduction for main story
@@ -120,6 +120,10 @@ public class GameLogic implements java.io.Serializable {
 				
 			}
 		}
+	}
+	
+	public static void startRandomBattle() {
+		
 	}
 	
 	// method to continue game

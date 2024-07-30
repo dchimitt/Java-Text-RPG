@@ -7,14 +7,13 @@ public class ReizartBat extends Character implements java.io.Serializable {
 
 	public ReizartBat(String name, int strength, int dexterity, int intelligence, int maximumHp, int maximumMana,
 			int level, Room currentRoomInAct) {
-		super(name, strength, dexterity, intelligence, maximumHp, maximumMana, level, currentRoomInAct);
+		super(name, strength, dexterity, intelligence, maximumHp, maximumMana, level);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	public int attack() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) (Math.random() * (level / 2 + strength * 2) + dexterity * 2);
 	}
 
 	@Override
@@ -31,8 +30,7 @@ public class ReizartBat extends Character implements java.io.Serializable {
 
 	@Override
 	public int defend() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int) (Math.random() * (level / 2 + strength * 2) + dexterity * 2);
 	}
 
 }

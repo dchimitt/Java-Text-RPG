@@ -7,7 +7,7 @@ public abstract class Character implements java.io.Serializable {
 	public Room currentRoomInAct;
 	
 	// Character constructor
-	public Character(String name, int strength, int dexterity, int intelligence, int maximumHp, int maximumMana, int level, Room currentRoomInAct) {
+	public Character(String name, int strength, int dexterity, int intelligence, int maximumHp, int maximumMana, int level) {
 		this.name = name;
 		this.strength = strength;
 		this.dexterity = dexterity;
@@ -17,7 +17,6 @@ public abstract class Character implements java.io.Serializable {
 		this.maximumMana = maximumMana;
 		this.currentMana = maximumMana;
 		this.level = level;
-		this.currentRoomInAct = currentRoomInAct;
 	}
 	
 	// abstract methods

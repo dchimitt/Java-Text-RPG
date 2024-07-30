@@ -153,7 +153,7 @@ public class Player extends Character implements java.io.Serializable {
 	public Player (String name, int currentExp, int expToLevel, int currentAct) {
 		// super keyword to use the constructor from superclass
         // params: name, str, dex, int, starting hp pool, starting mana pool, level
-		super(name, 1, 1, 1, 16, 5, 1, GameLogic.mapOne.getActOneMapStartingRoom()); 
+		super(name, 1, 1, 1, 16, 5, 1); 
 		
 		this.currentExp = currentExp;
 		this.expToLevel = expToLevel;
