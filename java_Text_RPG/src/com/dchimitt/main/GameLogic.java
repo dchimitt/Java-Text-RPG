@@ -94,6 +94,26 @@ public class GameLogic implements java.io.Serializable {
 		// set isRunning to true so game loop can continue
 		isRunning = true;
 		
+		// town options appear when first starting the game
+		System.out.println("You are in town!\n OPTIONS:");
+		System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
+		int input = intUserInput("-->", 4);
+		if (input == 1) {
+			// restAtInn();
+		}
+		else if (input == 2) {
+			// itemVendor();
+		}
+		else if (input == 3) {
+			// gearVendor();
+		}
+		else if (input == 4) {
+			// talkToNPC();
+		}
+		else {
+			// leaveTown();
+		}
+		
 		// start main game loop
 		gameLoop();
 	}
@@ -253,6 +273,30 @@ public class GameLogic implements java.io.Serializable {
 				mapOne.movePlayerTo(Direction.EAST);
 			else if (directionInput.equals("W"))
 				mapOne.movePlayerTo(Direction.WEST);
+			
+			// if the player is in a town, options to rest, purchase/sell items and gear, and talk to npc
+			Room currentRoom = ActOneMap.getCurrentPlayerPosition();	
+			if (currentRoom.getName() == "Town of Reizart:" || currentRoom.getName() == "SOME TOWN:") {
+				System.out.println("You are in town!\n OPTIONS:");
+				System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
+				int input = intUserInput("-->", 4);
+				// TODO implement methods
+				if (input == 1) {
+					// restAtInn();
+				}
+				else if (input == 2) {
+					// itemVendor();
+				}
+				else if (input == 3) {
+					// gearVendor();
+				}
+				else if (input == 4) {
+					// talkToNPC();
+				}
+				else {
+					// leaveTown();
+				}
+			}
 			
 			// chance of random encounter = 20% (for now)
 			if (Math.random()*10 + 1 <= 2.0) 
