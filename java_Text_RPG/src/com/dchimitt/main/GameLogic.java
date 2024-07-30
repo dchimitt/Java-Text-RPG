@@ -143,7 +143,7 @@ public class GameLogic implements java.io.Serializable {
 				return;
 			if (currentRoom.getName() == "Plains:") {
 				// formula to generate a pseudorandom number from 1 to 2
-				int randomNumber = (int) (Math.random() * (2-1+1) + 1); 
+				int randomNumber = (int) (Math.random() * (2 - 1 + 1)) + 1;
 				if (randomNumber == 1) {
 					
 				}
@@ -153,7 +153,7 @@ public class GameLogic implements java.io.Serializable {
 			}
 			if (currentRoom.getName() == "Reizart Cave:") {
 				// formula to generate a pseudorandom number from 1 to 3
-				int randomNumber = (int) (Math.random() * (3-1+1) + 1); 
+				int randomNumber = (int) (Math.random() * (3 - 1 + 1) + 1); 
 				if (randomNumber == 1) {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveBat = enemy.createCaveBat();
@@ -168,7 +168,7 @@ public class GameLogic implements java.io.Serializable {
 			}
 			if (currentRoom.getName() == "IDK YET:") {
 				// formula to generate a pseudorandom number from 1 to 2
-				int randomNumber = (int) (Math.random() * (2-1+1) + 1); 
+				int randomNumber = (int) (Math.random() * (2 - 1 + 1) + 1); 
 				if (randomNumber == 1) {
 					
 				}
