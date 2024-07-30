@@ -104,10 +104,10 @@ public class Player extends Character implements java.io.Serializable {
 	}
 
 	public static enum SuppMagSpells {
-		SHIELD("Shield", "Placeholder", 4, 1, false),
-		PROTECT("Fireball", "Placeholder", 6, 3, false),
-		BARRIER("Teleport", "Placeholder", 10, 5, false),
-		ABSORB("Lightning Bolt", "Placeholder", 12, 8, false);
+		CURE_POISON("Cure Poison", "Placeholder", 4, 1, false),
+		BURSTING_LIGHT("Burst of Light", "Placeholder", 6, 3, false),
+		INVISIBILITY("Invisibility", "Placeholder", 10, 5, false),
+		INCREASE_SPELL_DAMAGE("Increase Spell Damage", "Placeholder", 12, 8, false);
 			
 		// instance variables for each defensive spell
 		private final String suppMagName;
