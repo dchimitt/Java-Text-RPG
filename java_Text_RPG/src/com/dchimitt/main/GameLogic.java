@@ -120,7 +120,7 @@ public class GameLogic implements java.io.Serializable {
 				if (randomNumber == 1) {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveBat = enemy.createCaveBat();
-					startRandomActOneBattle(caveBat);
+					startRandomBattle(caveBat);
 				}
 			}
 			if (currentRoom.getName() == "IDK YET:") {
@@ -130,7 +130,7 @@ public class GameLogic implements java.io.Serializable {
 	}
 	
 	// TODO (possibly make this its own class due to length and complexity of this method
-	public static void startRandomActOneBattle(Character enemy) {
+	public static void startRandomBattle(Character enemy) {
 		while (true) {
 			clearConsole();
 			printHeader(enemy.name + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
