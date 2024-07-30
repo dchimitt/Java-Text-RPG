@@ -21,4 +21,9 @@ public class ActOneEnemyCreation {
 	public CaveSlug createCaveSlug() {
 		return new CaveSlug("Cave Slug", 2);
 	}
+	
+	// Reizart cave boss
+	public CaveBossThraxx createCaveBossThraxx() {
+		return new CaveBossThraxx("Thraxx the Stonecrusher", 3);
+	}
 }
