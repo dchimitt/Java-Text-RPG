@@ -2,9 +2,9 @@ package actOneEnemies;
 
 import com.dchimitt.main.Character;
 
-public class ReizartBat extends Character implements java.io.Serializable {
+public class CaveBat extends Character implements java.io.Serializable {
 
-	public ReizartBat(String name, int currentAct) {
+	public CaveBat(String name, int currentAct) {
 		super(name, 1, 1, 1, 8, 0, 1);
 		// TODO Auto-generated constructor stub
 	}
