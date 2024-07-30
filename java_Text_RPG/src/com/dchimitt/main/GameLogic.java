@@ -290,6 +290,7 @@ public class GameLogic implements java.io.Serializable {
 			else {
 				clearConsole();
 				
+				// TODO: potentially add scaling % chance as the number of successful fights in a row increases
 				// 35% chance to run away from fight
 				if (Math.random() <= 0.35) {
 					printHeader("You ran away from the " + enemy.name + "!");
