@@ -270,7 +270,6 @@ public class GameLogic implements java.io.Serializable {
 		GameLogic.clearConsole();
 		checkAct();
 		boolean isInFight = false;
-		boolean hasLeftTown = false; // needed to negate town options when player chooses to leave town
 		ActOneMap.printPlayerPosition();
 		System.out.println("Type N, S, E, or W to move in a direction.");
 		do {
@@ -286,25 +285,43 @@ public class GameLogic implements java.io.Serializable {
 			
 			// if the player is in a town, options to rest, purchase/sell items and gear, and talk to npc
 			// TODO town options infinite loop if player reenters town
-			if (isInTown() && !hasLeftTown) {
-				System.out.println("You are in town!\n OPTIONS:");
-				System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
-				int input = intUserInput("-->", 5);
-				// TODO implement methods
-				if (input == 1) {
-					// restAtInn();
-				}
-				else if (input == 2) {
-					// itemVendor();
-				}
-				else if (input == 3) {
-					// gearVendor();
-				}
-				else if (input == 4) {
-					// talkToNPC();
-				}
-				else {
-					hasLeftTown = true;
+			if (isInTown()) {
+				boolean inTown = true;
+				while (inTown) {
+					System.out.println("You are in town!\n OPTIONS:");
+					System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
+					int input = intUserInput("-->", 5);
+					// TODO implement methods
+					if (input == 1) {
+						// restAtInn();
+					}
+					else if (input == 2) {
+						// itemVendor();
+					}
+					else if (input == 3) {
+						// gearVendor();
+					}
+					else if (input == 4) {
+						// talkToNPC();
+					}
+					else {
+						System.out.println("Which direction would you like to leave town in?");
+						System.out.println("N, S, E, or W?");
+						String townExitInput = in.next().trim().toUpperCase();
+						if (townExitInput.equals("N"))
+							mapOne.movePlayerTo(Direction.NORTH);
+						else if (townExitInput.equals("S"))
+							mapOne.movePlayerTo(Direction.SOUTH);
+						else if (townExitInput.equals("E"))
+							mapOne.movePlayerTo(Direction.EAST);
+						else if (townExitInput.equals("W"))
+							mapOne.movePlayerTo(Direction.WEST);
+						inTown = false;
+						GameLogic.clearConsole();
+						checkAct();
+						ActOneMap.printPlayerPosition();
+						System.out.println("Type N, S, E, or W to move in a direction.");
+					}
 				}
 			}
 			
