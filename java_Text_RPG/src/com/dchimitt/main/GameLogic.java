@@ -137,7 +137,6 @@ public class GameLogic implements java.io.Serializable {
 			return false;
 	}
 	
-
 	// TODO: implement townLastVisited method
 	public static Room lastTownVisited() {
 		return lastTownVisited;
@@ -145,7 +144,10 @@ public class GameLogic implements java.io.Serializable {
 	
 	// TODO: implement playerIsDead method
 	public static void playerIsDead() {
-		
+		if (lastTownVisited.getName().equals("Town of Reizart:")) 
+			ActOneMap.teleportPlayerTo(lastTownVisited);
+		else if (lastTownVisited.getName().equals("SOME TOWN:"))
+			ActOneMap.teleportPlayerTo(lastTownVisited);
 	}
 	
 	// TODO: fix random encounters starting on various rooms such as Cave Entrance or towns
@@ -347,6 +349,7 @@ public class GameLogic implements java.io.Serializable {
 			// TODO town options infinite loop if player reenters town
 			if (isInTown()) {
 				boolean inTown = true;
+				lastTownVisited = ActOneMap.getCurrentPlayerPosition();
 				while (inTown) {
 					System.out.println("You are in town!\n OPTIONS:");
 					System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
