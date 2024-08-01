@@ -8,6 +8,11 @@ public class ActOneDialogue implements java.io.Serializable {
 		GameLogic.typeToContinue();
 	}
 	
+	public static void momTalkText() {
+		System.out.println("Mother:\nYou're always welcome at your home, dear!");
+		GameLogic.typeToContinue();
+	}
+	
 	public static void fightThraxxDialogue() {
 		System.out.println("You reach the exit of the cave, a sigh of relief on your face.");
 		System.out.println("Walking toward the exit, a shadow appears out of the corner of your eye.");

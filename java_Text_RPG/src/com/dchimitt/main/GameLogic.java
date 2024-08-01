@@ -214,6 +214,14 @@ public class GameLogic implements java.io.Serializable {
 		typeToContinue();
 		clearConsole();
 	}
+	
+	public static void talkToNPC() {
+		Room currentRoom = ActOneMap.getCurrentPlayerPosition();
+		if (currentRoom.getName().equals("Town of Reizart:")) 
+			ActOneDialogue.momTalkText();
+		// TODO: add more NPC dialogue options
+		// else if (currentRoom.getName().equals("SOME TOWN:"))
+	}
 
 	// TODO: fix random encounters starting on various rooms such as Cave Entrance
 	// or towns
@@ -330,7 +338,7 @@ public class GameLogic implements java.io.Serializable {
 					} else if (input == 3) {
 						// gearVendor();
 					} else if (input == 4) {
-						// talkToNPC();
+						talkToNPC();
 					} else {
 						/*
 						 * TODO: 
