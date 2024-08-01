@@ -87,6 +87,7 @@ public class ActOneMap implements java.io.Serializable {
 		if (targetIndex != -1) {
 			currentPlayerPosition = targetIndex;
 			Room currentRoom = actOneMap.get(currentPlayerPosition);
+			System.out.println();
 			System.out.println("Location - \n" + currentRoom.getName() + "" + currentRoom.getDescription());
 		}
 		else
