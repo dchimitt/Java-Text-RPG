@@ -412,6 +412,7 @@ public class GameLogic implements java.io.Serializable {
 		System.out.println("HP: " + player.currentHp + "/" + player.maximumHp);
 		System.out.println("MP: " + player.currentMana + "/" + player.maximumMana);
 		System.out.println("EXP: " + player.currentExp + "/" + player.expToLevel);
+		System.out.println("Gold: " + player.gold);
 		printSeperator(20);
 
 		// print out abilities
