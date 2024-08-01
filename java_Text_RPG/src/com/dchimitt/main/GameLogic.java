@@ -12,6 +12,7 @@ import maps.ActOneMap.Direction;
 public class GameLogic implements java.io.Serializable {
 	static Scanner in = new Scanner(System.in);
 	static Player player;
+	static int goldCost;
 	static ActOneMap mapOne = new ActOneMap(); // initializating act one map
 	static Room lastTownVisited; // variable used for player teleportion on defeat
 	static boolean diedInBossFight = false;
@@ -165,29 +166,51 @@ public class GameLogic implements java.io.Serializable {
 		// TODO: add future towns here
 	}
 	
-	public static void restAtInn() {
-		int goldCostToRest;
-		System.out.println("Welcome! Would you like to rest here for the night? (fully recovers HP and MP)");
+	
+	public static void notEnoughGold() {
+		System.out.println("You don't have enough gold to do that!");
+	}
+	
+	public static void wantsToRestAtInn() {
+		Room currentRoom = ActOneMap.getCurrentPlayerPosition();
+		int reizartCostToRest = 10;
+		int someTownCostToRest = 30;
+		System.out.println("Welcome! Would you like to rest here for the night? (Fully recovers HP and MP)");
+		if (currentRoom.getName().equals("Town of Reizart:"))
+			System.out.println("Cost: " + reizartCostToRest + " gold\nCurrent gold: " + player.gold + " gold");
+		else if (currentRoom.getName().equals("Some Town:"))
+			System.out.println("Cost: " + someTownCostToRest + " gold\nCurrent gold: " + player.gold + " gold");
 		System.out.println("(1) Yes\n(2) No");
 		int userInput = intUserInput("-->", 2);
 		if (userInput == 1 && player.currentAct == 1) {
-			Room currentRoom = ActOneMap.getCurrentPlayerPosition();
 			if (currentRoom.getName().equals("Town of Reizart:")) {
-				goldCostToRest = 10;
-				if (player.gold >= goldCostToRest) {
+				if (player.gold >= reizartCostToRest) {
 					System.out.println("Thank you for your patronage!");
 					System.out.println("You sleep soundly for the night, waking up completely refreshed.");
 					player.currentHp = player.maximumHp;
 					player.currentMana = player.maximumMana;
+					typeToContinue();
+					clearConsole();
+				}
+				else {
+					notEnoughGold();
+					typeToContinue();
+					clearConsole();
 				}
 			}
 			else if (currentRoom.getName().equals("SOME TOWN:")) {
-				goldCostToRest = 35;
-				if (player.gold >= goldCostToRest) {
+				if (player.gold >= someTownCostToRest) {
 					System.out.println("Thank you for your patronage!");
 					System.out.println("You sleep soundly for the night, waking up completely refreshed.");
 					player.currentHp = player.maximumHp;
 					player.currentMana = player.maximumMana;
+					typeToContinue();
+					clearConsole();
+				}
+				else {
+					notEnoughGold();
+					typeToContinue();
+					clearConsole();
 				}
 			}
 		}
@@ -302,7 +325,7 @@ public class GameLogic implements java.io.Serializable {
 					int input = intUserInput("-->", 5);
 					// TODO implement methods
 					if (input == 1) {
-						// restAtInn();
+						wantsToRestAtInn();
 					} else if (input == 2) {
 						// itemVendor();
 					} else if (input == 3) {
