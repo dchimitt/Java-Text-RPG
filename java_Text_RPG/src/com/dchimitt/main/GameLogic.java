@@ -14,6 +14,7 @@ public class GameLogic implements java.io.Serializable {
 	static GameLogic game;
 	static Player player;
 	static ActOneMap mapOne = new ActOneMap();
+	static Room lastTownVisited;
 	
 	public static boolean defeatedActOneBoss = false;
 	public static boolean defeatedActTwoBoss = false;
@@ -136,15 +137,11 @@ public class GameLogic implements java.io.Serializable {
 			return false;
 	}
 	
-	/*
+
 	// TODO: implement townLastVisited method
-	public static Room townLastVisited() {
-		Room lastTown;
-		if (isInTown()) {
-			lastTown = mapOne.getCurrentPlayerPosition();
-		}	
+	public static Room lastTownVisited() {
+		return lastTownVisited;
 	}
-	*/
 	
 	// TODO: implement playerIsDead method
 	public static void playerIsDead() {
@@ -335,13 +332,13 @@ public class GameLogic implements java.io.Serializable {
 		do {
 			String directionInput = in.next().trim().toUpperCase();
 			if (directionInput.equals("N"))
-				mapOne.movePlayerTo(Direction.NORTH);
+				ActOneMap.movePlayerTo(Direction.NORTH);
 			else if (directionInput.equals("S"))
-				mapOne.movePlayerTo(Direction.SOUTH);
+				ActOneMap.movePlayerTo(Direction.SOUTH);
 			else if (directionInput.equals("E"))
-				mapOne.movePlayerTo(Direction.EAST);
+				ActOneMap.movePlayerTo(Direction.EAST);
 			else if (directionInput.equals("W"))
-				mapOne.movePlayerTo(Direction.WEST);
+				ActOneMap.movePlayerTo(Direction.WEST);
 			
 			// toggle boss fight if player moves into correct room
 			checkForBossEncounter();
@@ -381,13 +378,13 @@ public class GameLogic implements java.io.Serializable {
 						System.out.println("N, S, E, or W?");
 						String townExitInput = in.next().trim().toUpperCase();
 						if (townExitInput.equals("N"))
-							mapOne.movePlayerTo(Direction.NORTH);
+							ActOneMap.movePlayerTo(Direction.NORTH);
 						else if (townExitInput.equals("S"))
-							mapOne.movePlayerTo(Direction.SOUTH);
+							ActOneMap.movePlayerTo(Direction.SOUTH);
 						else if (townExitInput.equals("E"))
-							mapOne.movePlayerTo(Direction.EAST);
+							ActOneMap.movePlayerTo(Direction.EAST);
 						else if (townExitInput.equals("W"))
-							mapOne.movePlayerTo(Direction.WEST);
+							ActOneMap.movePlayerTo(Direction.WEST);
 						inTown = false;
 						GameLogic.clearConsole();
 						checkAct();
