@@ -90,8 +90,9 @@ public class GameLogic implements java.io.Serializable {
 				pickedName = true;
 		} while (!pickedName);
 
-		// create new player object and set act equal to 1
-		player = new Player(name, 0, 12, 1);
+		// create new player object
+		// params: name, current exp, exp to level, starting gold, starting act
+		player = new Player(name, 0, 12, 5, 1);
 
 		// print introduction for main story
 		MainStory.printIntroduction();

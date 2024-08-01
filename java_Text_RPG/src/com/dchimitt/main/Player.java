@@ -149,14 +149,15 @@ public class Player extends Character implements java.io.Serializable {
 		}
 	}	
 	
-	// Player constructor -- currentExp, expToLevel, and currentAct are specific to player
-	public Player (String name, int currentExp, int expToLevel, int currentAct) {
+	// Player constructor -- currentExp, expToLevel, gold, and currentAct are specific to player
+	public Player (String name, int currentExp, int expToLevel, int gold, int currentAct) {
 		// super keyword to use the constructor from superclass
         // params: name, str, dex, int, starting hp pool, starting mana pool, level
 		super(name, 1, 1, 1, 16, 5, 1); 
 		
 		this.currentExp = currentExp;
 		this.expToLevel = expToLevel;
+		this.gold = gold;
 		this.currentAct = currentAct;
 	}
 
