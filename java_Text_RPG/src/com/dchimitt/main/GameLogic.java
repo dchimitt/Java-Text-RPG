@@ -185,12 +185,7 @@ public class GameLogic implements java.io.Serializable {
 		if (userInput == 1 && player.currentAct == 1) {
 			if (currentRoom.getName().equals("Town of Reizart:")) {
 				if (player.gold >= reizartCostToRest) {
-					System.out.println("Thank you for your patronage!");
-					System.out.println("You sleep soundly for the night, waking up completely refreshed.");
-					player.currentHp = player.maximumHp;
-					player.currentMana = player.maximumMana;
-					typeToContinue();
-					clearConsole();
+					restAtInn();
 				}
 				else {
 					notEnoughGold();
@@ -200,12 +195,7 @@ public class GameLogic implements java.io.Serializable {
 			}
 			else if (currentRoom.getName().equals("SOME TOWN:")) {
 				if (player.gold >= someTownCostToRest) {
-					System.out.println("Thank you for your patronage!");
-					System.out.println("You sleep soundly for the night, waking up completely refreshed.");
-					player.currentHp = player.maximumHp;
-					player.currentMana = player.maximumMana;
-					typeToContinue();
-					clearConsole();
+					restAtInn();
 				}
 				else {
 					notEnoughGold();
@@ -214,6 +204,15 @@ public class GameLogic implements java.io.Serializable {
 				}
 			}
 		}
+	}
+	
+	public static void restAtInn() {
+		System.out.println("Thank you for your patronage!");
+		System.out.println("You sleep soundly for the night, waking up completely refreshed.");
+		player.currentHp = player.maximumHp;
+		player.currentMana = player.maximumMana;
+		typeToContinue();
+		clearConsole();
 	}
 
 	// TODO: fix random encounters starting on various rooms such as Cave Entrance
