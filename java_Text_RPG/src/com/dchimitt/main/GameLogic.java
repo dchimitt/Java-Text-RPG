@@ -359,16 +359,14 @@ public class GameLogic implements java.io.Serializable {
 						// talkToNPC();
 					} else {
 						/*
-						 * TODO: fix town logic, currently bugged 1) Trying to leave town at the start
-						 * of game by typing 5 does not work, looping infinitely. However, after leaving
-						 * town the first time and returning, it does "work"
+						 * TODO: 
 						 *
-						 * 2) If leaving town by selecting a direction that results in player movement
+						 * 1) If leaving town by selecting a direction that results in player movement
 						 * being blocked, player will end up still on the town room but options no
 						 * longer show. Also, formatting prints movement blocked but instantly clears
 						 * console making it confusing for player.
 						 * 
-						 * 3) Random encounters possible when #2 occurs
+						 * 2) Random encounters possible when #1 occurs
 						 */
 						System.out.println("Which direction would you like to leave town in?");
 						System.out.println("N, S, E, or W?");
@@ -394,7 +392,7 @@ public class GameLogic implements java.io.Serializable {
 			// TODO: implement scaling encounter chance that increases the further a player
 			// travels without encountering a battle, increasing to 100% after x amount of
 			// movements
-			// TODO: remove chance for encounter is player movement is blocked
+			// TODO: remove chance for encounter if player movement is blocked
 			if (Math.random() <= 0.2 && !isInTown())
 				isInFight = true;
 
