@@ -87,7 +87,7 @@ public class ActOneMap implements java.io.Serializable {
 		if (targetIndex != -1) {
 			currentPlayerPosition = targetIndex;
 			Room currentRoom = actOneMap.get(currentPlayerPosition);
-			System.out.println("Teleported to: " + currentRoom.getName() + "" + currentRoom.getDescription());
+			System.out.println("Location - \n" + currentRoom.getName() + "" + currentRoom.getDescription());
 		}
 		else
 			System.out.println("Unable to teleport to a blocked space on the map!");
