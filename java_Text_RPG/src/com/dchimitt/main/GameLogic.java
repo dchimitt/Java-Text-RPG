@@ -178,11 +178,11 @@ public class GameLogic implements java.io.Serializable {
 				if (randomNumber == 1) {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character plainsGoblin = enemy.createPlainsGoblin();
-					startBattle(plainsGoblin);
+					BattleLogic.startBattle(plainsGoblin);
 				} else {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character plainsSnake = enemy.createPlainsSnake();
-					startBattle(plainsSnake);
+					BattleLogic.startBattle(plainsSnake);
 				}
 			}
 			if (currentRoom.getName() == "Reizart Cave:") {
@@ -191,15 +191,15 @@ public class GameLogic implements java.io.Serializable {
 				if (randomNumber == 1) {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveBat = enemy.createCaveBat();
-					startBattle(caveBat);
+					BattleLogic.startBattle(caveBat);
 				} else if (randomNumber == 2) {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveSpider = enemy.createCaveSpider();
-					startBattle(caveSpider);
+					BattleLogic.startBattle(caveSpider);
 				} else {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveSlug = enemy.createCaveSlug();
-					startBattle(caveSlug);
+					BattleLogic.startBattle(caveSlug);
 				}
 			}
 			if (currentRoom.getName() == "IDK YET:") {
@@ -225,7 +225,7 @@ public class GameLogic implements java.io.Serializable {
 				ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 				Character caveBossThraxx = enemy.createCaveBossThraxx();
 				ActOneDialogue.fightThraxxDialogue();
-				startBattle(caveBossThraxx);
+				BattleLogic.startBattle(caveBossThraxx);
 				// if (player won the fight)
 				if (!diedInBossFight)
 					actOneThraxxDefeated = true;
@@ -239,83 +239,6 @@ public class GameLogic implements java.io.Serializable {
 
 	// TODO (possibly make this its own class due to length and complexity of this
 	// method
-	public static void startBattle(Character enemy) {
-		while (true) {
-			clearConsole();
-			printHeader(enemy.name + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
-			printHeader(player.name + "\nHP: " + player.currentHp + "/" + player.maximumHp);
-			System.out.println("Choose an action:");
-			printSeperator(20);
-			System.out.println(
-					"(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
-			int input = intUserInput("--> ", 7);
-			if (input == 1) {
-				int damagePlayerDoes = player.attack() - enemy.defend();
-				int damagePlayerTakes = enemy.attack() - player.defend();
-				if (damagePlayerTakes < 0) {
-					// adding damage if player defends well
-					damagePlayerDoes -= damagePlayerTakes / 2;
-					damagePlayerTakes = 0;
-				}
-				if (damagePlayerDoes < 0)
-					damagePlayerDoes = 0;
-				player.currentHp -= damagePlayerTakes;
-				enemy.currentHp -= damagePlayerDoes;
-
-				// print information to show what occured this round
-				clearConsole();
-				printHeader("BATTLE");
-				System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
-				printSeperator(20);
-				System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
-				if (player.currentHp <= 0) {
-					playerIsDead();
-					break;
-				} else if (enemy.currentHp <= 0) {
-					// player wins the battle
-					clearConsole();
-					printHeader("BATTLE");
-					System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
-					printSeperator(20);
-					System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
-
-					printHeader("You defeated the " + enemy.name + "!");
-					player.currentExp += enemy.strength; // TODO Fix exp gained later
-					System.out.println("You earned " + enemy.currentExp + " experience points!");
-					typeToContinue();
-					break;
-				}
-			} else if (input == 2) {
-				player.useAbility();
-			} else if (input == 3) {
-				player.useMagic();
-			} else if (input == 4) {
-				player.useMagic();
-			} else if (input == 5) {
-				player.defend();
-			} else if (input == 6) {
-				// useItem();
-			} else {
-				clearConsole();
-
-				// TODO: potentially add scaling % chance as the number of successful fights in
-				// a row increases
-				// 35% chance to run away from fight
-				if (Math.random() <= 0.35) {
-					printHeader("You ran away from the " + enemy.name + "!");
-					typeToContinue();
-					break;
-				} else {
-					printHeader("You didn't manage to escape.");
-					int failedEscapeDamage = enemy.attack();
-					System.out.println("The enemy strikes your back for " + failedEscapeDamage + " damage!");
-					if (player.currentHp <= 0) 
-						playerIsDead();
-				}
-			}
-			typeToContinue();
-		}
-	}
 
 	// method to continue game
 	public static void continueGame() {
