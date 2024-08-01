@@ -82,7 +82,7 @@ public class ActOneMap implements java.io.Serializable {
 	}
 	
 	// Method for moving player to various rooms on map
-	public void teleportPlayerTo(Room targetRoom) {
+	public static void teleportPlayerTo(Room targetRoom) {
 		int targetIndex = actOneMap.indexOf(targetRoom);
 		if (targetIndex != -1) {
 			currentPlayerPosition = targetIndex;
