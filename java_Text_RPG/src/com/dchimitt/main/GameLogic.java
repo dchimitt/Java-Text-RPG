@@ -11,14 +11,24 @@ import maps.ActOneMap.Direction;
 // will never create object of this class, so everything here is static
 public class GameLogic implements java.io.Serializable {
 	static Scanner in = new Scanner(System.in);
-	static GameLogic game;
-	static Player player;
-	static ActOneMap mapOne = new ActOneMap();
-	static Room lastTownVisited;
+	static Player player; 
+	static ActOneMap mapOne = new ActOneMap(); // initializating act one map
+	static Room lastTownVisited; // variable used for player teleportion on defeat
 	
-	public static boolean defeatedActOneBoss = false;
-	public static boolean defeatedActTwoBoss = false;
-	public static boolean defeatedActThreeBoss = false;
+	// set act one bosses to undefeated
+	static boolean actOneThraxxDefeated = false;
+	static boolean actOneSecondBossDefeated = false;
+	static boolean actOneFinalBossDefeated = false;
+	
+	// set act two bosses to undefeated
+	static boolean actTwoFirstBossDefeated = false;
+	static boolean actTwoSecondBossDefeated = false;
+	static boolean actTwoFinalBossDefeated = false;
+	
+	// set act three bosses to undefeated
+	static boolean actThreeFirstBossDefeated = false;
+	static boolean actThreeSecondBossDefeated = false;
+	static boolean finalBossOfGameDefeated = false;
 	
 	public static boolean isRunning;
 	
@@ -121,11 +131,11 @@ public class GameLogic implements java.io.Serializable {
 	
 	
 	public static void checkAct() {
-		if (defeatedActOneBoss == false)
+		if (actOneFinalBossDefeated == false)
 
-		if (defeatedActOneBoss == true && defeatedActTwoBoss == false)
+		if (actOneFinalBossDefeated == true && actTwoFinalBossDefeated == false)
 			player.currentAct = 2;
-		if (defeatedActTwoBoss == true && defeatedActThreeBoss == false)
+		if (actTwoFinalBossDefeated == true && finalBossOfGameDefeated == false)
 			player.currentAct = 3;
 	}
 	
@@ -208,22 +218,7 @@ public class GameLogic implements java.io.Serializable {
 		}
 	}
 	
-	public static void checkForBossEncounter() {
-		// set act one bosses to undefeated
-		boolean actOneThraxxDefeated = false;
-		boolean actOneSecondBossDefeated = false;
-		boolean actOneThirdBossDefeated = false;
-		
-		// set act two bosses to undefeated
-		boolean actTwoFirstBossDefeated = false;
-		boolean actTwoSecondBossDefeated = false;
-		boolean actTwoThirdBossDefeated = false;
-		
-		// set act three bosses to undefeated
-		boolean actThreeFirstBossDefeated = false;
-		boolean actThreeSecondBossDefeated = false;
-		boolean finalBossOfGameDefeated = false;
-		
+	public static void checkForBossEncounter() {	
 		if (player.currentAct == 1) {
 			Room currentRoom = ActOneMap.getCurrentPlayerPosition();
 			if (currentRoom.getName().equals("Reizart Cave Exit:") && !actOneThraxxDefeated) {
