@@ -279,6 +279,11 @@ public class GameLogic implements java.io.Serializable {
 				else if (enemy.currentHp <= 0) {
 					// player wins the battle
 					clearConsole();
+					printHeader("BATTLE");
+					System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
+					printSeperator(20);
+					System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
+					
 					printHeader("You defeated the " + enemy.name + "!");
 					player.currentExp += enemy.strength; // TODO Fix exp gained later
 					System.out.println("You earned " + enemy.currentExp + " experience points!");	
