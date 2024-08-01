@@ -81,11 +81,19 @@ public class ActOneMap implements java.io.Serializable {
 		System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
 	}
 	
-	// TODO: implement method (needed for cases where player dies)
-	public void teleportPlayerTo(Room lastTown) {
-		return;
+	// Method for moving player to various rooms on map
+	public void teleportPlayerTo(Room targetRoom) {
+		int targetIndex = actOneMap.indexOf(targetRoom);
+		if (targetIndex != -1) {
+			currentPlayerPosition = targetIndex;
+			Room currentRoom = actOneMap.get(currentPlayerPosition);
+			System.out.println("Teleported to: " + currentRoom.getName() + "" + currentRoom.getDescription());
+		}
+		else
+			System.out.println("Unable to teleport to a blocked space on the map!");
 	}
 	
+	// Method to move the player in N, S, E, or W direction
 	public static int movePlayerTo(Direction direction) {
 		Room currentRoom = actOneMap.get(currentPlayerPosition);
 		int newPlayerPosition = Direction.NOEXIT; // default set to -1 to handle invalid moves
