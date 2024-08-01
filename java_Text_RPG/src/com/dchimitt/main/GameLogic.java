@@ -164,6 +164,34 @@ public class GameLogic implements java.io.Serializable {
 			ActOneMap.teleportPlayerTo(lastTownVisited);
 		// TODO: add future towns here
 	}
+	
+	public static void restAtInn() {
+		int goldCostToRest;
+		System.out.println("Welcome! Would you like to rest here for the night? (fully recovers HP and MP)");
+		System.out.println("(1) Yes\n(2) No");
+		int userInput = intUserInput("-->", 2);
+		if (userInput == 1 && player.currentAct == 1) {
+			Room currentRoom = ActOneMap.getCurrentPlayerPosition();
+			if (currentRoom.getName().equals("Town of Reizart:")) {
+				goldCostToRest = 10;
+				if (player.gold >= goldCostToRest) {
+					System.out.println("Thank you for your patronage!");
+					System.out.println("You sleep soundly for the night, waking up completely refreshed.");
+					player.currentHp = player.maximumHp;
+					player.currentMana = player.maximumMana;
+				}
+			}
+			else if (currentRoom.getName().equals("SOME TOWN:")) {
+				goldCostToRest = 35;
+				if (player.gold >= goldCostToRest) {
+					System.out.println("Thank you for your patronage!");
+					System.out.println("You sleep soundly for the night, waking up completely refreshed.");
+					player.currentHp = player.maximumHp;
+					player.currentMana = player.maximumMana;
+				}
+			}
+		}
+	}
 
 	// TODO: fix random encounters starting on various rooms such as Cave Entrance
 	// or towns
