@@ -295,8 +295,61 @@ public class GameLogic implements java.io.Serializable {
 		}
 	}
 
-	// TODO (possibly make this its own class due to length and complexity of this
-	// method
+	public static void townOptions() {
+		clearConsole();
+		boolean inTown = true;
+		lastTownVisited = ActOneMap.getCurrentPlayerPosition();
+		while (inTown) {
+			System.out.println("You are in " + lastTownVisited.getName() + "\n OPTIONS:");
+			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
+			int input = intUserInput("-->", 5);
+			// TODO implement methods
+			if (input == 1) {
+				clearConsole();
+				wantsToRestAtInn();
+				clearConsole();
+			} else if (input == 2) {
+				clearConsole();
+				// itemVendor();
+				clearConsole();
+			} else if (input == 3) {
+				clearConsole();
+				// gearVendor();
+				clearConsole();
+			} else if (input == 4) {
+				clearConsole();
+				talkToNPC();
+			} else {
+				/*
+				 * TODO: 
+				 *
+				 * 1) If leaving town by selecting a direction that results in player movement
+				 * being blocked, player will end up still on the town room but options no
+				 * longer show. Also, formatting prints movement blocked but instantly clears
+				 * console making it confusing for player.
+				 * 
+				 * 2) Random encounters possible when #1 occurs
+				 */
+				clearConsole();
+				System.out.println("Which direction would you like to leave town in?");
+				System.out.println("N, S, E, or W?");
+				String townExitInput = in.next().trim().toUpperCase();
+				if (townExitInput.equals("N"))
+					ActOneMap.movePlayerTo(Direction.NORTH);
+				else if (townExitInput.equals("S"))
+					ActOneMap.movePlayerTo(Direction.SOUTH);
+				else if (townExitInput.equals("E"))
+					ActOneMap.movePlayerTo(Direction.EAST);
+				else if (townExitInput.equals("W"))
+					ActOneMap.movePlayerTo(Direction.WEST);
+				inTown = false;
+				GameLogic.clearConsole();
+				checkAct();
+				ActOneMap.printPlayerPosition();
+				System.out.println("Type N, S, E, or W to move in a direction.");
+			}
+		}
+	}
 
 	// method to continue game
 	public static void continueGame() {
@@ -322,54 +375,8 @@ public class GameLogic implements java.io.Serializable {
 			// if the player is in a town, options to rest, purchase/sell items and gear,
 			// and talk to npc
 			// TODO town options infinite loop if player reenters town
-			if (isInTown()) {
-				boolean inTown = true;
-				lastTownVisited = ActOneMap.getCurrentPlayerPosition();
-				while (inTown) {
-					System.out.println("You are in town!\n OPTIONS:");
-					System.out.println(
-							"(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
-					int input = intUserInput("-->", 5);
-					// TODO implement methods
-					if (input == 1) {
-						wantsToRestAtInn();
-					} else if (input == 2) {
-						// itemVendor();
-					} else if (input == 3) {
-						// gearVendor();
-					} else if (input == 4) {
-						talkToNPC();
-					} else {
-						/*
-						 * TODO: 
-						 *
-						 * 1) If leaving town by selecting a direction that results in player movement
-						 * being blocked, player will end up still on the town room but options no
-						 * longer show. Also, formatting prints movement blocked but instantly clears
-						 * console making it confusing for player.
-						 * 
-						 * 2) Random encounters possible when #1 occurs
-						 */
-						System.out.println("Which direction would you like to leave town in?");
-						System.out.println("N, S, E, or W?");
-						String townExitInput = in.next().trim().toUpperCase();
-						if (townExitInput.equals("N"))
-							ActOneMap.movePlayerTo(Direction.NORTH);
-						else if (townExitInput.equals("S"))
-							ActOneMap.movePlayerTo(Direction.SOUTH);
-						else if (townExitInput.equals("E"))
-							ActOneMap.movePlayerTo(Direction.EAST);
-						else if (townExitInput.equals("W"))
-							ActOneMap.movePlayerTo(Direction.WEST);
-						inTown = false;
-						GameLogic.clearConsole();
-						checkAct();
-						ActOneMap.printPlayerPosition();
-						System.out.println("Type N, S, E, or W to move in a direction.");
-					}
-				}
-			}
-
+			if (isInTown()) 
+				townOptions();
 			// 20% chance to encounter random battle
 			// TODO: implement scaling encounter chance that increases the further a player
 			// travels without encountering a battle, increasing to 100% after x amount of

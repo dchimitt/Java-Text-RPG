@@ -4,13 +4,17 @@ import com.dchimitt.main.GameLogic;
 
 public class ActOneDialogue implements java.io.Serializable {
 	public static void momIntroDialogue() {
+		GameLogic.clearConsole();
 		System.out.println("PLACEHOLDER HI SON");
 		GameLogic.typeToContinue();
+		GameLogic.clearConsole();
 	}
 	
 	public static void momTalkText() {
+		GameLogic.clearConsole();
 		System.out.println("Mother:\nYou're always welcome at your home, dear!");
 		GameLogic.typeToContinue();
+		GameLogic.clearConsole();
 	}
 	
 	public static void fightThraxxDialogue() {
