@@ -11,7 +11,7 @@ import maps.ActOneMap.Direction;
 // will never create object of this class, so everything here is static
 public class GameLogic implements java.io.Serializable {
 	static Scanner in = new Scanner(System.in);
-	static Player player;
+	public static Player player;
 	static int goldCost;
 	static ActOneMap mapOne = new ActOneMap(); // initializating act one map
 	static Room lastTownVisited; // variable used for player teleportion on defeat
@@ -112,20 +112,7 @@ public class GameLogic implements java.io.Serializable {
 		lastTownVisited = ActOneMap.getCurrentPlayerPosition();
 
 		// town options appear when first starting the game
-		System.out.println("You are in town!\n OPTIONS:");
-		System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear vendor\n(4) Talk to NPC\n(5) Leave town");
-		int input = intUserInput("-->", 5);
-		if (input == 1) {
-			// restAtInn();
-		} else if (input == 2) {
-			// itemVendor();
-		} else if (input == 3) {
-			// gearVendor();
-		} else if (input == 4) {
-			// talkToNPC();
-		} else {
-			// leaveTown();
-		}
+		townOptions();
 
 		// start main game loop
 		gameLoop();
@@ -134,7 +121,7 @@ public class GameLogic implements java.io.Serializable {
 	public static void checkAct() {
 		if (actOneFinalBossDefeated == false)
 
-			if (actOneFinalBossDefeated == true && actTwoFinalBossDefeated == false)
+		if (actOneFinalBossDefeated == true && actTwoFinalBossDefeated == false)
 				player.currentAct = 2;
 		if (actTwoFinalBossDefeated == true && finalBossOfGameDefeated == false)
 			player.currentAct = 3;
@@ -305,9 +292,13 @@ public class GameLogic implements java.io.Serializable {
 			int input = intUserInput("-->", 5);
 			// TODO implement methods
 			if (input == 1) {
-				clearConsole();
-				wantsToRestAtInn();
-				clearConsole();
+				if (ActOneMap.getCurrentPlayerPosition().getName().equals("Town of Reizart:"))
+					System.out.println("Hey, " + player.name + "! You can rest for free at your house! I couldn't live with myself if I charged you for a night here!");
+				else {
+					clearConsole();
+					wantsToRestAtInn();
+					clearConsole();
+				}
 			} else if (input == 2) {
 				clearConsole();
 				// itemVendor();
@@ -353,6 +344,9 @@ public class GameLogic implements java.io.Serializable {
 
 	// method to continue game
 	public static void continueGame() {
+		if (isInTown()) 
+			townOptions();
+		
 		GameLogic.clearConsole();
 		checkAct();
 		boolean isInFight = false;
@@ -371,13 +365,7 @@ public class GameLogic implements java.io.Serializable {
 
 			// toggle boss fight if player moves into correct room
 			checkForBossEncounter();
-
-			// if the player is in a town, options to rest, purchase/sell items and gear,
-			// and talk to npc
-			// TODO town options infinite loop if player reenters town
-			if (isInTown()) 
-				townOptions();
-			// 20% chance to encounter random battle
+			
 			// TODO: implement scaling encounter chance that increases the further a player
 			// travels without encountering a battle, increasing to 100% after x amount of
 			// movements
