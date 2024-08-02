@@ -16,7 +16,7 @@ public class ActOneDialogue implements java.io.Serializable {
 		System.out.println("Mother:\nYou're always welcome at your home, dearie!\nFeel free to take a nap!");
 		GameLogic.player.currentHp = GameLogic.player.maximumHp;
 		GameLogic.player.currentMana = GameLogic.player.maximumMana;
-		System.out.println("Your health and mana have been returned to full!");
+		System.out.println("\nYour health and mana have been fully restored! Thanks mom!");
 		GameLogic.typeToContinue();
 		GameLogic.clearConsole();
 	}
