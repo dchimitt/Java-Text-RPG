@@ -5,6 +5,7 @@ import com.dchimitt.main.GameLogic;
 public class ActOneDialogue implements java.io.Serializable {
 	public static void momIntroDialogue() {
 		GameLogic.clearConsole();
+		System.out.println("Mother:");
 		System.out.println("PLACEHOLDER HI SON");
 		GameLogic.typeToContinue();
 		GameLogic.clearConsole();
