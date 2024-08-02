@@ -292,8 +292,12 @@ public class GameLogic implements java.io.Serializable {
 			int input = intUserInput("-->", 5);
 			// TODO implement methods
 			if (input == 1) {
-				if (ActOneMap.getCurrentPlayerPosition().getName().equals("Town of Reizart:"))
+				if (ActOneMap.getCurrentPlayerPosition().getName().equals("Town of Reizart:")) {
+					clearConsole();
+					System.out.println("Innkeeper:");
 					System.out.println("Hey, " + player.name + "! You can rest for free at your house! I couldn't live with myself if I charged you for a night here!");
+					System.out.println();
+				}
 				else {
 					clearConsole();
 					wantsToRestAtInn();
