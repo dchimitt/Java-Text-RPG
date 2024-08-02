@@ -1,6 +1,7 @@
 package maps;
 import java.util.ArrayList;
 
+import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.Room;
 
 public class ActOneMap implements java.io.Serializable {
@@ -115,14 +116,26 @@ public class ActOneMap implements java.io.Serializable {
 		}
 		
 		if (newPlayerPosition != Direction.NOEXIT) {
-			currentPlayerPosition = newPlayerPosition;
-			currentRoom = actOneMap.get(currentPlayerPosition);
-			System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
-		}
-		else 
-			// TODO fix output later. Unsure how to extract the ArrayList index of the room blocking player due to Direction.NOEXIT being set to -1
-			// Ideally, I would like to show the name of the room (aka object) blocking the player's path for more clarity on map location.
-	        System.out.println("Your path is blocked!");
+	        currentPlayerPosition = newPlayerPosition;
+	        currentRoom = actOneMap.get(currentPlayerPosition);
+	        System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
+
+	        // Check if the new room is a town and call townOptions
+	        if (currentRoom.isTown()) 
+	            GameLogic.townOptions();
+	    } 
+		else {
+	        // if leaving town and path is blocked, reprint town options
+	        if (GameLogic.isInTown()) {
+	            System.out.println("Your path was blocked!");
+	            GameLogic.typeToContinue();
+	            GameLogic.townOptions();
+	        } 
+	        // in situation where path is blocked but not currently in a town
+	        else {
+	            System.out.println("Your path is blocked!");
+	        }
+	    }
 	        		
 		return currentPlayerPosition;
 	}
