@@ -2,6 +2,7 @@ package com.dchimitt.main;
 
 public class Room extends Thing implements java.io.Serializable {
 	private int n, s, w, e;
+	private boolean isTown;
 	
 	public Room(String name, String description, int n, int s, int e, int w) {
 		super(name, description);
@@ -9,6 +10,7 @@ public class Room extends Thing implements java.io.Serializable {
 		this.s = s;
 		this.e = e;
 		this.w = w;
+		this.isTown = name.toLowerCase().contains("town");
 	}
 	
 	public int getNorth() {
@@ -41,5 +43,9 @@ public class Room extends Thing implements java.io.Serializable {
 	
 	public void setWest(int w) {
 		this.w = w;
+	}
+	
+	public boolean isTown() {
+		return isTown;
 	}
 }
