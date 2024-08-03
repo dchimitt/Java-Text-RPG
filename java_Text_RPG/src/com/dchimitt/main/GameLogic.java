@@ -395,7 +395,11 @@ public class GameLogic implements java.io.Serializable {
 			
 			// random counter chance
 			int movementsSinceLastFight = player.getMovementCounter();
-			double encounterRate = Math.min(1.0, movementsSinceLastFight * 0.2);		
+			double encounterRate;
+			if (movementsSinceLastFight < 5)
+				encounterRate = 0.10 + 0.05 * movementsSinceLastFight;
+			else
+				encounterRate = 1.0;
 			if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
 				isInFight = true;
 				player.resetMovementCounter();
