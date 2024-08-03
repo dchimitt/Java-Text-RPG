@@ -388,11 +388,13 @@ public class GameLogic implements java.io.Serializable {
 			// toggle boss fight if player moves into correct room
 			checkForBossEncounter();
 			
-			// TODO: implement scaling encounter chance that increases the further a player
-			// travels without encountering a battle, increasing to 100% after x amount of
-			// movements
-			if (Math.random() <= 0.2 && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) 
+			// random counter chance
+			int movementsSinceLastFight = player.getMovementCounter();
+			double encounterRate = Math.min(1.0, movementsSinceLastFight * 0.2);		
+			if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
 				isInFight = true;
+				player.resetMovementCounter();
+			}
 					
 		} while (!isInFight);
 		System.out.println("You've encountered a monster!");

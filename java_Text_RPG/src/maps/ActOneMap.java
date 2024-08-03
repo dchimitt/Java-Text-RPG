@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.Room;
+import com.dchimitt.main.Player;
 
 public class ActOneMap implements java.io.Serializable {
 	
@@ -129,6 +130,7 @@ public class ActOneMap implements java.io.Serializable {
 		}
 		
 		if (newPlayerPosition != Direction.NOEXIT) {
+			GameLogic.player.incrementMovementCounter();
 	        currentPlayerPosition = newPlayerPosition;
 	        currentRoom = actOneMap.get(currentPlayerPosition);
 	        System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
