@@ -100,6 +100,12 @@ public class ActOneMap implements java.io.Serializable {
 		return pathIsBlocked;
 	}
 	
+	// method to return whether player is in a "safe room" (room where no encounters can occur)
+	public static boolean playerMovingToSafeRoom() {
+		Room currentRoom = getCurrentPlayerPosition();
+		String roomName = currentRoom.getName();
+		return roomName.equals("Reizart Cave Entrance:");
+	}
 	
 	// Method to move the player in N, S, E, or W direction
 	public static int movePlayerTo(Direction direction) {
