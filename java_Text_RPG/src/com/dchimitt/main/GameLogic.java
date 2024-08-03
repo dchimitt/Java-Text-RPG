@@ -397,6 +397,17 @@ public class GameLogic implements java.io.Serializable {
 				// random counter chance
 				int movementsSinceLastFight = player.getMovementCounter();
 				double encounterRate;
+				double encounterRateConstant = 0.1;
+				
+				if (movementsSinceLastFight < 5) 
+					encounterRate = (1 - Math.exp(-1 * encounterRateConstant * movementsSinceLastFight));
+				else
+					encounterRate = 1.0;
+				if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
+					isInFight = true;
+					player.resetMovementCounter();
+				}
+				/*
 				if (movementsSinceLastFight < 5)
 					encounterRate = 0.10 + 0.05 * movementsSinceLastFight;
 				else
@@ -405,6 +416,7 @@ public class GameLogic implements java.io.Serializable {
 					isInFight = true;
 					player.resetMovementCounter();
 				}
+				*/
 					
 			} while (!isInFight);
 			System.out.println("You've encountered a monster!");
