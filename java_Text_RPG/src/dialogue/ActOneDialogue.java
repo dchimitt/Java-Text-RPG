@@ -22,6 +22,7 @@ public class ActOneDialogue implements java.io.Serializable {
 	}
 	
 	public static void fightThraxxDialogue() {
+		GameLogic.clearConsole();
 		System.out.println("You reach the exit of the cave, a sigh of relief on your face.");
 		System.out.println("Walking toward the exit, a shadow appears out of the corner of your eye.");
 		System.out.println("A hideous troll, equipped with a stone hammer and at least three times your size, snorts and scowls.");
