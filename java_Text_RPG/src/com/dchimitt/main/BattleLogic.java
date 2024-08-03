@@ -9,7 +9,7 @@ public class BattleLogic {
 			GameLogic.printHeader(enemy.name + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
 			GameLogic.printHeader(GameLogic.player.name + "\nHP: " + GameLogic.player.currentHp + "/" + GameLogic.player.maximumHp);
 			System.out.println("Choose an action:");
-			GameLogic.printSeperator(20);
+			GameLogic.printHyphenSeparator(20);
 			System.out.println(
 					"(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
 			int input = GameLogic.intUserInput("--> ", 7);
@@ -31,7 +31,7 @@ public class BattleLogic {
 				GameLogic.clearConsole();
 				GameLogic.printHeader("BATTLE");
 				System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
-				GameLogic.printSeperator(20);
+				GameLogic.printHyphenSeparator(20);
 				System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 				if (GameLogic.player.currentHp <= 0) {
 					GameLogic.playerIsDead();
@@ -41,7 +41,7 @@ public class BattleLogic {
 					GameLogic.clearConsole();
 					GameLogic.printHeader("BATTLE");
 					System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
-					GameLogic.printSeperator(20);
+					GameLogic.printHyphenSeparator(20);
 					System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 
 					GameLogic.printHeader("You defeated the " + enemy.name + "!");

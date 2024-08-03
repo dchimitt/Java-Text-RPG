@@ -5,7 +5,7 @@ import com.dchimitt.main.GameLogic;
 public class MainStory implements java.io.Serializable {
 	public static void printIntroduction() {
 		GameLogic.clearConsole();
-		GameLogic.printSeperator(30);
+		GameLogic.printHyphenSeparator(30);
 		System.out.println("Welcome, brave soul.");
 		System.out.println("PLACEHOLDER");
 		System.out.println("PLACEHOLDER");

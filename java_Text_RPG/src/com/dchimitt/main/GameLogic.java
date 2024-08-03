@@ -56,16 +56,22 @@ public class GameLogic implements java.io.Serializable {
 			System.out.println();
 	}
 
-	public static void printSeperator(int n) {
+	public static void printHyphenSeparator(int n) {
 		for (int i = 0; i < n; i++)
 			System.out.print("-");
 		System.out.println();
 	}
+	
+	public static void printTildeSeperator(int n) {
+		for (int i = 0; i < n; i++)
+			System.out.print("~");
+		System.out.println();
+	}
 
 	public static void printHeader(String title) {
-		printSeperator(30);
+		printHyphenSeparator(30);
 		System.out.println(title);
-		printSeperator(30);
+		printHyphenSeparator(30);
 	}
 
 	public static void typeToContinue() {
@@ -426,7 +432,7 @@ public class GameLogic implements java.io.Serializable {
 		System.out.println("MP: " + player.currentMana + "/" + player.maximumMana);
 		System.out.println("EXP: " + player.currentExp + "/" + player.expToLevel);
 		System.out.println("Gold: " + player.gold);
-		printSeperator(20);
+		printHyphenSeparator(20);
 
 		// print out abilities
 		boolean foundAbility = false;
@@ -439,7 +445,7 @@ public class GameLogic implements java.io.Serializable {
 		}
 		if (foundAbility == false)
 			System.out.println("N/A");
-		GameLogic.printSeperator(20);
+		GameLogic.printHyphenSeparator(20);
 
 		// print out offensive magic
 		boolean foundOffMag = false;
@@ -452,7 +458,7 @@ public class GameLogic implements java.io.Serializable {
 		}
 		if (foundOffMag == false)
 			System.out.println("N/A");
-		GameLogic.printSeperator(20);
+		GameLogic.printHyphenSeparator(20);
 
 		// print out offensive magic
 		boolean foundSuppMag = false;
@@ -465,7 +471,7 @@ public class GameLogic implements java.io.Serializable {
 		}
 		if (foundSuppMag == false)
 			System.out.println("N/A");
-		GameLogic.printSeperator(20);
+		GameLogic.printHyphenSeparator(20);
 		typeToContinue();
 	}
 
