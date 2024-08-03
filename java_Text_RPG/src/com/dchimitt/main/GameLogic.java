@@ -41,8 +41,9 @@ public class GameLogic implements java.io.Serializable {
 			System.out.println(prompt);
 			try {
 				input = in.nextInt();
+				in.nextLine();
 			} catch (Exception e) {
-				in.next();
+				in.nextLine();
 				input = -1;
 				System.out.println("That is not an integer. Please enter an integer: ");
 			}
@@ -69,7 +70,7 @@ public class GameLogic implements java.io.Serializable {
 
 	public static void typeToContinue() {
 		System.out.println("\nPress any key and hit enter to continue.");
-		in.next(); // this will take the next token entered
+		in.nextLine(); // this will take the next token entered
 	}
 
 	public static void startGame() {
@@ -80,7 +81,7 @@ public class GameLogic implements java.io.Serializable {
 		do {
 			clearConsole();
 			printHeader("What is your name, brave adventurer?");
-			name = in.next();
+			name = in.nextLine();
 
 			clearConsole();
 			printHeader("Your name is " + name + ".\nIs that correct?");
@@ -330,7 +331,7 @@ public class GameLogic implements java.io.Serializable {
 				clearConsole();
 				System.out.println("Which direction would you like to leave town in?");
 				System.out.println("N, S, E, or W?");
-				String townExitInput = in.next().trim().toUpperCase();
+				String townExitInput = in.nextLine().trim().toUpperCase();
 				if (townExitInput.equals("N"))
 					ActOneMap.movePlayerTo(Direction.NORTH);
 				else if (townExitInput.equals("S"))
@@ -359,7 +360,7 @@ public class GameLogic implements java.io.Serializable {
 		ActOneMap.printPlayerPosition();
 		System.out.println("Type N, S, E, or W to move in a direction.\nType M to access the menu.");
 		do {
-			String directionInput = in.next().trim().toUpperCase();
+			String directionInput = in.nextLine().trim().toUpperCase();
 			if (directionInput.equals("N"))
 				ActOneMap.movePlayerTo(Direction.NORTH);
 			else if (directionInput.equals("S"))
