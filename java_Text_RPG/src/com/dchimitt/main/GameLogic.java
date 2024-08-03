@@ -357,7 +357,7 @@ public class GameLogic implements java.io.Serializable {
 		checkAct();
 		boolean isInFight = false;
 		ActOneMap.printPlayerPosition();
-		System.out.println("Type N, S, E, or W to move in a direction.");
+		System.out.println("Type N, S, E, or W to move in a direction.\n Type M to access the menu.");
 		do {
 			String directionInput = in.next().trim().toUpperCase();
 			if (directionInput.equals("N"))
@@ -368,6 +368,22 @@ public class GameLogic implements java.io.Serializable {
 				ActOneMap.movePlayerTo(Direction.EAST);
 			else if (directionInput.equals("W"))
 				ActOneMap.movePlayerTo(Direction.WEST);
+			else if (directionInput.equals("M")) {
+				printMenu();
+				int input = intUserInput("--> ", 4);
+				if (input == 1)
+					continueGame();
+				else if (input == 2)
+					characterSheet();
+				else if (input == 3) {
+					AdventureGame.saveGame();
+					typeToContinue();
+				} 
+				else {
+					AdventureGame.saveGame();
+					isRunning = false;
+				}
+			}
 
 			// toggle boss fight if player moves into correct room
 			checkForBossEncounter();
