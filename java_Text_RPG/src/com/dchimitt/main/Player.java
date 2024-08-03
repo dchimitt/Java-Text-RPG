@@ -232,102 +232,130 @@ public class Player extends Character implements java.io.Serializable {
 
 	// allows player to choose an upgrade
 	public void chooseUpgrade() {
-		GameLogic.clearConsole();
-		GameLogic.printHeader("Choose an upgrade. You will be able to read a description of your selection before making your final choice: ");
-		System.out.println("(1) Abilities --> Skills that utilize strength and dexterity to inflict damage. These have cooldowns.");
-		System.out.println("(2) Offensive Magic --> Spells that decimate your enemies. These consume mana.");
-		System.out.println("(3) Support Magic --> Spells with varying effects that support your character. These consume mana.");
-		
-		// obtain input as player's upgrade choice
-		int input = GameLogic.intUserInput("--> ", 3);
-		GameLogic.clearConsole();
-		
-        if (input == 1) {
-        	for (Abilities abilities : Abilities.values()) 
-        		System.out.println(abilities.getAbilityName() + ": " + abilities.getAbilityDescription() + " - Level " + abilities.requiredAbilityLevel + " required.");
-            for (int i = lastLearnedAbilityIndex + 1; i < Abilities.values().length; i++) {
-                Abilities ability = Abilities.values()[i];
-                if (ability.canLearnAbility(level)) {
-                	System.out.println();
-                    System.out.println("Would you like to learn " + ability.getAbilityName() + "? (Y/N)");
-                    String response = in.nextLine().trim().toUpperCase();
-                    if (response.equals("Y")) {
-                        System.out.println("Learning " + ability.getAbilityName() + "...");
-                        ability.learnAbility();
-                        System.out.println(ability.getAbilityName() + " learned!");
-                        lastLearnedAbilityIndex = i; // Update last learned index
-                        GameLogic.typeToContinue();
-                        return;
-                    }
-                    else if (response.equals("N")) 
-                    	chooseUpgrade();
-                    else {
-                    	System.out.println("Invalid input, returning to selections.");
-                    	GameLogic.typeToContinue();
-                    	chooseUpgrade();
-                    }
-                }
-            }
-            System.out.println("No new abilities to learn at the moment.");
-            GameLogic.typeToContinue();
-        }
-        else if (input == 2) {
-        	for (OffMagSpells offSpell : OffMagSpells.values()) 
-        		System.out.println(offSpell.getOffMagName() + ": " + offSpell.getOffMagDescription() + " - Level " + offSpell.requiredOffMagLevel + " required.");
-            for (int i = lastLearnedOffMagIndex + 1; i < OffMagSpells.values().length; i++) {
-                OffMagSpells offSpell = OffMagSpells.values()[i];
-                if (offSpell.canLearnOffMag(level)) {
-                	System.out.println();
-                    System.out.println("Would you like to learn " + offSpell.getOffMagName() + "? (Y/N)");
-                    String response = in.nextLine().trim().toUpperCase();
-                    if (response.equals("Y")) {
-                        System.out.println("Learning " + offSpell.getOffMagName() + "...");
-                        offSpell.learnOffMag();
-                        System.out.println(offSpell.getOffMagName() + " learned!");
-                        lastLearnedOffMagIndex = i; // Update last learned index
-                        GameLogic.typeToContinue();
-                        return;
-                    }
-                    else if (response.equals("N")) 
-                    	chooseUpgrade();
-                    else {
-                    	System.out.println("Invalid input, returning to selections.");
-                    	GameLogic.typeToContinue();
-                    	chooseUpgrade();
-                    }
-                }
-            }
-            System.out.println("No new offensive magic spells to learn at the moment.");
-            GameLogic.typeToContinue();
-        }
-		else {
-			for (SuppMagSpells suppSpell : SuppMagSpells.values()) 
-				System.out.println(suppSpell.getSuppMagName() + ": " + suppSpell.getSuppMagDescription() + " - Level " + suppSpell.requiredSuppMagLevel + " required.");
-            for (int i = lastLearnedSuppMagIndex + 1; i < SuppMagSpells.values().length; i++) {
-                SuppMagSpells suppSpell = SuppMagSpells.values()[i];
-                if (suppSpell.canLearnSuppMag(level)) {
-                	System.out.println();
-                    System.out.println("Would you like to learn " + suppSpell.getSuppMagName() + "? (Y/N)");
-                    String response = in.nextLine().trim().toUpperCase();
-                    if (response.equals("Y")) {
-                        System.out.println("Learning " + suppSpell.getSuppMagName() + "...");
-                        suppSpell.learnSuppMag();
-                        System.out.println(suppSpell.getSuppMagName() + " learned!");
-                        lastLearnedSuppMagIndex = i; // Update last learned index
-                        GameLogic.typeToContinue();
-                        return;
-                    }
-                    else if (response.equals("N")) 
-                    	chooseUpgrade();
-                    else {
-                    	System.out.println("Invalid input, returning to selections.");
-                    	GameLogic.typeToContinue();
-                    	chooseUpgrade();
-                    }
-                }
-            }
-            System.out.println("No new support magic spells to learn at the moment.");
-            GameLogic.typeToContinue();
-		}
+	    while (true) {
+	        GameLogic.clearConsole();
+	        GameLogic.printHeader("Choose an upgrade. You will be able to read a description of your selection before making your final choice: ");
+	        System.out.println("(1) Abilities --> Skills that utilize strength and dexterity to inflict damage. These have cooldowns.");
+	        System.out.println("(2) Offensive Magic --> Spells that decimate your enemies. These consume mana.");
+	        System.out.println("(3) Support Magic --> Spells with varying effects that support your character. These consume mana.");
+
+	        int input = GameLogic.intUserInput("--> ", 3);
+	        GameLogic.clearConsole();
+
+	        boolean learned = false;
+	        
+	        switch (input) {
+	            case 1:
+	                for (Abilities ability : Abilities.values()) 
+	                    System.out.println(ability.getAbilityName() + ": " + ability.getAbilityDescription() + " - Level " + ability.requiredAbilityLevel + " required.");
+	                
+	                for (int i = lastLearnedAbilityIndex + 1; i < Abilities.values().length; i++) {
+	                    Abilities ability = Abilities.values()[i];
+	                    if (ability.canLearnAbility(level)) {
+	                        System.out.println();
+	                        System.out.println("Would you like to learn " + ability.getAbilityName() + "? (Y/N)");
+	                        String response = in.nextLine().trim().toUpperCase();
+	                        if (response.equals("Y")) {
+	                            System.out.println("Learning " + ability.getAbilityName() + "...");
+	                            ability.learnAbility();
+	                            System.out.println(ability.getAbilityName() + " learned!");
+	                            lastLearnedAbilityIndex = i;
+	                            learned = true;
+	                            break;
+	                        } 
+	                        else if (response.equals("N")) {
+	                            break; // Exit the for loop to choose again
+	                        } 
+	                        else {
+	                            System.out.println("Invalid input, returning to selections.");
+	                            GameLogic.typeToContinue();
+	                            break; // Exit the for loop to choose again
+	                        }
+	                    }
+	                }
+	                if (!learned) {
+	                    System.out.println("No new abilities to learn at the moment.");
+	                    GameLogic.typeToContinue();
+	                }
+	                break;
+
+	            case 2:
+	                for (OffMagSpells offSpell : OffMagSpells.values()) 
+	                    System.out.println(offSpell.getOffMagName() + ": " + offSpell.getOffMagDescription() + " - Level " + offSpell.requiredOffMagLevel + " required.");
+	                
+	                for (int i = lastLearnedOffMagIndex + 1; i < OffMagSpells.values().length; i++) {
+	                    OffMagSpells offSpell = OffMagSpells.values()[i];
+	                    if (offSpell.canLearnOffMag(level)) {
+	                        System.out.println();
+	                        System.out.println("Would you like to learn " + offSpell.getOffMagName() + "? (Y/N)");
+	                        String response = in.nextLine().trim().toUpperCase();
+	                        if (response.equals("Y")) {
+	                            System.out.println("Learning " + offSpell.getOffMagName() + "...");
+	                            offSpell.learnOffMag();
+	                            System.out.println(offSpell.getOffMagName() + " learned!");
+	                            lastLearnedOffMagIndex = i;
+	                            learned = true;
+	                            break;
+	                        } 
+	                        else if (response.equals("N")) {
+	                            break; // Exit the for loop to choose again
+	                        } 
+	                        else {
+	                            System.out.println("Invalid input, returning to selections.");
+	                            GameLogic.typeToContinue();
+	                            break; // Exit the for loop to choose again
+	                        }
+	                    }
+	                }
+	                if (!learned) {
+	                    System.out.println("No new offensive magic spells to learn at the moment.");
+	                    GameLogic.typeToContinue();
+	                }
+	                break;
+
+	            case 3:
+	                for (SuppMagSpells suppSpell : SuppMagSpells.values()) 
+	                    System.out.println(suppSpell.getSuppMagName() + ": " + suppSpell.getSuppMagDescription() + " - Level " + suppSpell.requiredSuppMagLevel + " required.");
+	                
+	                for (int i = lastLearnedSuppMagIndex + 1; i < SuppMagSpells.values().length; i++) {
+	                    SuppMagSpells suppSpell = SuppMagSpells.values()[i];
+	                    if (suppSpell.canLearnSuppMag(level)) {
+	                        System.out.println();
+	                        System.out.println("Would you like to learn " + suppSpell.getSuppMagName() + "? (Y/N)");
+	                        String response = in.nextLine().trim().toUpperCase();
+	                        if (response.equals("Y")) {
+	                            System.out.println("Learning " + suppSpell.getSuppMagName() + "...");
+	                            suppSpell.learnSuppMag();
+	                            System.out.println(suppSpell.getSuppMagName() + " learned!");
+	                            lastLearnedSuppMagIndex = i;
+	                            learned = true;
+	                            break;
+	                        } 
+	                        else if (response.equals("N")) {
+	                            break; // Exit the for loop to choose again
+	                        } 
+	                        else {
+	                            System.out.println("Invalid input, returning to selections.");
+	                            GameLogic.typeToContinue();
+	                            break; // Exit the for loop to choose again
+	                        }
+	                    }
+	                }
+	                if (!learned) {
+	                    System.out.println("No new support magic spells to learn at the moment.");
+	                    GameLogic.typeToContinue();
+	                }
+	                break;
+
+	            default:
+	                System.out.println("Invalid choice, please select again.");
+	                break;
+	        }
+	        
+	        if (learned) {
+	            GameLogic.typeToContinue();
+	            break; // Exit the while loop after learning a new skill
+	        }
+	    }
 	}
 }
