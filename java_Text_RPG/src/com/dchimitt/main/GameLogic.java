@@ -379,8 +379,10 @@ public class GameLogic implements java.io.Serializable {
 					int input = intUserInput("--> ", 4);
 					if (input == 1)
 						continueGame();
-					else if (input == 2)
+					else if (input == 2) {
 						characterSheet();
+						continueGame();
+					}
 					else if (input == 3) {
 						AdventureGame.saveGame();
 						typeToContinue();
