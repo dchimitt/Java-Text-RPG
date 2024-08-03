@@ -40,7 +40,8 @@ public class BattleLogic {
 					System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 					
 					// player wins the battle
-					GameLogic.printHyphenHeader("You defeated the " + enemy.name + "!");
+					GameLogic.printTildeSeparator(20);
+					System.out.println("You defeated the " + enemy.name + "!");
 					GameLogic.player.currentExp += enemy.strength; // TODO Fix exp gained later
 					System.out.println("You earned " + enemy.currentExp + " experience points!");
 					GameLogic.typeToContinue();
