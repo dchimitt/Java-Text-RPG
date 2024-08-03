@@ -244,6 +244,7 @@ public class Player extends Character implements java.io.Serializable {
 
 	        boolean learned = false;
 	        
+	        // TODO: when player selects no, program always outputs "no new _ to learn at the moment", even if player could learn something
 	        switch (input) {
 	            case 1:
 	                for (Abilities ability : Abilities.values()) 
@@ -264,12 +265,12 @@ public class Player extends Character implements java.io.Serializable {
 	                            break;
 	                        } 
 	                        else if (response.equals("N")) {
-	                            break; // Exit the for loop to choose again
+	                            break; 
 	                        } 
 	                        else {
 	                            System.out.println("Invalid input, returning to selections.");
 	                            GameLogic.typeToContinue();
-	                            break; // Exit the for loop to choose again
+	                            break; 
 	                        }
 	                    }
 	                }
@@ -298,12 +299,12 @@ public class Player extends Character implements java.io.Serializable {
 	                            break;
 	                        } 
 	                        else if (response.equals("N")) {
-	                            break; // Exit the for loop to choose again
+	                            break; 
 	                        } 
 	                        else {
 	                            System.out.println("Invalid input, returning to selections.");
 	                            GameLogic.typeToContinue();
-	                            break; // Exit the for loop to choose again
+	                            break; 
 	                        }
 	                    }
 	                }
@@ -332,12 +333,12 @@ public class Player extends Character implements java.io.Serializable {
 	                            break;
 	                        } 
 	                        else if (response.equals("N")) {
-	                            break; // Exit the for loop to choose again
+	                            break; 
 	                        } 
 	                        else {
 	                            System.out.println("Invalid input, returning to selections.");
 	                            GameLogic.typeToContinue();
-	                            break; // Exit the for loop to choose again
+	                            break; 
 	                        }
 	                    }
 	                }
@@ -354,7 +355,7 @@ public class Player extends Character implements java.io.Serializable {
 	        
 	        if (learned) {
 	            GameLogic.typeToContinue();
-	            break; // Exit the while loop after learning a new skill
+	            break; 
 	        }
 	    }
 	}
