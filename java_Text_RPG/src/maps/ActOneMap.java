@@ -18,6 +18,7 @@ public class ActOneMap implements java.io.Serializable {
 	
 	private static int currentPlayerPosition = 0;
 	private static ArrayList <Room> actOneMap;
+	private static boolean pathIsBlocked;
 	
 	public ActOneMap() {
 		actOneMap = new ArrayList<Room>();
@@ -95,10 +96,16 @@ public class ActOneMap implements java.io.Serializable {
 			System.out.println("Unable to teleport to a blocked space on the map!");
 	}
 	
+	public static boolean playersPathIsBlocked() {
+		return pathIsBlocked;
+	}
+	
+	
 	// Method to move the player in N, S, E, or W direction
 	public static int movePlayerTo(Direction direction) {
 		Room currentRoom = actOneMap.get(currentPlayerPosition);
 		int newPlayerPosition = Direction.NOEXIT; // default set to -1 to handle invalid moves
+		pathIsBlocked = false;
 		
 		switch (direction) {
 		case NORTH:
@@ -134,6 +141,7 @@ public class ActOneMap implements java.io.Serializable {
 	        // in situation where path is blocked but not currently in a town
 	        else {
 	            System.out.println("Your path is blocked!");
+	            pathIsBlocked = true;
 	        }
 	    }
 	        		
