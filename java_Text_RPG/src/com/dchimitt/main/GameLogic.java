@@ -399,6 +399,7 @@ public class GameLogic implements java.io.Serializable {
 					ActOneMap.movePlayerTo(Direction.WEST);
 				else if (directionInput.equals("M")) {
 					printMenu();
+					// TODO: fix infinite loop when player presses 3 or 4 to save or save and exit
 					int input = intUserInput("--> ", 4);
 					if (input == 1)
 						continueGame();
@@ -424,6 +425,8 @@ public class GameLogic implements java.io.Serializable {
 				double encounterRate;
 				double encounterRateConstant = 0.1;				
 				// formula: R(n) = 1 - e^(-kn), where n = steps since last encounter and k is encounterRateConstant
+				// rates with k = 0.1:
+				// 1 step: 9.52% || 2 steps: 18.13% || 3 steps: 25.92% || 4 steps: 32.97% || 5 steps (if fight not forced): 39.35%
 				if (movementsSinceLastFight < 5) 
 					encounterRate = (1 - Math.exp(-1 * encounterRateConstant * movementsSinceLastFight));
 				else
