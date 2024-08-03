@@ -66,7 +66,7 @@ public class BattleLogic {
 				// TODO: potentially add scaling % chance as the number of successful fights in
 				// a row increases
 				// 35% chance to run away from fight
-				if (Math.random() <= 0.35) {
+				if (Math.random() <= 0.5) {
 					GameLogic.printHeader("You ran away from the " + enemy.name + "!");
 					GameLogic.typeToContinue();
 					break;
