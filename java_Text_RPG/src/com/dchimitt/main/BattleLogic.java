@@ -6,12 +6,9 @@ public class BattleLogic {
 	public static void startBattle(Character enemy) {
 		while (true) {
 			GameLogic.clearConsole();
-			GameLogic.printHyphenHeader(enemy.name + "(" + enemy.level + ")" + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
-			GameLogic.printHyphenHeader(GameLogic.player.name + "(" + GameLogic.player.level + ")" + "\nHP: " + GameLogic.player.currentHp + "/" + GameLogic.player.maximumHp);
-			System.out.println("Choose an action:");
-			GameLogic.printTildeSeparator(35);
-			System.out.println(
-					"(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
+			GameLogic.printHyphenHeader(enemy.name + " (level " + enemy.level + ")" + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
+			GameLogic.printTildeHeader(GameLogic.player.name + " (level " + GameLogic.player.level + ")" + "\nHP: " + GameLogic.player.currentHp + "/" + GameLogic.player.maximumHp);
+			System.out.println("(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
 			int input = GameLogic.intUserInput("--> ", 7);
 			
 			if (input == 1) {
