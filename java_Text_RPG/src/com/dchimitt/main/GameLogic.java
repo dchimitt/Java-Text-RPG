@@ -344,17 +344,28 @@ public class GameLogic implements java.io.Serializable {
 				 * 2) Random encounters possible when #1 occurs
 				 */
 				clearConsole();
-				System.out.println("Which direction would you like to leave town in?");
-				System.out.println("N, S, E, or W?");
-				String townExitInput = in.nextLine().trim().toUpperCase();
-				if (townExitInput.equals("N"))
-					ActOneMap.movePlayerTo(Direction.NORTH);
-				else if (townExitInput.equals("S"))
-					ActOneMap.movePlayerTo(Direction.SOUTH);
-				else if (townExitInput.equals("E"))
-					ActOneMap.movePlayerTo(Direction.EAST);
-				else if (townExitInput.equals("W"))
-					ActOneMap.movePlayerTo(Direction.WEST);
+				boolean validDirection = false;
+				do {
+					System.out.println("Which direction would you like to leave town in?");
+					System.out.println("N, S, E, or W?");
+					String townExitInput = in.nextLine().trim().toUpperCase();
+					if (townExitInput.equals("N")) {
+						ActOneMap.movePlayerTo(Direction.NORTH);
+						validDirection = true;
+					}
+					else if (townExitInput.equals("S")) {
+						ActOneMap.movePlayerTo(Direction.SOUTH);
+						validDirection = true;
+					}
+					else if (townExitInput.equals("E")) {
+						ActOneMap.movePlayerTo(Direction.EAST);
+						validDirection = true;
+					}
+					else if (townExitInput.equals("W")) {
+						ActOneMap.movePlayerTo(Direction.WEST);
+						validDirection = true;
+					}
+				} while (!validDirection);
 				inTown = false;
 				GameLogic.clearConsole();
 				checkAct();
