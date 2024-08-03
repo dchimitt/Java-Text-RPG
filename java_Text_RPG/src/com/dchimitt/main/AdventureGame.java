@@ -30,7 +30,7 @@ public class AdventureGame implements java.io.Serializable {
 			ois.close();
 			System.out.println("--Game loaded--");
 			GameLogic.isRunning = true;
-			GameLogic.gameLoop();
+			GameLogic.continueGame();
 		} catch (Exception e) {
 			System.out.println("Serialization error! Can't load data.");
 			System.out.println(e.getClass() + ": " + e.getMessage());
@@ -54,7 +54,7 @@ public class AdventureGame implements java.io.Serializable {
 			GameLogic.startGame();
 		else {
 			loadGame();
-			GameLogic.gameLoop();
+			GameLogic.continueGame();
 		}
 	}
 }

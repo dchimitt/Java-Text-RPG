@@ -116,7 +116,7 @@ public class GameLogic implements java.io.Serializable {
 		townOptions();
 
 		// start main game loop
-		gameLoop();
+		continueGame();
 	}
 
 	public static void checkAct() {
@@ -355,60 +355,62 @@ public class GameLogic implements java.io.Serializable {
 
 	// method to continue game
 	public static void continueGame() {
-		if (isInTown()) 
-			townOptions();
+		while (isRunning) {
+			if (isInTown()) 
+				townOptions();
 		
-		GameLogic.clearConsole();
-		checkAct();
-		boolean isInFight = false;
-		ActOneMap.printPlayerPosition();
-		System.out.println("Type N, S, E, or W to move in a direction.\nType M to access the menu.");
-		do {
-			String directionInput = in.nextLine().trim().toUpperCase();
-			if (directionInput.equals("N"))
-				ActOneMap.movePlayerTo(Direction.NORTH);
-			else if (directionInput.equals("S"))
-				ActOneMap.movePlayerTo(Direction.SOUTH);
-			else if (directionInput.equals("E"))
-				ActOneMap.movePlayerTo(Direction.EAST);
-			else if (directionInput.equals("W"))
-				ActOneMap.movePlayerTo(Direction.WEST);
-			else if (directionInput.equals("M")) {
-				printMenu();
-				int input = intUserInput("--> ", 4);
-				if (input == 1)
-					continueGame();
-				else if (input == 2)
-					characterSheet();
-				else if (input == 3) {
-					AdventureGame.saveGame();
-					typeToContinue();
-				} 
-				else {
-					AdventureGame.saveGame();
-					isRunning = false;
+			GameLogic.clearConsole();
+			checkAct();
+			boolean isInFight = false;
+			ActOneMap.printPlayerPosition();
+			System.out.println("Type N, S, E, or W to move in a direction.\nType M to access the menu.");
+			do {
+				String directionInput = in.nextLine().trim().toUpperCase();
+				if (directionInput.equals("N"))
+					ActOneMap.movePlayerTo(Direction.NORTH);
+				else if (directionInput.equals("S"))
+					ActOneMap.movePlayerTo(Direction.SOUTH);
+				else if (directionInput.equals("E"))
+					ActOneMap.movePlayerTo(Direction.EAST);
+				else if (directionInput.equals("W"))
+					ActOneMap.movePlayerTo(Direction.WEST);
+				else if (directionInput.equals("M")) {
+					printMenu();
+					int input = intUserInput("--> ", 4);
+					if (input == 1)
+						continueGame();
+					else if (input == 2)
+						characterSheet();
+					else if (input == 3) {
+						AdventureGame.saveGame();
+						typeToContinue();
+					} 
+					else {
+						AdventureGame.saveGame();
+						isRunning = false;
+					}
 				}
-			}
 
-			// toggle boss fight if player moves into correct room
-			checkForBossEncounter();
+				// toggle boss fight if player moves into correct room
+				checkForBossEncounter();
 			
-			// random counter chance
-			int movementsSinceLastFight = player.getMovementCounter();
-			double encounterRate;
-			if (movementsSinceLastFight < 5)
-				encounterRate = 0.10 + 0.05 * movementsSinceLastFight;
-			else
-				encounterRate = 1.0;
-			if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
-				isInFight = true;
-				player.resetMovementCounter();
-			}
+				// random counter chance
+				int movementsSinceLastFight = player.getMovementCounter();
+				double encounterRate;
+				if (movementsSinceLastFight < 5)
+					encounterRate = 0.10 + 0.05 * movementsSinceLastFight;
+				else
+					encounterRate = 1.0;
+				if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
+					isInFight = true;
+					player.resetMovementCounter();
+				}
 					
-		} while (!isInFight);
-		System.out.println("You've encountered a monster!");
-		GameLogic.typeToContinue();
-		randomEncounter();
+			} while (!isInFight);
+			System.out.println("You've encountered a monster!");
+			GameLogic.typeToContinue();
+			randomEncounter();
+		}
 	}
 
 	// print character sheet
@@ -472,24 +474,5 @@ public class GameLogic implements java.io.Serializable {
 		System.out.println("(2) Open your character sheet");
 		System.out.println("(3) Save game");
 		System.out.println("(4) Save and exit game");
-	}
-
-	// main game loop
-	public static void gameLoop() {
-		while (isRunning) {
-			printMenu();
-			int input = intUserInput("--> ", 4);			
-			if (input == 1)
-				continueGame();
-			else if (input == 2)
-				characterSheet();
-			else if (input == 3) {
-				AdventureGame.saveGame();
-				typeToContinue();
-			} else {
-				AdventureGame.saveGame();
-				isRunning = false;
-			}
-		}
 	}
 }
