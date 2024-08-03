@@ -147,12 +147,16 @@ public class GameLogic implements java.io.Serializable {
 	public static void playerIsDead() {
 		GameLogic.clearConsole();
 		System.out.println("You have died...\nNow teleporting to your last visited town.");
+		typeToContinue();
 		diedInBossFight = true;
 		if (lastTownVisited.getName().equals("Town of Reizart:")) {
 			ActOneMap.teleportPlayerTo(lastTownVisited);
+			townOptions();
 		}
-		else if (lastTownVisited.getName().equals("SOME TOWN:"))
+		else if (lastTownVisited.getName().equals("SOME TOWN:")) {
 			ActOneMap.teleportPlayerTo(lastTownVisited);
+			townOptions();
+		}
 		// TODO: add future towns here
 	}
 	
