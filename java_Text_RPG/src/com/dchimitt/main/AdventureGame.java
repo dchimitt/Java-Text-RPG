@@ -47,8 +47,8 @@ public class AdventureGame implements java.io.Serializable {
 		GameLogic.printSeperator(40);
 		
 		// allow user to start new game or load existing game
-		System.out.println("New game - type 1");
-		System.out.println("Load game - type 2");
+		System.out.println("(1) New game");
+		System.out.println("(2) Load game");
 		int selection = GameLogic.intUserInput("-->", 2); 
 		if (selection == 1) 
 			GameLogic.startGame();

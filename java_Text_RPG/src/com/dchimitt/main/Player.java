@@ -203,7 +203,7 @@ public class Player extends Character implements java.io.Serializable {
 		System.out.println("(3) Intelligence --> increases magical attack power and maximum mana pool.");
 		
 		// obtain input as player's three stat choices
-		int firstStat = GameLogic.intUserInput("--> ", 3);
+		int firstStat = GameLogic.intUserInput("--> ", 3);	
 		if (firstStat == 1) 
 			strength++;
 		else if (firstStat == 2)
@@ -212,7 +212,7 @@ public class Player extends Character implements java.io.Serializable {
 			intelligence++;
 		
 		System.out.println("You've picked your first stat point. You have two stat increases remaining: ");
-		int secondStat = GameLogic.intUserInput("--> ", 3);
+		int secondStat = GameLogic.intUserInput("--> ", 3);	
 		if (secondStat == 1) 
 			strength++;
 		else if (secondStat == 2)

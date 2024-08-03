@@ -478,7 +478,7 @@ public class GameLogic implements java.io.Serializable {
 	public static void gameLoop() {
 		while (isRunning) {
 			printMenu();
-			int input = intUserInput("--> ", 4);
+			int input = intUserInput("--> ", 4);			
 			if (input == 1)
 				continueGame();
 			else if (input == 2)

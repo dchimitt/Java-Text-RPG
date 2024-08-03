@@ -1,6 +1,8 @@
 package com.dchimitt.main;
+import java.util.Scanner;
 
 public class BattleLogic {
+	static Scanner in = new Scanner(System.in);
 	public static void startBattle(Character enemy) {
 		while (true) {
 			GameLogic.clearConsole();
@@ -11,6 +13,7 @@ public class BattleLogic {
 			System.out.println(
 					"(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
 			int input = GameLogic.intUserInput("--> ", 7);
+			
 			if (input == 1) {
 				int damagePlayerDoes = GameLogic.player.attack() - enemy.defend();
 				int damagePlayerTakes = enemy.attack() - GameLogic.player.defend();
