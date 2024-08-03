@@ -93,7 +93,7 @@ public class GameLogic implements java.io.Serializable {
 
 		// create new player object
 		// params: name, current exp, exp to level, starting gold, starting act
-		player = new Player(name, 0, 12, 5, 1);
+		player = new Player(name, 0, 12, 5, 1, 0);
 
 		// print introduction for main story
 		MainStory.printIntroduction();
@@ -357,7 +357,7 @@ public class GameLogic implements java.io.Serializable {
 		checkAct();
 		boolean isInFight = false;
 		ActOneMap.printPlayerPosition();
-		System.out.println("Type N, S, E, or W to move in a direction.\n Type M to access the menu.");
+		System.out.println("Type N, S, E, or W to move in a direction.\nType M to access the menu.");
 		do {
 			String directionInput = in.next().trim().toUpperCase();
 			if (directionInput.equals("N"))
@@ -391,7 +391,6 @@ public class GameLogic implements java.io.Serializable {
 			// TODO: implement scaling encounter chance that increases the further a player
 			// travels without encountering a battle, increasing to 100% after x amount of
 			// movements
-			// TODO: remove chance for encounter if player movement is blocked
 			if (Math.random() <= 0.2 && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) 
 				isInFight = true;
 					

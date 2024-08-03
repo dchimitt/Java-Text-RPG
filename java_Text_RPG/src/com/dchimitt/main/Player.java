@@ -150,7 +150,7 @@ public class Player extends Character implements java.io.Serializable {
 	}	
 	
 	// Player constructor -- currentExp, expToLevel, gold, and currentAct are specific to player
-	public Player (String name, int currentExp, int expToLevel, int gold, int currentAct) {
+	public Player (String name, int currentExp, int expToLevel, int gold, int currentAct, int playerMovementCounter) {
 		// super keyword to use the constructor from superclass
         // params: name, str, dex, int, starting hp pool, starting mana pool, level
 		super(name, 1, 1, 1, 16, 5, 1); 
@@ -159,6 +159,7 @@ public class Player extends Character implements java.io.Serializable {
 		this.expToLevel = expToLevel;
 		this.gold = gold;
 		this.currentAct = currentAct;
+		this.playerMovementCounter = playerMovementCounter;
 	}
 
 	@Override
@@ -181,6 +182,17 @@ public class Player extends Character implements java.io.Serializable {
 	@Override
 	public int defend() {
 		return (int) (Math.random() * (level / 2 + strength * 2) + dexterity * 2);
+	}
+	
+	// methods to access and modify player's movement counter (used for random encounters)
+	public int getMovementCounter() {
+		return playerMovementCounter;
+	}
+	public void resetMovementCounter() {
+		playerMovementCounter = 0;
+	}	
+	public void incrementMovementCounter() {
+		playerMovementCounter++;
 	}
 	
 	public void pickThreeStats() {
