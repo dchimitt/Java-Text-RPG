@@ -42,8 +42,10 @@ public class BattleLogic {
 					// player wins the battle
 					GameLogic.printTildeSeparator(20);
 					System.out.println("You defeated the " + enemy.name + "!");
-					GameLogic.player.currentExp += enemy.strength; // TODO Fix exp gained later
-					System.out.println("You earned " + enemy.currentExp + " experience points!");
+					// TODO: edit experience values later
+					int experienceGained = enemy.level + 2;
+					GameLogic.player.currentExp += experienceGained;
+					System.out.println("You earned " + experienceGained + " experience points!");
 					GameLogic.typeToContinue();
 					break;
 				}
