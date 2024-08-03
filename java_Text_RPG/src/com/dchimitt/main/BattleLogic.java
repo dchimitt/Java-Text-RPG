@@ -1,7 +1,8 @@
 package com.dchimitt.main;
 import java.util.Scanner;
+import java.io.Serializable;
 
-public class BattleLogic {
+public class BattleLogic implements Serializable {
 	static Scanner in = new Scanner(System.in);
 	public static void startBattle(Character enemy) {
 		while (true) {
@@ -26,7 +27,7 @@ public class BattleLogic {
 
 				// print information to show what occurred this round
 				GameLogic.clearConsole();
-				GameLogic.printHyphenHeader("BATTLE");
+				GameLogic.printHyphenHeader("BATTLE ROUND INFORMATION");
 				System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
 				System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 				if (GameLogic.player.currentHp <= 0) {
@@ -35,12 +36,12 @@ public class BattleLogic {
 				} else if (enemy.currentHp <= 0) {
 					// show round information before player wins
 					GameLogic.clearConsole();
-					GameLogic.printHyphenHeader("BATTLE");
+					GameLogic.printHyphenHeader("BATTLE ROUND INFORMATION");
 					System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
 					System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 					
 					// player wins the battle
-					GameLogic.printTildeSeparator(20);
+					GameLogic.printTildeSeparator(30);
 					System.out.println("You defeated the " + enemy.name + "!");
 					// TODO: edit experience values later
 					int experienceGained = enemy.level + 2;

@@ -1,6 +1,7 @@
 package dialogue;
 
 import com.dchimitt.main.GameLogic;
+import java.io.Serializable;
 
 public class ActOneDialogue implements java.io.Serializable {
 	public static void momIntroDialogue() {

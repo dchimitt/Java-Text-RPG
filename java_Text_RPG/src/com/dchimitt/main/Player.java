@@ -1,5 +1,6 @@
 package com.dchimitt.main;
 import java.util.*;
+import java.io.Serializable;
 
 // NOTE: @Override means inherited methods from abstract superclass differ
 public class Player extends Character implements java.io.Serializable {

@@ -2,6 +2,8 @@ package actOneEnemies;
 
 import com.dchimitt.main.Character;
 
+import java.io.Serializable;
+
 public class PlainsSnake extends Character implements java.io.Serializable {
 
 	public PlainsSnake(String name, int currentAct) {

@@ -1,5 +1,7 @@
 package com.dchimitt.main;
 
+import java.io.Serializable;
+
 public abstract class Character implements java.io.Serializable {
 	// attributes that all players, enemies, and bosses must have
 	public String name;

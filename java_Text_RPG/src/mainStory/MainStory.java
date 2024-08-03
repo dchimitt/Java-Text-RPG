@@ -1,5 +1,6 @@
 package mainStory;
 import com.dchimitt.main.GameLogic;
+import java.io.Serializable;
 
 // stores methods to print out sections of main storyline
 public class MainStory implements java.io.Serializable {

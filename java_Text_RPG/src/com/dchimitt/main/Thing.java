@@ -1,4 +1,5 @@
 package com.dchimitt.main;
+import java.io.Serializable;
 
 public class Thing implements java.io.Serializable {
 	// superclass Thing to extend to all objects used

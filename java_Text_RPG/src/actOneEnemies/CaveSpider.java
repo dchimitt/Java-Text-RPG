@@ -2,6 +2,8 @@ package actOneEnemies;
 
 import com.dchimitt.main.Character;
 
+import java.io.Serializable;
+
 public class CaveSpider extends Character implements java.io.Serializable {
 
 	public CaveSpider(String name, int currentAct) {

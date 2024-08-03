@@ -1,6 +1,7 @@
 package actOneEnemies;
 
 import com.dchimitt.main.Character;
+import java.io.Serializable;
 
 public class CaveBat extends Character implements java.io.Serializable {
 

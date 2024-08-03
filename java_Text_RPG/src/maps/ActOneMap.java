@@ -1,9 +1,9 @@
 package maps;
 import java.util.ArrayList;
+import java.io.Serializable;
 
 import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.Room;
-import com.dchimitt.main.Player;
 
 public class ActOneMap implements java.io.Serializable {
 	

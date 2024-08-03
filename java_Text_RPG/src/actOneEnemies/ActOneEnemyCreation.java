@@ -1,7 +1,8 @@
 package actOneEnemies;
+import java.io.Serializable;
 
 // enemies created in order of areas traversed in game
-public class ActOneEnemyCreation {
+public class ActOneEnemyCreation implements Serializable {
 	
 	// Reizart plains monsters
 	public PlainsGoblin createPlainsGoblin() {

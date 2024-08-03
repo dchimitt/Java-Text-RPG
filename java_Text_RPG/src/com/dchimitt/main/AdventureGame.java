@@ -1,5 +1,6 @@
 package com.dchimitt.main;
 
+import java.io.Serializable;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;

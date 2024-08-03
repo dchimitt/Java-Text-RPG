@@ -3,6 +3,7 @@ package com.dchimitt.main;
 import actOneEnemies.ActOneEnemyCreation;
 
 import java.util.Scanner;
+import java.io.Serializable;
 import dialogue.ActOneDialogue;
 import mainStory.MainStory;
 import maps.ActOneMap;

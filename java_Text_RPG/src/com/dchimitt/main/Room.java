@@ -1,4 +1,5 @@
 package com.dchimitt.main;
+import java.io.Serializable;
 
 public class Room extends Thing implements java.io.Serializable {
 	private int n, s, w, e;
