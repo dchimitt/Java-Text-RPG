@@ -81,7 +81,7 @@ public class ActOneMap implements java.io.Serializable {
 	
 	public static void printPlayerPosition() {
 		Room currentRoom = actOneMap.get(currentPlayerPosition);
-		System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
+		System.out.println("--Location--\n" + currentRoom.getName() + currentRoom.getDescription());
 	}
 	
 	// Method for moving player to various rooms on map
@@ -91,7 +91,7 @@ public class ActOneMap implements java.io.Serializable {
 			currentPlayerPosition = targetIndex;
 			Room currentRoom = actOneMap.get(currentPlayerPosition);
 			System.out.println();
-			System.out.println("Location - \n" + currentRoom.getName() + "" + currentRoom.getDescription());
+			System.out.println("--Location--\n" + currentRoom.getName() + currentRoom.getDescription());
 		}
 		else
 			System.out.println("Unable to teleport to a blocked space on the map!");
@@ -102,6 +102,7 @@ public class ActOneMap implements java.io.Serializable {
 	}
 	
 	// method to return whether player is in a "safe room" (room where no encounters can occur)
+	// TODO: add more safe rooms as needed
 	public static boolean playerMovingToSafeRoom() {
 		Room currentRoom = getCurrentPlayerPosition();
 		String roomName = currentRoom.getName();
@@ -133,7 +134,7 @@ public class ActOneMap implements java.io.Serializable {
 			GameLogic.player.incrementMovementCounter();
 	        currentPlayerPosition = newPlayerPosition;
 	        currentRoom = actOneMap.get(currentPlayerPosition);
-	        System.out.println("Location: " + currentRoom.getName() + "" + currentRoom.getDescription());
+	        System.out.println("--Location--\n" + currentRoom.getName() + currentRoom.getDescription());
 
 	        // Check if the new room is a town and call townOptions
 	        if (currentRoom.isTown()) 
