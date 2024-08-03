@@ -61,14 +61,14 @@ public class BattleLogic {
 
 				// TODO: potentially add scaling % chance as the number of successful fights in
 				// a row increases
-				// 35% chance to run away from fight
+				// 50% chance to run away from fight
 				if (Math.random() <= 0.5) {
 					GameLogic.printHyphenHeader("You ran away from the " + enemy.name + "!");
 					GameLogic.typeToContinue();
 					break;
 				} else {
 					GameLogic.printHyphenHeader("You didn't manage to escape.");
-					int failedEscapeDamage = enemy.attack();
+					int failedEscapeDamage = enemy.attack() / 2;
 					System.out.println("The enemy strikes your back for " + failedEscapeDamage + " damage!");
 					if (GameLogic.player.currentHp <= 0) 
 						GameLogic.playerIsDead();
