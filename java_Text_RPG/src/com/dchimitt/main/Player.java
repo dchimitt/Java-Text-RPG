@@ -197,7 +197,7 @@ public class Player extends Character implements java.io.Serializable {
 	
 	public void pickThreeStats() {
 		GameLogic.clearConsole();
-		GameLogic.printHeader("You've earned three stat points! Type a number and enter three times to choose your upgrades: ");
+		GameLogic.printHyphenHeader("You've earned three stat points! Type a number and enter three times to choose your upgrades: ");
 		System.out.println("(1) Strength --> increases physical attack power, increases maximum health pool, and affects various abilities.");
 		System.out.println("(2) Dexterity --> increases critical hit chance (150% damage on critical) and affects various abilities.");
 		System.out.println("(3) Intelligence --> increases magical attack power and maximum mana pool.");
@@ -234,7 +234,7 @@ public class Player extends Character implements java.io.Serializable {
 	public void chooseUpgrade() {
 	    while (true) {
 	        GameLogic.clearConsole();
-	        GameLogic.printHeader("Choose an upgrade. You will be able to read a description of your selection before making your final choice: ");
+	        GameLogic.printHyphenHeader("Choose an upgrade. You will be able to read a description of your selection before making your final choice: ");
 	        System.out.println("(1) Abilities --> Skills that utilize strength and dexterity to inflict damage. These have cooldowns.");
 	        System.out.println("(2) Offensive Magic --> Spells that decimate your enemies. These consume mana.");
 	        System.out.println("(3) Support Magic --> Spells with varying effects that support your character. These consume mana.");

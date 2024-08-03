@@ -62,16 +62,21 @@ public class GameLogic implements java.io.Serializable {
 		System.out.println();
 	}
 	
-	public static void printTildeSeperator(int n) {
+	public static void printTildeSeparator(int n) {
 		for (int i = 0; i < n; i++)
 			System.out.print("~");
 		System.out.println();
 	}
 
-	public static void printHeader(String title) {
+	public static void printHyphenHeader(String title) {
 		printHyphenSeparator(30);
 		System.out.println(title);
 		printHyphenSeparator(30);
+	}
+	public static void printTildeHeader(String title) {
+		printTildeSeparator(30);
+		System.out.println(title);
+		printTildeSeparator(30);
 	}
 
 	public static void typeToContinue() {
@@ -86,11 +91,11 @@ public class GameLogic implements java.io.Serializable {
 		// allow player to choose name
 		do {
 			clearConsole();
-			printHeader("What is your name, brave adventurer?");
+			printHyphenHeader("What is your name, brave adventurer?");
 			name = in.nextLine();
 
 			clearConsole();
-			printHeader("Your name is " + name + ".\nIs that correct?");
+			printHyphenHeader("Your name is " + name + ".\nIs that correct?");
 			System.out.println("(1) Yes!");
 			System.out.println("(2) No, let me change it.");
 			int input = intUserInput("--> ", 2);
@@ -425,7 +430,7 @@ public class GameLogic implements java.io.Serializable {
 	// print character sheet
 	public static void characterSheet() {
 		clearConsole();
-		printHeader("CHARACTER SHEET");
+		printHyphenHeader("CHARACTER SHEET");
 		System.out.println(player.name);
 		System.out.println("Level: " + player.level);
 		System.out.println("HP: " + player.currentHp + "/" + player.maximumHp);
@@ -478,7 +483,7 @@ public class GameLogic implements java.io.Serializable {
 	// print main menu
 	public static void printMenu() {
 		clearConsole();
-		printHeader("MENU");
+		printHyphenHeader("MENU");
 		System.out.println("(1) Continue the game");
 		System.out.println("(2) Open your character sheet");
 		System.out.println("(3) Save game");
