@@ -6,10 +6,10 @@ public class BattleLogic {
 	public static void startBattle(Character enemy) {
 		while (true) {
 			GameLogic.clearConsole();
-			GameLogic.printHeader(enemy.name + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
-			GameLogic.printHeader(GameLogic.player.name + "\nHP: " + GameLogic.player.currentHp + "/" + GameLogic.player.maximumHp);
+			GameLogic.printHyphenHeader(enemy.name + "(" + enemy.level + ")" + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
+			GameLogic.printHyphenHeader(GameLogic.player.name + "(" + GameLogic.player.level + ")" + "\nHP: " + GameLogic.player.currentHp + "/" + GameLogic.player.maximumHp);
 			System.out.println("Choose an action:");
-			GameLogic.printHyphenSeparator(20);
+			GameLogic.printTildeSeparator(35);
 			System.out.println(
 					"(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
 			int input = GameLogic.intUserInput("--> ", 7);
@@ -27,24 +27,23 @@ public class BattleLogic {
 				GameLogic.player.currentHp -= damagePlayerTakes;
 				enemy.currentHp -= damagePlayerDoes;
 
-				// print information to show what occured this round
+				// print information to show what occurred this round
 				GameLogic.clearConsole();
-				GameLogic.printHeader("BATTLE");
+				GameLogic.printHyphenHeader("BATTLE");
 				System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
-				GameLogic.printHyphenSeparator(20);
 				System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 				if (GameLogic.player.currentHp <= 0) {
 					GameLogic.playerIsDead();
 					break;
 				} else if (enemy.currentHp <= 0) {
-					// player wins the battle
+					// show round information before player wins
 					GameLogic.clearConsole();
-					GameLogic.printHeader("BATTLE");
+					GameLogic.printHyphenHeader("BATTLE");
 					System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
-					GameLogic.printHyphenSeparator(20);
 					System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
-
-					GameLogic.printHeader("You defeated the " + enemy.name + "!");
+					
+					// player wins the battle
+					GameLogic.printHyphenHeader("You defeated the " + enemy.name + "!");
 					GameLogic.player.currentExp += enemy.strength; // TODO Fix exp gained later
 					System.out.println("You earned " + enemy.currentExp + " experience points!");
 					GameLogic.typeToContinue();
@@ -67,11 +66,11 @@ public class BattleLogic {
 				// a row increases
 				// 35% chance to run away from fight
 				if (Math.random() <= 0.5) {
-					GameLogic.printHeader("You ran away from the " + enemy.name + "!");
+					GameLogic.printHyphenHeader("You ran away from the " + enemy.name + "!");
 					GameLogic.typeToContinue();
 					break;
 				} else {
-					GameLogic.printHeader("You didn't manage to escape.");
+					GameLogic.printHyphenHeader("You didn't manage to escape.");
 					int failedEscapeDamage = enemy.attack();
 					System.out.println("The enemy strikes your back for " + failedEscapeDamage + " damage!");
 					if (GameLogic.player.currentHp <= 0) 
