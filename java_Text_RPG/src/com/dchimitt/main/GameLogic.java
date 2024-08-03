@@ -127,9 +127,11 @@ public class GameLogic implements java.io.Serializable {
 			player.currentAct = 3;
 	}
 
+	// currently, only returns true if the town name contains "town" somewhere in string
+	// TODO: add other options later if needed
 	public static boolean isInTown() {
 		Room currentRoom = ActOneMap.getCurrentPlayerPosition();
-		if (currentRoom.getName().equals("Town of Reizart:") || currentRoom.getName().equals("SOME TOWN:"))
+		if (currentRoom.isTown())
 			return true;
 		else
 			return false;
@@ -296,7 +298,7 @@ public class GameLogic implements java.io.Serializable {
 					clearConsole();
 					System.out.println("Innkeeper:");
 					System.out.println("Hey, " + player.name + "! You can rest for free at your house! I couldn't live with myself if I charged you for a night here!");
-					System.out.println();
+					typeToContinue();
 				}
 				else {
 					clearConsole();
