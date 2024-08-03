@@ -392,9 +392,9 @@ public class GameLogic implements java.io.Serializable {
 			// travels without encountering a battle, increasing to 100% after x amount of
 			// movements
 			// TODO: remove chance for encounter if player movement is blocked
-			if (Math.random() <= 0.2 && !isInTown())
+			if (Math.random() <= 0.2 && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) 
 				isInFight = true;
-
+					
 		} while (!isInFight);
 		System.out.println("You've encountered a monster!");
 		GameLogic.typeToContinue();
