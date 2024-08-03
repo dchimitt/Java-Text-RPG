@@ -294,7 +294,7 @@ public class GameLogic implements java.io.Serializable {
 		boolean inTown = true;
 		lastTownVisited = ActOneMap.getCurrentPlayerPosition();
 		while (inTown) {
-			System.out.println("You are in " + lastTownVisited.getName() + "\n OPTIONS:");
+			System.out.println("You are in " + lastTownVisited.getName() + "\nOPTIONS:");
 			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
 			int input = intUserInput("-->", 5);
 			// TODO implement methods
@@ -394,11 +394,11 @@ public class GameLogic implements java.io.Serializable {
 				// toggle boss fight if player moves into correct room
 				checkForBossEncounter();
 			
-				// random counter chance
+				// random encounter logic
 				int movementsSinceLastFight = player.getMovementCounter();
 				double encounterRate;
-				double encounterRateConstant = 0.1;
-				
+				double encounterRateConstant = 0.1;				
+				// formula: R(n) = 1 - e^(-kn), where n = steps since last encounter and k is encounterRateConstant
 				if (movementsSinceLastFight < 5) 
 					encounterRate = (1 - Math.exp(-1 * encounterRateConstant * movementsSinceLastFight));
 				else
@@ -406,18 +406,7 @@ public class GameLogic implements java.io.Serializable {
 				if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
 					isInFight = true;
 					player.resetMovementCounter();
-				}
-				/*
-				if (movementsSinceLastFight < 5)
-					encounterRate = 0.10 + 0.05 * movementsSinceLastFight;
-				else
-					encounterRate = 1.0;
-				if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
-					isInFight = true;
-					player.resetMovementCounter();
-				}
-				*/
-					
+				}				
 			} while (!isInFight);
 			System.out.println("You've encountered a monster!");
 			GameLogic.typeToContinue();
