@@ -13,8 +13,8 @@ public class GameLogic implements java.io.Serializable {
 	static Scanner in = new Scanner(System.in);
 	public static Player player;
 	static int goldCost;
-	static ActOneMap mapOne = new ActOneMap(); // initializating act one map
-	static Room lastTownVisited; // variable used for player teleportion on defeat
+	static ActOneMap mapOne = new ActOneMap(); // initializing act one map
+	static Room lastTownVisited; // variable used for teleportPlayerTo method in class ActOneMap
 	static boolean diedInBossFight = false;
 
 	// set act one bosses to undefeated
