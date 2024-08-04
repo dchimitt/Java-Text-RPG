@@ -9,7 +9,7 @@ public class PlayerItems {
 		MANA_POTION("Mana Potion", "Placeholder", 0),
 		INFUSED_MANA_POTION("Infused Mana Potion", "Placeholder", 0),
 		ANTIDOTE("Weak Healing Potion", "Placeholder", 0),
-		REVIVE("Weak Healing Potion", "Placeholder", 0);
+		REAPERS_BANE("Reaper's Bane", "Prevent death for __ turns.", 0);
 	
 		// instance variables for each ability
 		private final String itemName;
@@ -86,7 +86,7 @@ public class PlayerItems {
 		public void useAntidote() {
 			
 		}
-		public void useRevive() {
+		public void useReapersBane() {
 			
 		}
 	}
