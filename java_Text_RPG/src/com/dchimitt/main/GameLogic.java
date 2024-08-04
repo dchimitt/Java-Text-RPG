@@ -243,7 +243,8 @@ public class GameLogic implements java.io.Serializable {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character plainsGoblin = enemy.createPlainsGoblin();
 					BattleLogic.startBattle(plainsGoblin);
-				} else {
+				} 
+				else {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character plainsSnake = enemy.createPlainsSnake();
 					BattleLogic.startBattle(plainsSnake);
@@ -256,11 +257,13 @@ public class GameLogic implements java.io.Serializable {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveBat = enemy.createCaveBat();
 					BattleLogic.startBattle(caveBat);
-				} else if (randomNumber == 2) {
+				} 
+				else if (randomNumber == 2) {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveSpider = enemy.createCaveSpider();
 					BattleLogic.startBattle(caveSpider);
-				} else {
+				} 
+				else {
 					ActOneEnemyCreation enemy = new ActOneEnemyCreation();
 					Character caveSlug = enemy.createCaveSlug();
 					BattleLogic.startBattle(caveSlug);
@@ -271,13 +274,16 @@ public class GameLogic implements java.io.Serializable {
 				int randomNumber = (int) (Math.random() * (2 - 1 + 1) + 1);
 				if (randomNumber == 1) {
 
-				} else {
+				} 
+				else {
 
 				}
 			}
-		} else if (player.currentAct == 2) {
+		} 
+		else if (player.currentAct == 2) {
 
-		} else {
+		} 
+		else {
 
 		}
 	}
@@ -294,15 +300,17 @@ public class GameLogic implements java.io.Serializable {
 				if (!diedInBossFight)
 					actOneThraxxDefeated = true;
 			}
-		} else if (player.currentAct == 2) {
+		} 
+		else if (player.currentAct == 2) {
 
-		} else {
+		} 
+		else {
 
 		}
 	}
 	
 	// method called when the player levels up
-	// TODO: better balancing for hp/mp gains, experience for next levels, when player obtains upgrade points, etc.
+	// TODO: better balancing for hp/mp gains, experience for next levels (currently no leftover exp etc.), when player obtains upgrade points, etc.
 	public static boolean didPlayerLevelUp() {
 		if (player.currentExp >= player.expToLevel) {
 			System.out.println("Congratulations, you have leveled up!");
