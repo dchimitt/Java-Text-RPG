@@ -354,7 +354,12 @@ public class GameLogic implements java.io.Serializable {
 			else
 				player.maximumMana = player.maximumMana + 3;
 			
-			// reset player experience and increase experience required for next level by ___
+			// give player a percentage of missing hp and mp back 
+			player.currentHp = player.currentHp + (player.maximumHp / 5);
+			player.currentMana = player.currentMana + (player.maximumMana / 5);
+			
+			// reset player experience and increase experience required for next level
+			// TODO: might add leftover experience so that player retains the rest of exp earned on level-up
 			// int leftoverExperience; 
 			player.currentExp = 0;
 			player.expToLevel = calculateExperienceToLevel();
