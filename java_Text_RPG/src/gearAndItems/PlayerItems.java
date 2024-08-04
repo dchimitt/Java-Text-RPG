@@ -34,29 +34,29 @@ public class PlayerItems {
 			return itemQuantity;
 		}
 		
-		// methods to increase item quantity when player makes a purchase
-		public void purchaseWeakHealingPotion() {
+		// methods to increase item quantity when player makes a purchase or obtains as drop from monster/boss
+		public void increaseWeakHealingPotionQuantity() {
 			
 		}
-		public void purchaseHealingPotion() {
+		public void increaseHealingPotionQuantity() {
 			
 		}
-		public void purchaseInfusedHealingPotion() {
+		public void increaseInfusedHealingPotionQuantity() {
 			
 		}
-		public void purchaseWeakManaPotion() {
+		public void increaseWeakManaPotionQuantity() {
 			
 		}
-		public void purchaseManaPotion() {
+		public void increaseManaPotionQuantity() {
 			
 		}
-		public void purchaseInfusedManaPotion() {
+		public void increaseInfusedManaPotionQuantity() {
 			
 		}
-		public void purchaseAntidote() {
+		public void increaseAntidoteQuantity() {
 			
 		}
-		public void purchaseRevive() {
+		public void increaseReviveQuantity() {
 			
 		}
 		
@@ -81,5 +81,13 @@ public class PlayerItems {
 		public void useInfusedManaPotion() {
 			
 		}		
+		
+		// methods to use other items
+		public void useAntidote() {
+			
+		}
+		public void useRevive() {
+			
+		}
 	}
 }
