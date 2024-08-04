@@ -105,7 +105,7 @@ public class GameLogic implements java.io.Serializable {
 		} while (!pickedName);
 
 		// create new player object
-		// params: name, current exp, exp to level, starting gold, starting act
+		// params: name, current exp, exp to level, starting gold, starting act, movement counter since last fight
 		player = new Player(name, 0, 12, 5, 1, 0);
 
 		// print introduction for main story
@@ -299,6 +299,43 @@ public class GameLogic implements java.io.Serializable {
 		} else {
 
 		}
+	}
+	
+	// method called when the player levels up
+	// TODO: better balancing for hp/mp gains, experience for next levels, when player obtains upgrade points, etc.
+	public static boolean didPlayerLevelUp() {
+		if (player.currentExp >= player.expToLevel) {
+			System.out.println("Congratulations, you have leveled up!");
+			typeToContinue();
+			player.level++;
+			
+			// player gets random maximum HP boost of 4 (60% chance) or 5 (40% chance)
+			if (Math.random() >= 0.6)
+				player.maximumHp = player.maximumHp + 5;
+			else 
+				player.maximumHp = player.maximumHp + 4;
+			
+			// player gets random maximum MP boost of 3 (60% chance) or 4 (40% chance)
+			if (Math.random() >= 0.6)
+				player.maximumMana = player.maximumMana + 4;
+			else
+				player.maximumMana = player.maximumMana + 3;
+			
+			// reset player experience and increase experience required for next level by ___
+			// int leftoverExperience; 
+			player.currentExp = 0;
+			player.expToLevel = (int) (player.level * 30 * 1.25);
+			
+			// player gains three stat points per level obtained
+			player.pickThreeStats();
+			
+			// player obtains upgrade point every 2 levels (odd levels)
+			if (player.level % 2 != 0)
+				player.chooseUpgrade();
+			return true;
+		}
+		else 
+			return false;
 	}
 
 	public static void townOptions() {
