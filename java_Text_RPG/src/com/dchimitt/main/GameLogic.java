@@ -170,6 +170,11 @@ public class GameLogic implements java.io.Serializable {
 			ActOneMap.teleportPlayerTo(lastTownVisited);
 			townOptions();
 		}
+		
+		// player loses gold and exp when dying (currently set to 50% and 50%, respectively)
+		player.gold = player.gold / 2;
+		player.currentExp = player.currentExp / 2;
+		
 		// TODO: add future towns here
 	}
 	
