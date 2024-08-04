@@ -33,7 +33,8 @@ public class BattleLogic implements Serializable {
 				if (GameLogic.player.currentHp <= 0) {
 					GameLogic.playerIsDead();
 					break;
-				} else if (enemy.currentHp <= 0) {
+				} 
+				else if (enemy.currentHp <= 0) {
 					// show round information before player wins
 					GameLogic.clearConsole();
 					GameLogic.printHyphenHeader("BATTLE ROUND INFORMATION");
@@ -47,20 +48,27 @@ public class BattleLogic implements Serializable {
 					int experienceGained = enemy.level + 2;
 					GameLogic.player.currentExp += experienceGained;
 					System.out.println("You earned " + experienceGained + " experience points!");
+					GameLogic.didPlayerLevelUp();
 					GameLogic.typeToContinue();
 					break;
 				}
-			} else if (input == 2) {
+			} 
+			else if (input == 2) {
 				GameLogic.player.useAbility();
-			} else if (input == 3) {
+			} 
+			else if (input == 3) {
 				GameLogic.player.useMagic();
-			} else if (input == 4) {
+			} 
+			else if (input == 4) {
 				GameLogic.player.useMagic();
-			} else if (input == 5) {
+			} 
+			else if (input == 5) {
 				GameLogic.player.defend();
-			} else if (input == 6) {
+			} 
+			else if (input == 6) {
 				// useItem();
-			} else {
+			} 
+			else {
 				GameLogic.clearConsole();
 
 				// TODO: potentially add scaling % chance as the number of successful fights in a row
