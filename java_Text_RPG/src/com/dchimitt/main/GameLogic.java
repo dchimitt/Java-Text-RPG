@@ -160,7 +160,8 @@ public class GameLogic implements java.io.Serializable {
 		GameLogic.clearConsole();
 		System.out.println("You have died...\nNow teleporting to your last visited town.");
 		typeToContinue();
-		diedInBossFight = true;
+		diedInBossFight = true; // this will reset if boss is encountered
+		player.currentHp = player.maximumHp / 3;
 		if (lastTownVisited.getName().equals("Town of Reizart:")) {
 			ActOneMap.teleportPlayerTo(lastTownVisited);
 			townOptions();
