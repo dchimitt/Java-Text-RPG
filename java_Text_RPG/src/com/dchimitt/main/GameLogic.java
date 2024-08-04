@@ -106,7 +106,7 @@ public class GameLogic implements java.io.Serializable {
 
 		// create new player object
 		// params: name, current exp, exp to level, starting gold, starting act, movement counter since last fight
-		player = new Player(name, 0, 12, 5, 1, 0);
+		player = new Player(name, 0, 11, 5, 1, 0);
 
 		// print introduction for main story
 		MainStory.printIntroduction();
@@ -310,6 +310,30 @@ public class GameLogic implements java.io.Serializable {
 		}
 	}
 	
+	// method to calculate experience required to level up using polynomial formula
+	/*
+	TODO: adjust formula as needed for game's progression
+	a * level^b -- ensures exponential growth, adjust a and b to control how steep the curve is
+	c * level   -- adds linear component to growth, ensuring early levels are easier to achieve
+	-----------------------------------------------------------------------------------------------
+	To increase difficulty at higher levels, increase value of a or b
+	To make early levels easier, increase the value of c
+	-----------------------------------------------------------------------------------------------
+	With current coefficients:
+	Level 1 = 11 xp || level 5 = 87 xp  || level 9 = 211 xp  || level 13 = 383 xp || level 17 = 603 xp
+	Level 2 = 26 xp || level 6 = 114 xp || level 10 = 250 xp || level 14 = 434 xp || level 18 = 666 xp
+	Level 3 = 43 xp || level 7 = 143 xp || level 11 = 291 xp || level 15 = 487 xp || level 19 = 731 xp
+	Level 4 = 64 xp || level 8 = 176 xp || level 12 = 336 xp || level 16 = 544 xp || level 20 = 800 xp
+	
+	*/
+	public static int calculateExperienceToLevel() {
+		final double a = 1.5; // exponential growth factor
+		final double b = 2.0; // exponent for exponential growth
+		final double c = 10; // linear growth factor
+		
+		return (int) (a * Math.pow(player.level, b) + c * player.level);
+	}
+	
 	// method called when the player levels up
 	// TODO: better balancing for hp/mp gains, experience for next levels (currently no leftover exp etc.), when player obtains upgrade points, etc.
 	public static boolean didPlayerLevelUp() {
@@ -333,7 +357,7 @@ public class GameLogic implements java.io.Serializable {
 			// reset player experience and increase experience required for next level by ___
 			// int leftoverExperience; 
 			player.currentExp = 0;
-			player.expToLevel = (int) (player.level * 30 * 1.25);
+			player.expToLevel = calculateExperienceToLevel();
 			
 			// player gains three stat points per level obtained
 			player.pickThreeStats();
