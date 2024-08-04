@@ -2,6 +2,7 @@ package gearAndItems;
 
 public class PlayerGear {
 	public static enum Gear {
+		KIDS_FLUTE("Kid's Flute", "This is the last heirloom you have to remind you of your son.", 0, 0, 0),
 		STARTING_SWORD("Starting Sword", "Placeholder", 0, 0, 0),
 		STARTING_DAGGER("Starting Dagger", "Placeholder", 0, 0, 0),
 		STARTING_WAND("Starting Wand", "Placeholder", 0, 0, 0),
@@ -111,6 +112,9 @@ public class PlayerGear {
 		}
 		
 		// methods to equip gear and apply stats to the player
+		public void equipKidsFlute() {
+			
+		}
 		public void equipStartingSword() {
 					
 		}
@@ -167,6 +171,9 @@ public class PlayerGear {
 		}	
 		
 		// methods to unequip gear and apply stats to the player
+		public void unequipKidsFlute() {
+			
+		}
 		public void unequipStartingSword() {
 							
 		}
