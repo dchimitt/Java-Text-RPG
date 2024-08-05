@@ -1,6 +1,10 @@
 package maps;
 import java.util.ArrayList;
 import java.io.Serializable;
+import gearAndItems.ItemVendor;
+import gearAndItems.PlayerGear;
+import gearAndItems.PlayerItems;
+import gearAndItems.GearVendor;
 
 import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.Room;
@@ -17,9 +21,17 @@ public class ActOneMap implements java.io.Serializable {
 		public static final int NOEXIT = -1;
 	};
 	
-	private static int currentPlayerPosition = 0;
+	private static int currentPlayerPosition = 0; // player starting location in map
 	private static ArrayList <Room> actOneMap;
-	private static boolean pathIsBlocked;
+	private static boolean pathIsBlocked; // used to determine if player's path is blocked when moving
+	
+	// definition of item vendors in Act One
+	private static ItemVendor reizartItemVendor;
+	private static ItemVendor someTownItemVendor;
+	
+	// definition of gear vendors in Act One
+	private static GearVendor reizartGearVendor;
+	private static GearVendor someTownGearVendor;
 	
 	public ActOneMap() {
 		actOneMap = new ArrayList<Room>();
@@ -67,6 +79,45 @@ public class ActOneMap implements java.io.Serializable {
 		actOneMap.add(new Room("Reizart Cave:", " E-7", 31, Direction.NOEXIT, Direction.NOEXIT, 38));     	                                    // 39
 		actOneMap.add(new Room("IDK YET:", " F-0", 32, 48, 41, Direction.NOEXIT));     	                                                        // 40
 		actOneMap.add(new Room("IDK YET:", " F-1", 33, 49, 42, 40));     	                                                                    // 41
+		
+		// creating list of items at vendors
+		PlayerItems.Items[] reizartItems = {
+				PlayerItems.Items.WEAK_HEALING_POTION,
+				PlayerItems.Items.WEAK_MANA_POTION,
+				PlayerItems.Items.ANTIDOTE,
+		};
+		
+		PlayerItems.Items[] someTownItems = {
+				PlayerItems.Items.WEAK_HEALING_POTION,
+				PlayerItems.Items.WEAK_MANA_POTION,
+				PlayerItems.Items.ANTIDOTE,
+		};
+		
+		// creating list of gear at vendors
+		PlayerGear.Gear[] reizartGear = {
+				PlayerGear.Gear.STARTING_SWORD,
+				PlayerGear.Gear.STARTING_DAGGER,
+				PlayerGear.Gear.STARTING_WAND,
+				PlayerGear.Gear.STARTING_CHAINMAIL,
+				PlayerGear.Gear.STARTING_VEST,
+				PlayerGear.Gear.STARTING_ROBE,
+		};
+		
+		PlayerGear.Gear[] someTownGear = {
+				PlayerGear.Gear.STARTING_SWORD,
+				PlayerGear.Gear.STARTING_DAGGER,
+				PlayerGear.Gear.STARTING_WAND,
+				PlayerGear.Gear.STARTING_CHAINMAIL,
+				PlayerGear.Gear.STARTING_VEST,
+				PlayerGear.Gear.STARTING_ROBE,
+		};
+		
+		// initialization of item and gear vendors
+		reizartItemVendor = new ItemVendor("Reizart Item Vendor", reizartItems);
+		reizartGearVendor = new GearVendor("Reizart Gear Vendor", reizartGear);
+		someTownItemVendor = new ItemVendor("SomeTown Vendor", someTownItems);
+		someTownGearVendor = new GearVendor("SomeTown Gear Vendor", someTownGear);
+		
 	}
 	
 	public Room getActOneMapStartingRoom()
