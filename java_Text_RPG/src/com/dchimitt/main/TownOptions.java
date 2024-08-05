@@ -39,7 +39,7 @@ public class TownOptions {
 				if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
 					itemVendor = ActOneMap.getReizartItemVendor();
 					itemVendor.displayItems();
-					int itemChoice = GameLogic.intUserInput("-->", 3);
+					int itemChoice = GameLogic.intUserInput("-->", 4);
 					switch (itemChoice) {
 						case 1:
 							itemVendor.purchaseItem(PlayerItems.Items.WEAK_HEALING_POTION);
@@ -53,6 +53,8 @@ public class TownOptions {
 							itemVendor.purchaseItem(PlayerItems.Items.ANTIDOTE);
 							GameLogic.typeToContinue();
 							break;
+						case 4:
+							break;
 					}
 				}
 				GameLogic.clearConsole();
@@ -62,7 +64,7 @@ public class TownOptions {
 				if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
 					gearVendor = ActOneMap.getReizartGearVendor();
 					gearVendor.displayGear();
-					int gearChoice = GameLogic.intUserInput("-->", 6);
+					int gearChoice = GameLogic.intUserInput("-->", 7);
 					switch (gearChoice) {
 						case 1:
 							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_SWORD);
@@ -87,6 +89,8 @@ public class TownOptions {
 						case 6:
 							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_WAND);
 							GameLogic.typeToContinue();
+							break;
+						case 7:
 							break;
 					}
 				}

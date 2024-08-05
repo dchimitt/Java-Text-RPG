@@ -21,6 +21,8 @@ public class ItemVendor implements Serializable {
 			System.out.println("(" + x + ") " + item.getItemName() + ": " + item.getItemDescription() + " (cost = " + item.getItemCostInGold() + " gold)");
 			x++;
 		}
+		System.out.println();
+		System.out.println("(" + x + ") Go back to town menu without making a purchase");
 		GameLogic.printTildeSeparator(60);
 		System.out.println("Current gold: " + GameLogic.player.gold);
 	}
@@ -30,6 +32,7 @@ public class ItemVendor implements Serializable {
 		if (GameLogic.player.gold >= item.getItemCostInGold()) {
 			System.out.println("You have purchased " + item.getItemName() + ".");
 			GameLogic.player.gold = GameLogic.player.gold - item.getItemCostInGold();
+			System.out.println("Current gold: " + GameLogic.player.gold);
 			if (item.getItemName().equals("Weak Healing Potion"))
 				PlayerItems.increaseWeakHealingPotionQuantity();
 			else if (item.getItemName().equals("Healing Potion"))

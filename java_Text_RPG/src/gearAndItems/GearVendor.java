@@ -21,6 +21,8 @@ public class GearVendor implements Serializable {
 			System.out.println("(" + x + ") " + gear.getGearName() + ": " + gear.getGearDescription() + " (cost = " + gear.getGearCostInGold() + " gold)");
 			x++;
 		}
+		System.out.println();
+		System.out.println("(" + x + ") Go back to town menu without making a purchase");
 		GameLogic.printTildeSeparator(60);
 		System.out.println("Current gold: " + GameLogic.player.gold);
 	}
@@ -30,6 +32,7 @@ public class GearVendor implements Serializable {
 		if (GameLogic.player.gold >= gear.getGearCostInGold()) {
 			System.out.println("You have purchased " + gear.getGearName() + ".");
 			GameLogic.player.gold = GameLogic.player.gold - gear.getGearCostInGold();
+			System.out.println("Current gold: " + GameLogic.player.gold);
 			if (gear.getGearName().equals("Starting Sword"))
 				PlayerGear.increaseStartingSwordQuantity();
 			else if (gear.getGearName().equals("Starting Dagger"))
