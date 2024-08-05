@@ -109,7 +109,7 @@ public class PlayerItems {
 		Items.REAPERS_BANE.itemQuantity--;
 	}
 	
-	// method to print a list of the players items (must be placed outside of enum scope to work...)
+	// method to print a list of the players items
 	public static void printPlayerItems() {
 		for (Items item: Items.values()) {
 			if (item.getItemQuantity() > 0) 
