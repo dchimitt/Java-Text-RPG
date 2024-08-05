@@ -34,6 +34,9 @@ public class TownOptions {
 					GameLogic.clearConsole();
 				}
 			} 
+			// player visits item vendor
+			// TODO: add functionality to make multiple purchases at a time before leaving menu
+			// TODO: add selling functionality
 			else if (input == 2) {
 				GameLogic.clearConsole();
 				if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
@@ -59,6 +62,9 @@ public class TownOptions {
 				}
 				GameLogic.clearConsole();
 			} 
+			// player visits gear vendor
+			// TODO: add functionality to make multiple purchases at a time before leaving menu
+			// TODO: add selling functionality
 			else if (input == 3) {
 				GameLogic.clearConsole();
 				if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
