@@ -7,6 +7,7 @@ import gearAndItems.PlayerItems;
 import gearAndItems.GearVendor;
 
 import com.dchimitt.main.GameLogic;
+import com.dchimitt.main.TownOptions;
 import com.dchimitt.main.Room;
 
 public class ActOneMap implements java.io.Serializable {
@@ -116,9 +117,22 @@ public class ActOneMap implements java.io.Serializable {
 		reizartItemVendor = new ItemVendor("Reizart Item Vendor", reizartItems);
 		reizartGearVendor = new GearVendor("Reizart Gear Vendor", reizartGear);
 		someTownItemVendor = new ItemVendor("SomeTown Vendor", someTownItems);
-		someTownGearVendor = new GearVendor("SomeTown Gear Vendor", someTownGear);
-		
+		someTownGearVendor = new GearVendor("SomeTown Gear Vendor", someTownGear);		
 	}
+	
+	// methods to access item and gear vendors
+    public static ItemVendor getReizartItemVendor() {
+        return reizartItemVendor;
+    }
+    public static GearVendor getReizartGearVendor() {
+        return reizartGearVendor;
+    }
+    public static ItemVendor getSomeTownItemVendor() {
+        return someTownItemVendor;
+    }
+    public static GearVendor getSomeTownGearVendor() {
+        return someTownGearVendor;
+    }
 	
 	public Room getActOneMapStartingRoom()
 	{
@@ -189,14 +203,14 @@ public class ActOneMap implements java.io.Serializable {
 
 	        // Check if the new room is a town and call townOptions
 	        if (currentRoom.isTown()) 
-	            GameLogic.townOptions();
+	            TownOptions.townOptions();
 	    } 
 		else {
 	        // if leaving town and path is blocked, reprint town options
 	        if (GameLogic.isInTown()) {
 	            System.out.println("Your path was blocked!");
 	            GameLogic.typeToContinue();
-	            GameLogic.townOptions();
+	            TownOptions.townOptions();
 	        } 
 	        // in situation where path is blocked but not currently in a town
 	        else {

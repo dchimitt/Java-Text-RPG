@@ -13,9 +13,11 @@ public class ItemVendor implements Serializable {
 	
 	public void displayItems() {
 		System.out.println("Welcome to " + vendorName + "! Here are the items currently for sale:");
+		int x = 1; // to add options in front of item
 		for (PlayerItems.Items item : itemsForSale) {
 			// TODO: add item cost
-			System.out.println(item.getItemName() + ": " + item.getItemDescription());
+			System.out.println("(" + x + ") " + item.getItemName() + ": " + item.getItemDescription());
+			x++;
 		}
 	}
 	

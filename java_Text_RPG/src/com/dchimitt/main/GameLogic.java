@@ -8,6 +8,10 @@ import dialogue.ActOneDialogue;
 import mainStory.MainStory;
 import maps.ActOneMap;
 import maps.ActOneMap.Direction;
+import gearAndItems.PlayerItems;
+import gearAndItems.PlayerGear;
+import gearAndItems.ItemVendor;
+import gearAndItems.GearVendor;
 
 // will never create object of this class, so everything here is static
 public class GameLogic implements java.io.Serializable {
@@ -125,7 +129,7 @@ public class GameLogic implements java.io.Serializable {
 		lastTownVisited = ActOneMap.getCurrentPlayerPosition();
 
 		// town options appear when first starting the game
-		townOptions();
+		TownOptions.townOptions();
 
 		// start main game loop
 		continueGame();
@@ -164,11 +168,11 @@ public class GameLogic implements java.io.Serializable {
 		player.currentHp = player.maximumHp / 3;
 		if (lastTownVisited.getName().equals("Town of Reizart:")) {
 			ActOneMap.teleportPlayerTo(lastTownVisited);
-			townOptions();
+			TownOptions.townOptions();
 		}
 		else if (lastTownVisited.getName().equals("SOME TOWN:")) {
 			ActOneMap.teleportPlayerTo(lastTownVisited);
-			townOptions();
+			TownOptions.townOptions();
 		}
 		
 		// player loses gold and exp when dying (currently set to 50% and 50%, respectively)
@@ -381,86 +385,11 @@ public class GameLogic implements java.io.Serializable {
 			return false;
 	}
 
-	public static void townOptions() {
-		clearConsole();
-		boolean inTown = true;
-		lastTownVisited = ActOneMap.getCurrentPlayerPosition();
-		while (inTown) {
-			System.out.println("You are in " + lastTownVisited.getName() + "\nOPTIONS:");
-			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
-			int input = intUserInput("-->", 5);
-			// TODO implement methods
-			if (input == 1) {
-				if (ActOneMap.getCurrentPlayerPosition().getName().equals("Town of Reizart:")) {
-					clearConsole();
-					System.out.println("Innkeeper:");
-					System.out.println("Hey, " + player.name + "! You can rest for free at your house! I couldn't live with myself if I charged you for a night here!");
-					typeToContinue();
-				}
-				else {
-					clearConsole();
-					wantsToRestAtInn();
-					clearConsole();
-				}
-			} else if (input == 2) {
-				clearConsole();
-				// itemVendor();
-				clearConsole();
-			} else if (input == 3) {
-				clearConsole();
-				// gearVendor();
-				clearConsole();
-			} else if (input == 4) {
-				clearConsole();
-				talkToNPC();
-			} else {
-				/*
-				 * TODO: 
-				 *
-				 * 1) If leaving town by selecting a direction that results in player movement
-				 * being blocked, player will end up still on the town room but options no
-				 * longer show. Also, formatting prints movement blocked but instantly clears
-				 * console making it confusing for player.
-				 * 
-				 * 2) Random encounters possible when #1 occurs
-				 */
-				clearConsole();
-				boolean validDirection = false;
-				do {
-					System.out.println("Which direction would you like to leave town in?");
-					System.out.println("N, S, E, or W?");
-					String townExitInput = in.nextLine().trim().toUpperCase();
-					if (townExitInput.equals("N")) {
-						ActOneMap.movePlayerTo(Direction.NORTH);
-						validDirection = true;
-					}
-					else if (townExitInput.equals("S")) {
-						ActOneMap.movePlayerTo(Direction.SOUTH);
-						validDirection = true;
-					}
-					else if (townExitInput.equals("E")) {
-						ActOneMap.movePlayerTo(Direction.EAST);
-						validDirection = true;
-					}
-					else if (townExitInput.equals("W")) {
-						ActOneMap.movePlayerTo(Direction.WEST);
-						validDirection = true;
-					}
-				} while (!validDirection);
-				inTown = false;
-				GameLogic.clearConsole();
-				checkAct();
-				ActOneMap.printPlayerPosition();
-				System.out.println("Type N, S, E, or W to move in a direction.");
-			}
-		}
-	}
-
 	// method to continue game
 	public static void continueGame() {
 		while (isRunning) {
 			if (isInTown()) 
-				townOptions();
+				TownOptions.townOptions();
 		
 			GameLogic.clearConsole();
 			checkAct();
