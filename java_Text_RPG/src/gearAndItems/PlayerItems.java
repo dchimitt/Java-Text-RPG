@@ -62,6 +62,14 @@ public class PlayerItems {
 			Items.REAPERS_BANE.itemQuantity++;
 		}
 		
+		// method to print the items a player currently owns
+		public void printPlayerItems() {
+			for (Items item: Items.values()) {
+				if (item.getItemQuantity() > 0) 
+					System.out.println(item.getItemName() + ": " + item.getItemQuantity());
+			}
+		}
+		
 		// methods to use healing potions
 		public void useWeakHealingPotion() {
 			GameLogic.player.currentHp = GameLogic.player.currentHp + 10;

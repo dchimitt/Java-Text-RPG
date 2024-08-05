@@ -1,5 +1,7 @@
 package gearAndItems;
 
+import gearAndItems.PlayerItems.Items;
+
 public class PlayerGear {
 	public static enum Gear {
 		KIDS_FLUTE("Kid's Flute", "This is the last heirloom you have to remind you of your son.", 0, 0, 0),
@@ -109,6 +111,14 @@ public class PlayerGear {
 		}
 		public void increaseFinalRobeQuantity() {
 			
+		}
+		
+		// method to print the items a player currently owns
+		public void printPlayerGear() {
+			for (Gear gear: Gear.values()) {
+				if (gear.getGearQuantity() > 0) 
+					System.out.println(gear.getGearName() + ": " + gear.getGearQuantity());
+			}
 		}
 		
 		// methods to equip gear and apply stats to the player
