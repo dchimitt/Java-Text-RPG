@@ -4,25 +4,25 @@ import gearAndItems.PlayerItems.Items;
 
 public class PlayerGear {
 	public static enum Gear {
-		KIDS_FLUTE("Kid's Flute", "This is the last heirloom you have to remind you of your son", 0, 0, 0, 0),
-		STARTING_SWORD("Starting Sword", "Placeholder", 0, 0, 0, 20),
-		STARTING_DAGGER("Starting Dagger", "Placeholder", 0, 0, 0, 20),
-		STARTING_WAND("Starting Wand", "Placeholder", 0, 0, 0, 20),
-		STARTING_CHAINMAIL("Starting Chainmail", "Placeholder", 0, 0, 0, 20),
-		STARTING_VEST("Starting Vest", "Placeholder", 0, 0, 0, 20),
-		STARTING_ROBE("Starting Robe", "Placeholder", 0, 0, 0, 20),
-		MIDDLE_SWORD("Middle Sword", "Placeholder", 0, 0, 0, 75),
-		MIDDLE_DAGGER("Middle Dagger", "Placeholder", 0, 0, 0, 75),
-		MIDDLE_WAND("Middle Wand", "Placeholder", 0, 0, 0, 75),
-		MIDDLE_CHAINMAIL("Middle Chainmail", "Placeholder", 0, 0, 0, 75),
-		MIDDLE_VEST("Middle Vest", "Placeholder", 0, 0, 0, 75),
-		MIDDLE_ROBE("Middle Robe", "Placeholder", 0, 0, 0, 75),
-		FINAL_SWORD("Final Sword", "Placeholder", 0, 0, 0, 200),
-		FINAL_DAGGER("Final Dagger", "Placeholder", 0, 0, 0, 200),
-		FINAL_WAND("Final Wand", "Placeholder", 0, 0, 0, 200),
-		FINAL_CHAINMAIL("Final Chainmail", "Placeholder", 0, 0, 0, 200),
-		FINAL_VEST("Final Vest", "Placeholder", 0, 0, 0, 200),
-		FINAL_ROBE("Final Robe", "Placeholder", 0, 0, 0, 200);
+		KIDS_FLUTE("Kid's Flute", "This is the last heirloom you have to remind you of your son", 0, 0, 0, 0, 25),
+		STARTING_SWORD("Starting Sword", "Placeholder", 0, 0, 0, 50, 50/4),
+		STARTING_DAGGER("Starting Dagger", "Placeholder", 0, 0, 0, 50, 50/4),
+		STARTING_WAND("Starting Wand", "Placeholder", 0, 0, 0, 50, 50/4),
+		STARTING_CHAINMAIL("Starting Chainmail", "Placeholder", 0, 0, 0, 40, 40/4),
+		STARTING_VEST("Starting Vest", "Placeholder", 0, 0, 0, 40, 40/4),
+		STARTING_ROBE("Starting Robe", "Placeholder", 0, 0, 0, 40, 40/4),
+		MIDDLE_SWORD("Middle Sword", "Placeholder", 0, 0, 0, 175, 175/4),
+		MIDDLE_DAGGER("Middle Dagger", "Placeholder", 0, 0, 0, 175, 175/4),
+		MIDDLE_WAND("Middle Wand", "Placeholder", 0, 0, 0, 175, 175/4),
+		MIDDLE_CHAINMAIL("Middle Chainmail", "Placeholder", 0, 0, 0, 150, 150/4),
+		MIDDLE_VEST("Middle Vest", "Placeholder", 0, 0, 0, 150, 150/4),
+		MIDDLE_ROBE("Middle Robe", "Placeholder", 0, 0, 0, 150, 150/4),
+		FINAL_SWORD("Final Sword", "Placeholder", 0, 0, 0, 525, 525/4),
+		FINAL_DAGGER("Final Dagger", "Placeholder", 0, 0, 0, 525, 525/4),
+		FINAL_WAND("Final Wand", "Placeholder", 0, 0, 0, 525, 525/4),
+		FINAL_CHAINMAIL("Final Chainmail", "Placeholder", 0, 0, 0, 415, 415/4),
+		FINAL_VEST("Final Vest", "Placeholder", 0, 0, 0, 415, 415/4),
+		FINAL_ROBE("Final Robe", "Placeholder", 0, 0, 0, 415, 415/4);
 	
 		// instance variables for each ability
 		private final String gearName;
@@ -31,15 +31,17 @@ public class PlayerGear {
 		private final int gearStatIncrease;
 		private int gearQuantity;
 		private int gearCostInGold;
+		private int gearSellingPrice; // 25% of purchase price
 		
 		// Constructor
-		Gear(String gearName, String gearDescription, int gearStatRequirement, int gearStatIncrease, int gearQuantity, int gearCostInGold) {
+		Gear(String gearName, String gearDescription, int gearStatRequirement, int gearStatIncrease, int gearQuantity, int gearCostInGold, int gearSellingPrice) {
 			this.gearName = gearName;
 			this.gearDescription = gearDescription;
 			this.gearStatRequirement = gearStatRequirement;
 			this.gearStatIncrease = gearStatIncrease;
 			this.gearQuantity = gearQuantity;
 			this.gearCostInGold = gearCostInGold;
+			this.gearSellingPrice = gearSellingPrice;
 		}
 		
 		// getter methods
