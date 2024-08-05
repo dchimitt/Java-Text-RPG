@@ -56,187 +56,187 @@ public class PlayerGear {
 		public int getGearQuantity() {
 			return gearQuantity;
 		}
-		
-		// methods to increase item quantity when player makes a purchase or obtains drop from monsters/bosses
-		public void increaseStartingSwordQuantity() {
+	}
+	
+	// methods to increase item quantity when player makes a purchase or obtains drop from monsters/bosses
+	public static void increaseStartingSwordQuantity() {
+				
+	}
+	public static void increaseStartingDaggerQuantity() {
+				
+	}
+	public static void increaseStartingWandQuantity() {
+				
+	}
+	public static void increaseStartingChainmailQuantity() {
+				
+	}
+	public static void increaseStartingVestQuantity() {
+				
+	}
+	public static void increaseStartingRobeQuantity() {
+				
+	}
+	public static void increaseMiddleSwordQuantity() {
+				
+	}
+	public static void increaseMiddleDaggerQuantity() {
+				
+	}
+	public static void increaseMiddleWandQuantity() {
+				
+	}
+	public static void increaseMiddleChainmailQuantity() {
+				
+	}
+	public static void increaseMiddleVestQuantity() {
+				
+	}
+	public static void increaseMiddleRobeQuantity() {
+				
+	}
+	public static void increaseFinalSwordQuantity() {
+				
+	}
+	public static void increaseFinalDaggerQuantity() {
+				
+	}
+	public static void increaseFinalWandQuantity() {
+				
+	}
+	public static void increaseFinalChainmailQuantity() {
+				
+	}
+	public static void increaseFinalVestQuantity() {
+				
+	}
+	public static void increaseFinalRobeQuantity() {
+				
+	}
 			
-		}
-		public void increaseStartingDaggerQuantity() {
+	// methods to equip gear and apply stats to the player
+	public static void equipKidsFlute() {
+				
+	}
+	public static void equipStartingSword() {
+						
+	}
+	public static void equipStartingDagger() {
+						
+	}
+	public static void equipStartingWand() {
+						
+	}
+	public static void equipStartingChainmail() {
+						
+	}
+	public static void equipStartingVest() {
+						
+	}
+	public static void equipStartingRobe() {
+						
+	}
+	public static void equipMiddleSword() {
+						
+	}
+	public static void equipMiddleDagger() {
+						
+	}
+	public static void equipMiddleWand() {
+						
+	}
+	public static void equipMiddleChainmail() {
+						
+	}
+	public static void equipMiddleVest() {
+						
+	}
+	public static void equipMiddleRobe() {
+						
+	}
+	public static void equipFinalSword() {
+						
+	}
+	public static void equipFinalDagger() {
+						
+	}
+	public static void equipFinalWand() {
+						
+	}
+	public static void equipFinalChainmail() {
+						
+	}
+	public static void equipFinalVest() {
+						
+	}
+	public static void equipFinalRobe() {
+						
+	}	
 			
-		}
-		public void increaseStartingWandQuantity() {
-			
-		}
-		public void increaseStartingChainmailQuantity() {
-			
-		}
-		public void increaseStartingVestQuantity() {
-			
-		}
-		public void increaseStartingRobeQuantity() {
-			
-		}
-		public void increaseMiddleSwordQuantity() {
-			
-		}
-		public void increaseMiddleDaggerQuantity() {
-			
-		}
-		public void increaseMiddleWandQuantity() {
-			
-		}
-		public void increaseMiddleChainmailQuantity() {
-			
-		}
-		public void increaseMiddleVestQuantity() {
-			
-		}
-		public void increaseMiddleRobeQuantity() {
-			
-		}
-		public void increaseFinalSwordQuantity() {
-			
-		}
-		public void increaseFinalDaggerQuantity() {
-			
-		}
-		public void increaseFinalWandQuantity() {
-			
-		}
-		public void increaseFinalChainmailQuantity() {
-			
-		}
-		public void increaseFinalVestQuantity() {
-			
-		}
-		public void increaseFinalRobeQuantity() {
-			
-		}
-		
-		// method to print the items a player currently owns
-		public void printPlayerGear() {
-			for (Gear gear: Gear.values()) {
-				if (gear.getGearQuantity() > 0) 
-					System.out.println(gear.getGearName() + ": " + gear.getGearQuantity());
-			}
-		}
-		
-		// methods to equip gear and apply stats to the player
-		public void equipKidsFlute() {
-			
-		}
-		public void equipStartingSword() {
-					
-		}
-		public void equipStartingDagger() {
-					
-		}
-		public void equipStartingWand() {
-					
-		}
-		public void equipStartingChainmail() {
-					
-		}
-		public void equipStartingVest() {
-					
-		}
-		public void equipStartingRobe() {
-					
-		}
-		public void equipMiddleSword() {
-					
-		}
-		public void equipMiddleDagger() {
-					
-		}
-		public void equipMiddleWand() {
-					
-		}
-		public void equipMiddleChainmail() {
-					
-		}
-		public void equipMiddleVest() {
-					
-		}
-		public void equipMiddleRobe() {
-					
-		}
-		public void equipFinalSword() {
-					
-		}
-		public void equipFinalDagger() {
-					
-		}
-		public void equipFinalWand() {
-					
-		}
-		public void equipFinalChainmail() {
-					
-		}
-		public void equipFinalVest() {
-					
-		}
-		public void equipFinalRobe() {
-					
-		}	
-		
-		// methods to unequip gear and apply stats to the player
-		public void unequipKidsFlute() {
-			
-		}
-		public void unequipStartingSword() {
-							
-		}
-		public void unequipStartingDagger() {
-							
-		}
-		public void unequipStartingWand() {
-							
-		}
-		public void unequipStartingChainmail() {
-							
-		}
-		public void unequipStartingVest() {
-							
-		}
-		public void unequipStartingRobe() {
-							
-		}
-		public void unequipMiddleSword() {
-							
-		}
-		public void unequipMiddleDagger() {
-							
-		}
-		public void unequipMiddleWand() {
-							
-		}
-		public void unequipMiddleChainmail() {
-							
-		}
-		public void unequipMiddleVest() {
-							
-		}
-		public void unequipMiddleRobe() {
-							
-		}
-		public void unequipFinalSword() {
-							
-		}
-		public void unequipFinalDagger() {
-							
-		}
-		public void unequipFinalWand() {
-							
-		}
-		public void unequipFinalChainmail() {
-							
-		}
-		public void unequipFinalVest() {
-							
-		}
-		public void unequipFinalRobe() {
-							
+	// methods to unequip gear and apply stats to the player
+	public static void unequipKidsFlute() {
+				
+	}
+	public static void unequipStartingSword() {
+								
+	}
+	public static void unequipStartingDagger() {
+								
+	}
+	public static void unequipStartingWand() {
+								
+	}
+	public static void unequipStartingChainmail() {
+								
+	}
+	public static void unequipStartingVest() {
+								
+	}
+	public static void unequipStartingRobe() {
+								
+	}
+	public static void unequipMiddleSword() {
+								
+	}
+	public static void unequipMiddleDagger() {
+								
+	}
+	public static void unequipMiddleWand() {
+								
+	}
+	public static void unequipMiddleChainmail() {
+								
+	}
+	public static void unequipMiddleVest() {
+								
+	}
+	public static void unequipMiddleRobe() {
+								
+	}
+	public static void unequipFinalSword() {
+								
+	}
+	public static void unequipFinalDagger() {
+								
+	}
+	public static void unequipFinalWand() {
+								
+	}
+	public static void unequipFinalChainmail() {
+								
+	}
+	public static void unequipFinalVest() {
+								
+	}
+	public static void unequipFinalRobe() {
+								
+	}
+	
+	// method to print the gear a player currently owns
+	public static void printPlayerGear() {
+		for (Gear gear: Gear.values()) {
+			if (gear.getGearQuantity() > 0) 
+				System.out.println(gear.getGearName() + ": " + gear.getGearQuantity());
 		}
 	}
 }

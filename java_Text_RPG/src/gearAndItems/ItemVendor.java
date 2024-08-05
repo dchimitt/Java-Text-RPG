@@ -21,8 +21,24 @@ public class ItemVendor implements Serializable {
 		}
 	}
 	
-	public void purchaseItem(PlayerItems.Items item) {
+	public static void purchaseItem(PlayerItems.Items item) {
 		// item.increaseItemQuantity();
 		System.out.println("You have purchased " + item.getItemName() + ".");
+		if (item.getItemName().equals("Weak Healing Potion"))
+			PlayerItems.increaseWeakHealingPotionQuantity();
+		else if (item.getItemName().equals("Healing Potion"))
+			PlayerItems.increaseHealingPotionQuantity();
+		else if (item.getItemName().equals("Infused Healing Potion"))
+			PlayerItems.increaseInfusedHealingPotionQuantity();
+		else if (item.getItemName().equals("Weak Mana Potion"))
+			PlayerItems.increaseWeakManaPotionQuantity();
+		else if (item.getItemName().equals("Mana Potion"))
+			PlayerItems.increaseManaPotionQuantity();
+		else if (item.getItemName().equals("Infused Mana Potion"))
+			PlayerItems.increaseInfusedManaPotionQuantity();
+		else if (item.getItemName().equals("Antidote"))
+			PlayerItems.increaseAntidoteQuantity();
+		else if (item.getItemName().equals("Reaper's Bane"))
+			PlayerItems.increaseReapersBaneQuantity();	
 	}
 }

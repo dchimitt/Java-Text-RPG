@@ -8,6 +8,8 @@ import dialogue.ActOneDialogue;
 import mainStory.MainStory;
 import maps.ActOneMap;
 import maps.ActOneMap.Direction;
+import gearAndItems.PlayerItems;
+import gearAndItems.PlayerGear;
 
 // will never create object of this class, so everything here is static
 public class GameLogic implements java.io.Serializable {
@@ -497,6 +499,20 @@ public class GameLogic implements java.io.Serializable {
 		if (foundSuppMag == false)
 			System.out.println("N/A");
 		GameLogic.printHyphenSeparator(20);
+		System.out.println("(1) View inventory\n(2) View equipped gear\n(3) Continue game");
+		int input = intUserInput("-->", 3);
+		if (input == 1) {
+			typeToContinue();
+			PlayerItems.printPlayerItems();
+			typeToContinue();
+			PlayerGear.printPlayerGear();
+		}
+		else if (input == 2) {
+			
+		}
+		else {
+			
+		}
 		typeToContinue();
 	}
 
