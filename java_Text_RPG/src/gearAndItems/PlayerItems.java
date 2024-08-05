@@ -4,14 +4,14 @@ import com.dchimitt.main.GameLogic;
 
 public class PlayerItems {
 	public static enum Items {
-		WEAK_HEALING_POTION("Weak Healing Potion", "Restores 10 hitpoints.", 0, 15),
-		HEALING_POTION("Healing Potion", "Restores 25 hitpoints.", 0, 50),
-		INFUSED_HEALING_POTION("Infused Healing Potion", "Restores 50 hitpoints.", 0, 150),
-		WEAK_MANA_POTION("Weak Mana Potion", "Restores 5 mana.", 0, 15),
-		MANA_POTION("Mana Potion", "Restores 15 mana.", 0, 50),
-		INFUSED_MANA_POTION("Infused Mana Potion", "Restores 30 mana.", 0, 150),
-		ANTIDOTE("Antidote", "Cures the poison status.", 0, 50),
-		REAPERS_BANE("Reaper's Bane", "Prevent death for __ turns.", 0, 99999);
+		WEAK_HEALING_POTION("Weak Healing Potion", "Restores 10 hitpoints", 0, 15),
+		HEALING_POTION("Healing Potion", "Restores 25 hitpoints", 0, 50),
+		INFUSED_HEALING_POTION("Infused Healing Potion", "Restores 50 hitpoints", 0, 150),
+		WEAK_MANA_POTION("Weak Mana Potion", "Restores 5 mana", 0, 15),
+		MANA_POTION("Mana Potion", "Restores 15 mana", 0, 50),
+		INFUSED_MANA_POTION("Infused Mana Potion", "Restores 30 mana", 0, 150),
+		ANTIDOTE("Antidote", "Cures the poison status", 0, 50),
+		REAPERS_BANE("Reaper's Bane", "Prevent death for __ turns", 0, 99999);
 	
 		// instance variables for each ability
 		private final String itemName;

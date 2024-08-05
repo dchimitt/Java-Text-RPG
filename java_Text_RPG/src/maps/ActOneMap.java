@@ -81,20 +81,12 @@ public class ActOneMap implements java.io.Serializable {
 		actOneMap.add(new Room("IDK YET:", " F-0", 32, 48, 41, Direction.NOEXIT));     	                                                        // 40
 		actOneMap.add(new Room("IDK YET:", " F-1", 33, 49, 42, 40));     	                                                                    // 41
 		
-		// creating list of items at vendors
+		// creating list of items and gear at Town of Reizart
 		PlayerItems.Items[] reizartItems = {
 				PlayerItems.Items.WEAK_HEALING_POTION,
 				PlayerItems.Items.WEAK_MANA_POTION,
 				PlayerItems.Items.ANTIDOTE,
-		};
-		
-		PlayerItems.Items[] someTownItems = {
-				PlayerItems.Items.WEAK_HEALING_POTION,
-				PlayerItems.Items.WEAK_MANA_POTION,
-				PlayerItems.Items.ANTIDOTE,
-		};
-		
-		// creating list of gear at vendors
+		};		
 		PlayerGear.Gear[] reizartGear = {
 				PlayerGear.Gear.STARTING_SWORD,
 				PlayerGear.Gear.STARTING_DAGGER,
@@ -102,8 +94,14 @@ public class ActOneMap implements java.io.Serializable {
 				PlayerGear.Gear.STARTING_CHAINMAIL,
 				PlayerGear.Gear.STARTING_VEST,
 				PlayerGear.Gear.STARTING_ROBE,
-		};
+		};	
 		
+		// creating list of items and gear at SomeTown
+		PlayerItems.Items[] someTownItems = {
+				PlayerItems.Items.WEAK_HEALING_POTION,
+				PlayerItems.Items.WEAK_MANA_POTION,
+				PlayerItems.Items.ANTIDOTE,
+		};	
 		PlayerGear.Gear[] someTownGear = {
 				PlayerGear.Gear.STARTING_SWORD,
 				PlayerGear.Gear.STARTING_DAGGER,

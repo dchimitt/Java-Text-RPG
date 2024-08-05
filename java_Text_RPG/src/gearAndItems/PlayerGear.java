@@ -4,7 +4,7 @@ import gearAndItems.PlayerItems.Items;
 
 public class PlayerGear {
 	public static enum Gear {
-		KIDS_FLUTE("Kid's Flute", "This is the last heirloom you have to remind you of your son.", 0, 0, 0, 0),
+		KIDS_FLUTE("Kid's Flute", "This is the last heirloom you have to remind you of your son", 0, 0, 0, 0),
 		STARTING_SWORD("Starting Sword", "Placeholder", 0, 0, 0, 20),
 		STARTING_DAGGER("Starting Dagger", "Placeholder", 0, 0, 0, 20),
 		STARTING_WAND("Starting Wand", "Placeholder", 0, 0, 0, 20),
@@ -65,58 +65,58 @@ public class PlayerGear {
 	
 	// methods to increase item quantity when player makes a purchase or obtains drop from monsters/bosses
 	public static void increaseStartingSwordQuantity() {
-				
+		Gear.STARTING_SWORD.gearQuantity++;
 	}
 	public static void increaseStartingDaggerQuantity() {
-				
+		Gear.STARTING_DAGGER.gearQuantity++;	
 	}
 	public static void increaseStartingWandQuantity() {
-				
+		Gear.STARTING_WAND.gearQuantity++;	
 	}
 	public static void increaseStartingChainmailQuantity() {
-				
+		Gear.STARTING_CHAINMAIL.gearQuantity++;	
 	}
 	public static void increaseStartingVestQuantity() {
-				
+		Gear.STARTING_VEST.gearQuantity++;
 	}
 	public static void increaseStartingRobeQuantity() {
-				
+		Gear.STARTING_ROBE.gearQuantity++;	
 	}
 	public static void increaseMiddleSwordQuantity() {
-				
+		Gear.MIDDLE_SWORD.gearQuantity++;	
 	}
 	public static void increaseMiddleDaggerQuantity() {
-				
+		Gear.MIDDLE_DAGGER.gearQuantity++;	
 	}
 	public static void increaseMiddleWandQuantity() {
-				
+		Gear.MIDDLE_WAND.gearQuantity++;
 	}
 	public static void increaseMiddleChainmailQuantity() {
-				
+		Gear.MIDDLE_CHAINMAIL.gearQuantity++;
 	}
 	public static void increaseMiddleVestQuantity() {
-				
+		Gear.MIDDLE_VEST.gearQuantity++;	
 	}
 	public static void increaseMiddleRobeQuantity() {
-				
+		Gear.MIDDLE_ROBE.gearQuantity++;
 	}
 	public static void increaseFinalSwordQuantity() {
-				
+		Gear.FINAL_SWORD.gearQuantity++;
 	}
 	public static void increaseFinalDaggerQuantity() {
-				
+		Gear.FINAL_DAGGER.gearQuantity++;	
 	}
 	public static void increaseFinalWandQuantity() {
-				
+		Gear.FINAL_WAND.gearQuantity++;
 	}
 	public static void increaseFinalChainmailQuantity() {
-				
+		Gear.FINAL_CHAINMAIL.gearQuantity++;
 	}
 	public static void increaseFinalVestQuantity() {
-				
+		Gear.FINAL_VEST.gearQuantity++;
 	}
 	public static void increaseFinalRobeQuantity() {
-				
+		Gear.FINAL_ROBE.gearQuantity++;
 	}
 			
 	// methods to equip gear and apply stats to the player
