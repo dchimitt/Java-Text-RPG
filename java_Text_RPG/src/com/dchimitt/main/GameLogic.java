@@ -8,10 +8,6 @@ import dialogue.ActOneDialogue;
 import mainStory.MainStory;
 import maps.ActOneMap;
 import maps.ActOneMap.Direction;
-import gearAndItems.PlayerItems;
-import gearAndItems.PlayerGear;
-import gearAndItems.ItemVendor;
-import gearAndItems.GearVendor;
 
 // will never create object of this class, so everything here is static
 public class GameLogic implements java.io.Serializable {
