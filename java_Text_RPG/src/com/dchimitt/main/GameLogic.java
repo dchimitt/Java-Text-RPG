@@ -502,9 +502,12 @@ public class GameLogic implements java.io.Serializable {
 		GameLogic.printHyphenSeparator(20);
 		System.out.println("(1) View inventory\n(2) View equipped gear\n(3) Continue game");
 		int input = intUserInput("-->", 3);
+		// TODO: add functionality for using items while in inventory
 		if (input == 1) {
+			System.out.println("Consumable items:\n");
 			PlayerItems.printPlayerItems();
 			typeToContinue();
+			System.out.println("Gear:\n");
 			PlayerGear.printPlayerGear();
 		}
 		else if (input == 2) {
