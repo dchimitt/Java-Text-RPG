@@ -4,25 +4,27 @@ import com.dchimitt.main.GameLogic;
 
 public class PlayerItems {
 	public static enum Items {
-		WEAK_HEALING_POTION("Weak Healing Potion", "Placeholder", 0),
-		HEALING_POTION("Healing Potion", "Placeholder", 0),
-		INFUSED_HEALING_POTION("Infused Healing Potion", "Placeholder", 0),
-		WEAK_MANA_POTION("Weak Mana Potion", "Placeholder", 0),
-		MANA_POTION("Mana Potion", "Placeholder", 0),
-		INFUSED_MANA_POTION("Infused Mana Potion", "Placeholder", 0),
-		ANTIDOTE("Weak Healing Potion", "Placeholder", 0),
-		REAPERS_BANE("Reaper's Bane", "Prevent death for __ turns.", 0);
+		WEAK_HEALING_POTION("Weak Healing Potion", "Placeholder", 0, 15),
+		HEALING_POTION("Healing Potion", "Placeholder", 0, 50),
+		INFUSED_HEALING_POTION("Infused Healing Potion", "Placeholder", 0, 150),
+		WEAK_MANA_POTION("Weak Mana Potion", "Placeholder", 0, 15),
+		MANA_POTION("Mana Potion", "Placeholder", 0, 50),
+		INFUSED_MANA_POTION("Infused Mana Potion", "Placeholder", 0, 150),
+		ANTIDOTE("Antidote", "Placeholder", 0, 50),
+		REAPERS_BANE("Reaper's Bane", "Prevent death for __ turns.", 0, 99999);
 	
 		// instance variables for each ability
 		private final String itemName;
 		private final String itemDescription;
 		private int itemQuantity;
+		private int itemCostInGold;
 		
 		// Constructor
-		Items(String itemName, String itemDescription, int itemQuantity) {
+		Items(String itemName, String itemDescription, int itemQuantity, int itemCostInGold) {
 			this.itemName = itemName;
 			this.itemDescription = itemDescription;
 			this.itemQuantity = itemQuantity;
+			this.itemCostInGold = itemCostInGold;
 		}
 		
 		// getter methods
@@ -34,6 +36,9 @@ public class PlayerItems {
 		}
 		public int getItemQuantity() {
 			return itemQuantity;
+		}
+		public int getItemCostInGold() {
+			return itemCostInGold;
 		}
 	}
 	
@@ -103,7 +108,7 @@ public class PlayerItems {
 	public static void printPlayerItems() {
 		for (Items item: Items.values()) {
 			if (item.getItemQuantity() > 0) 
-				System.out.println(item.getItemName() + ": " + item.getItemQuantity());
+				System.out.println(item.getItemName() + ": " + item.getItemDescription() +  " (" + item.getItemQuantity() + ")");
 		}
 	}
 }

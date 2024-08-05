@@ -18,7 +18,7 @@ public class TownOptions {
 		GameLogic.lastTownVisited = ActOneMap.getCurrentPlayerPosition();
 		while (inTown) {
 			System.out.println("You are in " + GameLogic.lastTownVisited.getName() + "\nOPTIONS:");
-			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear Vendor\n(4) Talk to NPC\n(5) Leave town");
+			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear vendor\n(4) Talk to NPC\n(5) Leave town");
 			int input = GameLogic.intUserInput("-->", 5);
 			// TODO implement methods
 			if (input == 1) {

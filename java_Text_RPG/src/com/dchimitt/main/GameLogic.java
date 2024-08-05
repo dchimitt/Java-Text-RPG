@@ -502,7 +502,6 @@ public class GameLogic implements java.io.Serializable {
 		System.out.println("(1) View inventory\n(2) View equipped gear\n(3) Continue game");
 		int input = intUserInput("-->", 3);
 		if (input == 1) {
-			typeToContinue();
 			PlayerItems.printPlayerItems();
 			typeToContinue();
 			PlayerGear.printPlayerGear();
