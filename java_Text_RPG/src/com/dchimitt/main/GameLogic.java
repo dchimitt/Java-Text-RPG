@@ -108,7 +108,8 @@ public class GameLogic implements java.io.Serializable {
 
 		// create new player object
 		// params: name, current exp, exp to level, starting gold, starting act, movement counter since last fight
-		player = new Player(name, 0, 11, 5, 1, 0);
+		// TODO: change starting gold back to some small amount (increased for testing purposes)
+		player = new Player(name, 0, 11, 9999999, 1, 0);
 
 		// print introduction for main story
 		MainStory.printIntroduction();
