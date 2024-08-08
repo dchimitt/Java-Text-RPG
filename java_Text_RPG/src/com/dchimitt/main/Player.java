@@ -52,6 +52,19 @@ public class Player extends Character implements java.io.Serializable {
 		this.playerGear = gear;
 	}
 	
+	public int getPlayerStat(String statType) {
+		switch (statType) {
+			case "strength":
+				return AdventureGame.getPlayer().strength;
+			case "dexterity":
+				return AdventureGame.getPlayer().dexterity;
+			case "intelligence":
+				return AdventureGame.getPlayer().intelligence;
+			default:
+				return 0;
+		}
+	}
+	
 	// getters and setters for learned states of abilities and spells
 	public boolean isAbilityLearned(Abilities ability) {
 		return learnedAbilities != null && learnedAbilities.getOrDefault(ability, false);
