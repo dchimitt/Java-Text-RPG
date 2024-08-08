@@ -1,5 +1,6 @@
 package com.dchimitt.main;
 
+import gearAndItems.PlayerGear;
 import java.util.Scanner;
 import java.io.Serializable;
 import java.util.EnumMap;
@@ -8,6 +9,7 @@ import java.util.Map;
 // NOTE: @Override means inherited methods from abstract superclass differ
 public class Player extends Character implements java.io.Serializable {
 	public static Scanner in = new Scanner(System.in);
+	public PlayerGear playerGear = new PlayerGear();
 	
 	// define EnumMaps for learned states of abilities and spells
 	private EnumMap<Abilities, Boolean> learnedAbilities;
@@ -40,6 +42,14 @@ public class Player extends Character implements java.io.Serializable {
 			learnedOffensiveSpells.put(offSpell, false);
 		for (SuppMagSpells suppSpell : SuppMagSpells.values())
 			learnedSupportSpells.put(suppSpell, false);
+	}
+	
+	// getter and setter methods for player's currently equipped gear
+	public PlayerGear getPlayerGear() {
+		return playerGear;
+	}	
+	public void setPlayerGear(PlayerGear gear) {
+		this.playerGear = gear;
 	}
 	
 	// getters and setters for learned states of abilities and spells

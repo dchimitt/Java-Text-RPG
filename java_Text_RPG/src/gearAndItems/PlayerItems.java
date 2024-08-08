@@ -3,8 +3,9 @@ package gearAndItems;
 import com.dchimitt.main.AdventureGame;
 import java.util.Map;
 import java.util.EnumMap;
+import java.io.Serializable;
 
-public class PlayerItems {	
+public class PlayerItems implements Serializable {	
 	// map to store item quantities
 	private static final Map<Items, Integer> itemQuantities = new EnumMap<>(Items.class);
 	

@@ -36,6 +36,9 @@ public class AdventureGame implements java.io.Serializable {
 	    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("savegame.ser"))) {
 	        // Save Player
 	        out.writeObject(player);
+	        
+	        // Save player's currently equipped gear
+	        out.writeObject(player.getPlayerGear());
 
 	        // Save item quantities
 	        out.writeObject(PlayerItems.getItemQuantities()); 
@@ -96,6 +99,10 @@ public class AdventureGame implements java.io.Serializable {
 	        // Load Player
 	        player = (Player) in.readObject();
 
+	        // Load player's gear
+	        PlayerGear loadedGear = (PlayerGear) in.readObject();
+	        player.setPlayerGear(loadedGear);
+	        
 	        // Load item quantities
 	        Object itemQuantitiesObject = in.readObject();
 	        Map<PlayerItems.Items, Integer> itemQuantities = (Map<PlayerItems.Items, Integer>) itemQuantitiesObject;

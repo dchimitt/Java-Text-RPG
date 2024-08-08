@@ -3,12 +3,13 @@ package gearAndItems;
 import gearAndItems.PlayerItems.Items;
 import java.util.EnumMap;
 import java.util.Map;
+import java.io.Serializable;
 
 import com.dchimitt.main.AdventureGame;
 
-public class PlayerGear {
+public class PlayerGear implements Serializable {
 	// enum map used to store gear quantities
-	private static final Map<Gear, Integer> gearQuantities = new EnumMap<>(Gear.class);
+	private static final Map<Gear, Integer> gearQuantities;
 	
 	// global boolean values of whether player has a particular piece of gear already equipped
 	public static boolean isWeaponEquipped = false;
@@ -20,9 +21,12 @@ public class PlayerGear {
 	
 	// Initialize quantity of 0 for each gear in the map
     static {
+    	gearQuantities = new EnumMap<>(Gear.class);
         for (Gear gear : Gear.values()) {
             gearQuantities.put(gear, 0);
         }
+        equippedWeapon = null;
+        equippedChestArmor = null;
     }
 	
 	public static enum Gear {
@@ -236,14 +240,14 @@ public class PlayerGear {
     public static Gear getEquippedWeapon() {
     	return equippedWeapon;
     }
-    public void setEquippedWeapon(Gear equippedWeapon) {
-    	this.equippedWeapon = equippedWeapon;
-    }
     //
     public static Gear getEquippedChestArmor() {
     	return equippedChestArmor;
     }
-    public void setEquippedChestArmor(Gear equippedChestArmor) {
-    	this.equippedChestArmor = equippedChestArmor;
+    //
+    public void setEquippedGear(Gear weapon, Gear armor) {
+    	this.equippedWeapon = weapon;
+    	this.equippedChestArmor = armor;
     }
+
 }
