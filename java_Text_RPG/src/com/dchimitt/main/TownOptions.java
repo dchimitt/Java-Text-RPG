@@ -93,7 +93,7 @@ public class TownOptions {
 							GameLogic.typeToContinue();
 							break;
 						case 6:
-							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_WAND);
+							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_ROBE);
 							GameLogic.typeToContinue();
 							break;
 						case 7:
