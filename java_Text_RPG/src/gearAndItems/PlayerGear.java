@@ -199,8 +199,8 @@ public class PlayerGear {
 		}
 	}
 	
-	// Method to print the gear a player currently owns
-    public static void printPlayerGear() {
+	// Method to print the gear a player currently owns in their inventory
+    public static void printPlayerGearInInventory() {
         for (Map.Entry<Gear, Integer> entry : gearQuantities.entrySet()) {
             Gear gear = entry.getKey();
             int quantity = entry.getValue();
