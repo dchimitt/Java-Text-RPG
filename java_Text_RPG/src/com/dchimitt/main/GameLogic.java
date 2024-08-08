@@ -509,8 +509,10 @@ public class GameLogic implements java.io.Serializable {
 	        		System.out.println("Invalid gear name. Please check the name and try again.");
 	        		GameLogic.typeToContinue();
 	        	}
-	        	else 
+	        	else {
+	        		PlayerGear playerGear = AdventureGame.getPlayer().getPlayerGear();
 	        		PlayerGear.equipGear(gearToEquip);
+	        	}
 	        }
 	        else if (equipDecision.trim().toUpperCase().equals("N")) {
 

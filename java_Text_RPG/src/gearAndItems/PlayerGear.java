@@ -6,8 +6,7 @@ import java.util.Map;
 import java.io.Serializable;
 
 import com.dchimitt.main.AdventureGame;
-
-import gearAndItems.PlayerItems.Items;
+import com.dchimitt.main.Player;
 
 public class PlayerGear implements Serializable {
 	static Scanner in = new Scanner(System.in);
@@ -313,6 +312,7 @@ public class PlayerGear implements Serializable {
 					System.out.println("You chose not to equip " + gear.getGearName() + ".");
 			}
 		}
+		AdventureGame.getPlayer().setPlayerGear(Player.playerGear);
 	}
 	
 	// Method to print the gear a player currently owns in their inventory
@@ -347,8 +347,10 @@ public class PlayerGear implements Serializable {
     	return equippedChestArmor;
     }
     //
-    public void setEquippedGear(Gear weapon, Gear armor) {
+    public void setEquippedWeapon(Gear weapon) {
     	equippedWeapon = weapon;
+    }
+    public void setEquippedChestArmor(Gear armor) {
     	equippedChestArmor = armor;
     }
 

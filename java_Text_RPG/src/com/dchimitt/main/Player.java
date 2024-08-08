@@ -9,7 +9,7 @@ import java.util.Map;
 // NOTE: @Override means inherited methods from abstract superclass differ
 public class Player extends Character implements java.io.Serializable {
 	public static Scanner in = new Scanner(System.in);
-	public PlayerGear playerGear = new PlayerGear();
+	public static PlayerGear playerGear = new PlayerGear();
 	
 	// define EnumMaps for learned states of abilities and spells
 	private EnumMap<Abilities, Boolean> learnedAbilities;

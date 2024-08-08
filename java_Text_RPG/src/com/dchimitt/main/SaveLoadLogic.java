@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.Map;
 
 import gearAndItems.PlayerGear;
+import gearAndItems.PlayerGear.Gear;
 import gearAndItems.PlayerItems;
 import maps.ActOneMap;
 
@@ -19,7 +20,8 @@ public class SaveLoadLogic {
 			out.writeObject(AdventureGame.player);
 		        
 			// Save player's currently equipped gear
-			out.writeObject(AdventureGame.player.getPlayerGear());
+			out.writeObject(PlayerGear.getEquippedWeapon());
+			out.writeObject(PlayerGear.getEquippedChestArmor());
 
 			// Save item quantities
 			out.writeObject(PlayerItems.getItemQuantities()); 
@@ -81,8 +83,10 @@ public class SaveLoadLogic {
 		    	AdventureGame.player = (Player) in.readObject();
 
 		        // Load player's gear
-		        PlayerGear loadedGear = (PlayerGear) in.readObject();
-		        AdventureGame.player.setPlayerGear(loadedGear);
+		        Gear equippedWeapon = (Gear) in.readObject();
+		        Gear equippedChestArmor = (Gear) in.readObject();
+		        Player.playerGear.setEquippedWeapon(equippedWeapon);
+		        Player.playerGear.setEquippedChestArmor(equippedChestArmor);
 		        
 		        // Load item quantities
 		        Object itemQuantitiesObject = in.readObject();
