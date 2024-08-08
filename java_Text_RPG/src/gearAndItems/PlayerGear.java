@@ -208,18 +208,15 @@ public class PlayerGear implements Serializable {
 				equippedWeapon = gear;
 			}
 			else {
-				// weapon is already equipped, ask player if they want to remove it first
 				System.out.println("You already have a weapon equipped! Unequip it now? Y for yes, N for no");
 				String unequipDecision = in.nextLine().trim();
 				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					// unequip weapon and add back to inventory
 					System.out.println("Unequipping " + equippedWeapon.getGearName() + "...");
 					gearQuantities.put(equippedWeapon, gearQuantities.getOrDefault(equippedWeapon, 0) + 1);
 			        AdventureGame.getPlayer().dexterity -= equippedWeapon.getGearStatIncrease();
 			        isWeaponEquipped = false;
 			        equippedWeapon = null;
 
-			        // Equip the new weapon
 			        System.out.println("Equipping " + gear.getGearName() + "...");
 			        gearQuantities.put(gear, quantity - 1);
 			        AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
@@ -239,18 +236,15 @@ public class PlayerGear implements Serializable {
 				equippedChestArmor = gear;
 			}
 			else {
-				// chest armor is already equipped, ask player if they want to remove it first
 				System.out.println("You already have a chest piece equipped! Unequip it now? Y for yes, N for no");
 				String unequipDecision = in.nextLine().trim();
 				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					// unequip chest armor and add back to inventory
 					System.out.println("Unequipping " + equippedChestArmor.getGearName() + "...");
 					gearQuantities.put(equippedChestArmor, gearQuantities.getOrDefault(equippedChestArmor, 0) + 1);
 			        AdventureGame.getPlayer().dexterity -= equippedChestArmor.getGearStatIncrease();
 			        isChestArmorEquipped = false;
 			        equippedChestArmor = null;
 
-			        // Equip the new chest armor
 			        System.out.println("Equipping " + gear.getGearName() + "...");
 			        gearQuantities.put(gear, quantity - 1);
 			        AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
@@ -272,18 +266,15 @@ public class PlayerGear implements Serializable {
 				equippedWeapon = gear;
 			}
 			else {
-				// weapon is already equipped, ask player if they want to remove it first
 				System.out.println("You already have a weapon equipped! Unequip it now? Y for yes, N for no");
 				String unequipDecision = in.nextLine().trim();
 				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					// unequip weapon and add back to inventory
 					System.out.println("Unequipping " + equippedWeapon.getGearName() + "...");
 					gearQuantities.put(equippedWeapon, gearQuantities.getOrDefault(equippedWeapon, 0) + 1);
 			        AdventureGame.getPlayer().intelligence -= equippedWeapon.getGearStatIncrease();
 			        isWeaponEquipped = false;
 			        equippedWeapon = null;
 
-			        // Equip the new weapon
 			        System.out.println("Equipping " + gear.getGearName() + "...");
 			        gearQuantities.put(gear, quantity - 1);
 			        AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
@@ -303,18 +294,15 @@ public class PlayerGear implements Serializable {
 				equippedChestArmor = gear;
 			}
 			else {
-				// chest armor is already equipped, ask player if they want to remove it first
 				System.out.println("You already have a chest piece equipped! Unequip it now? Y for yes, N for no");
 				String unequipDecision = in.nextLine().trim();
 				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					// unequip chest armor and add back to inventory
 					System.out.println("Unequipping " + equippedChestArmor.getGearName() + "...");
 					gearQuantities.put(equippedChestArmor, gearQuantities.getOrDefault(equippedChestArmor, 0) + 1);
 			        AdventureGame.getPlayer().intelligence -= equippedChestArmor.getGearStatIncrease();
 			        isChestArmorEquipped = false;
 			        equippedChestArmor = null;
 
-			        // Equip the new chest armor
 			        System.out.println("Equipping " + gear.getGearName() + "...");
 			        gearQuantities.put(gear, quantity - 1);
 			        AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
