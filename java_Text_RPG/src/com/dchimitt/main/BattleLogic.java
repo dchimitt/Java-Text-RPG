@@ -3,18 +3,18 @@ import java.util.Scanner;
 import java.io.Serializable;
 
 public class BattleLogic implements Serializable {
-	static Scanner in = new Scanner(System.in);
+	Scanner in = new Scanner(System.in);
 	public static void startBattle(Character enemy) {
 		while (true) {
 			GameLogic.clearConsole();
 			GameLogic.printHyphenHeader(enemy.name + " (level " + enemy.level + ")" + "\nHP: " + enemy.currentHp + "/" + enemy.maximumHp);
-			GameLogic.printTildeHeader(GameLogic.player.name + " (level " + GameLogic.player.level + ")" + "\nHP: " + GameLogic.player.currentHp + "/" + GameLogic.player.maximumHp);
+			GameLogic.printTildeHeader(AdventureGame.getPlayer().name + " (level " + AdventureGame.getPlayer().level + ")" + "\nHP: " + AdventureGame.getPlayer().currentHp + "/" + AdventureGame.getPlayer().maximumHp);
 			System.out.println("(1) Attack\n(2) Abilities\n(3) Offensive Magic\n(4) Support Magic\n(5) Defend\n(6) Use item\n(7) Run");
 			int input = GameLogic.intUserInput("--> ", 7);
 			
 			if (input == 1) {
-				int damagePlayerDoes = GameLogic.player.attack() - enemy.defend();
-				int damagePlayerTakes = enemy.attack() - GameLogic.player.defend();
+				int damagePlayerDoes = AdventureGame.getPlayer().attack() - enemy.defend();
+				int damagePlayerTakes = enemy.attack() - AdventureGame.getPlayer().defend();
 				if (damagePlayerTakes < 0) {
 					// adding damage if player defends well
 					damagePlayerDoes -= damagePlayerTakes / 2;
@@ -22,7 +22,7 @@ public class BattleLogic implements Serializable {
 				}
 				if (damagePlayerDoes < 0)
 					damagePlayerDoes = 0;
-				GameLogic.player.currentHp -= damagePlayerTakes;
+				AdventureGame.getPlayer().currentHp -= damagePlayerTakes;
 				enemy.currentHp -= damagePlayerDoes;
 
 				// print information to show what occurred this round
@@ -30,7 +30,7 @@ public class BattleLogic implements Serializable {
 				GameLogic.printHyphenHeader("BATTLE ROUND INFORMATION");
 				System.out.println("You dealt " + damagePlayerDoes + " damage to the " + enemy.name + ".");
 				System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
-				if (GameLogic.player.currentHp <= 0) {
+				if (AdventureGame.getPlayer().currentHp <= 0) {
 					GameLogic.playerIsDead();
 					break;
 				} 
@@ -46,7 +46,7 @@ public class BattleLogic implements Serializable {
 					System.out.println("You defeated the " + enemy.name + "!");
 					// TODO: edit experience values later
 					int experienceGained = enemy.level + 2;
-					GameLogic.player.currentExp += experienceGained;
+					AdventureGame.getPlayer().currentExp += experienceGained;
 					System.out.println("You earned " + experienceGained + " experience points!");
 					GameLogic.didPlayerLevelUp();
 					GameLogic.typeToContinue();
@@ -54,16 +54,16 @@ public class BattleLogic implements Serializable {
 				}
 			} 
 			else if (input == 2) {
-				GameLogic.player.useAbility();
+				AdventureGame.getPlayer().useAbility();
 			} 
 			else if (input == 3) {
-				GameLogic.player.useMagic();
+				AdventureGame.getPlayer().useMagic();
 			} 
 			else if (input == 4) {
-				GameLogic.player.useMagic();
+				AdventureGame.getPlayer().useMagic();
 			} 
 			else if (input == 5) {
-				GameLogic.player.defend();
+				AdventureGame.getPlayer().defend();
 			} 
 			else if (input == 6) {
 				// useItem();
@@ -82,7 +82,7 @@ public class BattleLogic implements Serializable {
 					// TODO: add random variation to damage taken
 					int failedEscapeDamage = enemy.attack() / 2;
 					System.out.println("The enemy strikes your back for " + failedEscapeDamage + " damage!");
-					if (GameLogic.player.currentHp <= 0) 
+					if (AdventureGame.getPlayer().currentHp <= 0) 
 						GameLogic.playerIsDead();
 				}
 			}

@@ -6,6 +6,7 @@ import gearAndItems.PlayerGear;
 import gearAndItems.PlayerItems;
 import gearAndItems.GearVendor;
 
+import com.dchimitt.main.AdventureGame;
 import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.TownOptions;
 import com.dchimitt.main.Room;
@@ -147,6 +148,18 @@ public class ActOneMap implements java.io.Serializable {
 		System.out.println("--Location--\n" + currentRoom.getName() + currentRoom.getDescription());
 	}
 	
+	public static int getCurrentPlayerPositionIndex() {
+	    return currentPlayerPosition;
+	}
+	
+	public static void setCurrentPlayerPositionIndex(int index) {
+	    if (index >= 0 && index < actOneMap.size()) {
+	        currentPlayerPosition = index;
+	    } else {
+	        System.out.println("Invalid position index.");
+	    }
+	}
+	
 	// Method for moving player to various rooms on map
 	public static void teleportPlayerTo(Room targetRoom) {
 		int targetIndex = actOneMap.indexOf(targetRoom);
@@ -194,7 +207,7 @@ public class ActOneMap implements java.io.Serializable {
 		}
 		
 		if (newPlayerPosition != Direction.NOEXIT) {
-			GameLogic.player.incrementMovementCounter();
+			AdventureGame.getPlayer().incrementMovementCounter();
 	        currentPlayerPosition = newPlayerPosition;
 	        currentRoom = actOneMap.get(currentPlayerPosition);
 	        System.out.println("--Location--\n" + currentRoom.getName() + currentRoom.getDescription());

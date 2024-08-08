@@ -1,6 +1,7 @@
 package dialogue;
 
 import com.dchimitt.main.GameLogic;
+import com.dchimitt.main.AdventureGame;
 import java.io.Serializable;
 
 public class ActOneDialogue implements java.io.Serializable {
@@ -15,8 +16,8 @@ public class ActOneDialogue implements java.io.Serializable {
 	public static void momTalkText() {
 		GameLogic.clearConsole();
 		System.out.println("Mother:\nYou're always welcome at your home, dearie!\nFeel free to take a nap!");
-		GameLogic.player.currentHp = GameLogic.player.maximumHp;
-		GameLogic.player.currentMana = GameLogic.player.maximumMana;
+		AdventureGame.getPlayer().currentHp = AdventureGame.getPlayer().maximumHp;
+		AdventureGame.getPlayer().currentMana = AdventureGame.getPlayer().maximumMana;
 		System.out.println("\nYour health and mana have been fully restored! Thanks mom!");
 		GameLogic.typeToContinue();
 		GameLogic.clearConsole();

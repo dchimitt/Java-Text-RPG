@@ -1,43 +1,50 @@
 package gearAndItems;
 
-import com.dchimitt.main.GameLogic;
+import com.dchimitt.main.AdventureGame;
+import java.util.Map;
+import java.util.EnumMap;
 
-public class PlayerItems {
+public class PlayerItems {	
+	// map to store item quantities
+	private static final Map<Items, Integer> itemQuantities = new EnumMap<>(Items.class);
+	
+	// initializing quantity of 0 for each item in the map
+	static {
+		for (Items item : Items.values()) {
+			itemQuantities.put(item,  0);
+		}
+	}
+	
 	public static enum Items {
-		WEAK_HEALING_POTION("Weak Healing Potion", "Restores 10 hitpoints", 0, 15, 15/4),
-		HEALING_POTION("Healing Potion", "Restores 25 hitpoints", 0, 50, 50/4),
-		INFUSED_HEALING_POTION("Infused Healing Potion", "Restores 50 hitpoints", 0, 150, 150/4),
-		WEAK_MANA_POTION("Weak Mana Potion", "Restores 5 mana", 0, 15, 15/4),
-		MANA_POTION("Mana Potion", "Restores 15 mana", 0, 50, 50/4),
-		INFUSED_MANA_POTION("Infused Mana Potion", "Restores 30 mana", 0, 150, 150/4),
-		ANTIDOTE("Antidote", "Cures the poison status", 0, 50, 50/4),
-		REAPERS_BANE("Reaper's Bane", "Prevent death for __ turns", 0, 99999, 99999/4);
+		WEAK_HEALING_POTION("Weak Healing Potion", "Restores 10 hitpoints", 15, 15/4),
+		HEALING_POTION("Healing Potion", "Restores 25 hitpoints", 50, 50/4),
+		INFUSED_HEALING_POTION("Infused Healing Potion", "Restores 50 hitpoints", 150, 150/4),
+		WEAK_MANA_POTION("Weak Mana Potion", "Restores 5 mana", 15, 15/4),
+		MANA_POTION("Mana Potion", "Restores 15 mana", 50, 50/4),
+		INFUSED_MANA_POTION("Infused Mana Potion", "Restores 30 mana", 150, 150/4),
+		ANTIDOTE("Antidote", "Cures the poison status", 50, 50/4),
+		REAPERS_BANE("Reaper's Bane", "Prevent death for __ turns", 99999, 99999/4);
 	
 		// instance variables for each ability
 		private final String itemName;
 		private final String itemDescription;
-		private int itemQuantity;
 		private int itemCostInGold;
 		private int itemSellingPrice; // 25% of purchase price
 		
 		// Constructor
-		Items(String itemName, String itemDescription, int itemQuantity, int itemCostInGold, int itemSellingPrice) {
+		Items(String itemName, String itemDescription, int itemCostInGold, int itemSellingPrice) {
 			this.itemName = itemName;
 			this.itemDescription = itemDescription;
-			this.itemQuantity = itemQuantity;
 			this.itemCostInGold = itemCostInGold;
 			this.itemSellingPrice = itemSellingPrice;
 		}
 		
-		// getter methods
+		// getter methods for item enum
 		public String getItemName() {
 			return itemName;
 		}		
 		public String getItemDescription() {
 			return itemDescription;
-		}
-		public int getItemQuantity() {
-			return itemQuantity;
 		}
 		public int getItemCostInGold() {
 			return itemCostInGold;
@@ -47,73 +54,56 @@ public class PlayerItems {
 		}
 	}
 	
-	// methods to increase item quantity when player makes a purchase or obtains as drop from monster/boss
-	public static void increaseWeakHealingPotionQuantity() {
-		Items.WEAK_HEALING_POTION.itemQuantity++;
+	// method to return copy of item quantity map for purposes of saving/loading
+	public static Map<Items, Integer> getItemQuantities() {
+	    return new EnumMap<>(itemQuantities);
 	}
-	public static void increaseHealingPotionQuantity() {
-		Items.HEALING_POTION.itemQuantity++;
+	
+	// method to set the item quantities from a provided map
+	public static void setItemQuantities(Map<Items, Integer> newQuantities) {
+		itemQuantities.clear();
+		itemQuantities.putAll(newQuantities);
 	}
-	public static void increaseInfusedHealingPotionQuantity() {
-		Items.INFUSED_HEALING_POTION.itemQuantity++;
-	}
-	public static void increaseWeakManaPotionQuantity() {
-		Items.WEAK_MANA_POTION.itemQuantity++;
-	}
-	public static void increaseManaPotionQuantity() {
-		Items.MANA_POTION.itemQuantity++;
-	}
-	public static void increaseInfusedManaPotionQuantity() {
-		Items.INFUSED_HEALING_POTION.itemQuantity++;
-	}
-	public static void increaseAntidoteQuantity() {
-		Items.ANTIDOTE.itemQuantity++;
-	}
-	public static void increaseReapersBaneQuantity() {
-		Items.REAPERS_BANE.itemQuantity++;
+	
+	// method to increase a particular item quantity based on item map
+	public static void increaseItemQuantity(Items item) {
+		itemQuantities.put(item, itemQuantities.getOrDefault(item, 0) + 1);
 	}
 			
-	// methods to use healing potions
-	public static void useWeakHealingPotion() {
-		GameLogic.player.currentHp = GameLogic.player.currentHp + 10;
-		Items.WEAK_HEALING_POTION.itemQuantity--;
-	}
-	public static void useHealingPotion() {
-		GameLogic.player.currentHp = GameLogic.player.currentHp + 25;
-		Items.HEALING_POTION.itemQuantity--;
-	}
-	public static void useInfusedHealingPotion() {
-		GameLogic.player.currentHp = GameLogic.player.currentHp + 50;
-		Items.INFUSED_HEALING_POTION.itemQuantity--;
-	}
-			
-	// methods to use mana potions
-	public static void useWeakManaPotion() {
-		GameLogic.player.currentMana = GameLogic.player.currentMana + 5;
-		Items.WEAK_MANA_POTION.itemQuantity--;
-	}
-	public static void useManaPotion() {
-		GameLogic.player.currentMana = GameLogic.player.currentMana + 15;
-		Items.MANA_POTION.itemQuantity--;
-	}
-	public static void useInfusedManaPotion() {
-		GameLogic.player.currentMana = GameLogic.player.currentMana + 30;
-		Items.INFUSED_MANA_POTION.itemQuantity--;
-	}		
-			
-	// methods to use other items
-	public static void useAntidote() {
-		Items.ANTIDOTE.itemQuantity--;
-	}
-	public static void useReapersBane() {
-		Items.REAPERS_BANE.itemQuantity--;
-	}
+	// methods to use a particular item using the item map
+	public static void useItem(Items item) {
+        int currentQuantity = itemQuantities.getOrDefault(item, 0);
+        if (currentQuantity > 0) {
+            // item use logic for each item here
+            if (item == Items.WEAK_HEALING_POTION) 
+                AdventureGame.getPlayer().currentHp += 10;
+            else if (item == Items.HEALING_POTION) 
+                AdventureGame.getPlayer().currentHp += 25;
+            else if (item == Items.INFUSED_HEALING_POTION) 
+                AdventureGame.getPlayer().currentHp += 50;
+            else if (item == Items.WEAK_MANA_POTION) 
+                AdventureGame.getPlayer().currentMana += 5;
+            else if (item == Items.MANA_POTION) 
+                AdventureGame.getPlayer().currentMana += 15;
+            else if (item == Items.INFUSED_MANA_POTION) 
+                AdventureGame.getPlayer().currentMana += 30;
+            else if (item == Items.ANTIDOTE) { 
+                // add use logic later
+            }
+            else if (item == Items.REAPERS_BANE) {
+                // add use logic later
+            }
+            itemQuantities.put(item, currentQuantity - 1);
+        }
+    }
 	
 	// method to print a list of the players items
 	public static void printPlayerItems() {
-		for (Items item: Items.values()) {
-			if (item.getItemQuantity() > 0) 
-				System.out.println(item.getItemName() + ": " + item.getItemDescription() +  " (" + item.getItemQuantity() + ")");
+		for (Map.Entry<Items, Integer> entry : itemQuantities.entrySet()) {
+			Items item = entry.getKey();
+			int quantity = entry.getValue();
+			if (quantity > 0) 
+				System.out.println(item.getItemName() + ": " + item.getItemDescription() + " (" + quantity + ")");
 		}
 	}
 }

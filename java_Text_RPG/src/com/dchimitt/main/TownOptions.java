@@ -25,7 +25,7 @@ public class TownOptions {
 				if (ActOneMap.getCurrentPlayerPosition().getName().equals("Town of Reizart:")) {
 					GameLogic.clearConsole();
 					System.out.println("Innkeeper:");
-					System.out.println("Hey, " + GameLogic.player.name + "! You can rest for free at your house! I couldn't live with myself if I charged you for a night here!");
+					System.out.println("Hey, " + AdventureGame.getPlayer().name + "! You can rest for free at your house! I couldn't live with myself if I charged you for a night here!");
 					GameLogic.typeToContinue();
 				}
 				else {

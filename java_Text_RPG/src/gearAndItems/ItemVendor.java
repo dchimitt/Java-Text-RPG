@@ -2,6 +2,7 @@ package gearAndItems;
 
 import java.io.Serializable;
 
+import com.dchimitt.main.AdventureGame;
 import com.dchimitt.main.GameLogic;
 
 public class ItemVendor implements Serializable {
@@ -24,34 +25,23 @@ public class ItemVendor implements Serializable {
 		System.out.println();
 		System.out.println("(" + x + ") Go back to town menu without making a purchase");
 		GameLogic.printTildeSeparator(60);
-		System.out.println("Current gold: " + GameLogic.player.gold);
+		System.out.println("Current gold: " + AdventureGame.getPlayer().gold);
 	}
 	
 	public static void purchaseItem(PlayerItems.Items item) {
-		// item.increaseItemQuantity();
-		if (GameLogic.player.gold >= item.getItemCostInGold()) {
-			System.out.println("You have purchased " + item.getItemName() + ".");
-			GameLogic.player.gold = GameLogic.player.gold - item.getItemCostInGold();
-			System.out.println("Current gold: " + GameLogic.player.gold);
-			if (item.getItemName().equals("Weak Healing Potion"))
-				PlayerItems.increaseWeakHealingPotionQuantity();
-			else if (item.getItemName().equals("Healing Potion"))
-				PlayerItems.increaseHealingPotionQuantity();
-			else if (item.getItemName().equals("Infused Healing Potion"))
-				PlayerItems.increaseInfusedHealingPotionQuantity();
-			else if (item.getItemName().equals("Weak Mana Potion"))
-				PlayerItems.increaseWeakManaPotionQuantity();
-			else if (item.getItemName().equals("Mana Potion"))
-				PlayerItems.increaseManaPotionQuantity();
-			else if (item.getItemName().equals("Infused Mana Potion"))
-				PlayerItems.increaseInfusedManaPotionQuantity();
-			else if (item.getItemName().equals("Antidote"))
-				PlayerItems.increaseAntidoteQuantity();
-			else if (item.getItemName().equals("Reaper's Bane"))
-				PlayerItems.increaseReapersBaneQuantity();	
-		}
-		else {
-			System.out.println("I'm sorry, you don't have enough gold to purchase that!");
-		}
+	    // Check if the player has enough gold
+	    if (AdventureGame.getPlayer().gold >= item.getItemCostInGold()) {
+	        // Deduct the item cost from the player's gold
+	        AdventureGame.getPlayer().gold -= item.getItemCostInGold();
+	        
+	        // Increase the item quantity in the player's inventory
+	        PlayerItems.increaseItemQuantity(item);
+	        
+	        // Print purchase confirmation and current gold
+	        System.out.println("You have purchased " + item.getItemName() + ".");
+	        System.out.println("Current gold: " + AdventureGame.getPlayer().gold);
+	    } 
+	    else 
+	        System.out.println("I'm sorry, you don't have enough gold to purchase that!");	    
 	}
 }
