@@ -371,13 +371,13 @@ public class GameLogic implements java.io.Serializable {
 						break;
 					}
 					else if (input == 3) {
-						AdventureGame.saveGame();
+						SaveLoadLogic.saveGame();
 						GameLogic.typeToContinue();
 						menuActive = false;
 						break;
 					} 
 					else {
-						AdventureGame.saveGame();
+						SaveLoadLogic.saveGame();
 						isRunning = false;
 						menuActive = false;
 						break;
@@ -479,6 +479,7 @@ public class GameLogic implements java.io.Serializable {
 			System.out.println();
 			System.out.println("--Gear--\n");
 			PlayerGear.printPlayerGearInInventory();
+			GameLogic.typeToContinue();
 		}
 		// player wants to change equipped gear
 		else if (input == 2) {
@@ -498,6 +499,8 @@ public class GameLogic implements java.io.Serializable {
 	        	for (Gear gear : Gear.values()) {
 	        		if (gear.getGearName().equalsIgnoreCase(equipToPutOn)) {
 	        			gearToEquip = gear;
+	        			System.out.println("The gear has been equipped!");
+	        			GameLogic.typeToContinue();
 	        			break;
 	        		}
 	        	}

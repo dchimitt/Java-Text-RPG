@@ -1,6 +1,5 @@
 package gearAndItems;
 
-import gearAndItems.PlayerItems.Items;
 import java.util.EnumMap;
 import java.util.Map;
 import java.io.Serializable;
