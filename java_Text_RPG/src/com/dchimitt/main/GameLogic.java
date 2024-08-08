@@ -335,68 +335,80 @@ public class GameLogic implements java.io.Serializable {
 
 	// method to continue game
 	public static void continueGame() {
-		while (isRunning) {
-			if (isInTown()) 
-				TownOptions.townOptions();
-		
-			GameLogic.clearConsole();
-			checkAct();
-			boolean isInFight = false;
-			ActOneMap.printPlayerPosition();
-			System.out.println("Type N, S, E, or W to move in a direction.\nType M to access the menu.");
-			do {
-				String directionInput = in.nextLine().trim().toUpperCase();
-				if (directionInput.equals("N"))
-					ActOneMap.movePlayerTo(Direction.NORTH);
-				else if (directionInput.equals("S"))
-					ActOneMap.movePlayerTo(Direction.SOUTH);
-				else if (directionInput.equals("E"))
-					ActOneMap.movePlayerTo(Direction.EAST);
-				else if (directionInput.equals("W"))
-					ActOneMap.movePlayerTo(Direction.WEST);
-				else if (directionInput.equals("M")) {
-					printMenu();
-					// TODO: fix infinite loop when player presses 3 or 4 to save or save and exit
-					int input = intUserInput("--> ", 4);
-					if (input == 1)
-						continueGame();
+	    while (isRunning) {
+	        if (isInTown()) 
+	            TownOptions.townOptions();
+
+	        GameLogic.clearConsole();
+	        checkAct();
+	        boolean isInFight = false;
+	        ActOneMap.printPlayerPosition();
+	        System.out.println("Type N, S, E, or W to move in a direction.\nType M to access the menu.");
+
+	        String directionInput = in.nextLine().trim().toUpperCase();
+
+	        if (directionInput.equals("N"))
+	            ActOneMap.movePlayerTo(Direction.NORTH);
+	        else if (directionInput.equals("S"))
+	            ActOneMap.movePlayerTo(Direction.SOUTH);
+	        else if (directionInput.equals("E"))
+	            ActOneMap.movePlayerTo(Direction.EAST);
+	        else if (directionInput.equals("W"))
+	            ActOneMap.movePlayerTo(Direction.WEST);
+	        else if (directionInput.equals("M")) {
+	            boolean menuActive = true;
+	            
+	            while (menuActive) {
+	                printMenu();
+	                int input = intUserInput("--> ", 4);
+					if (input == 1) {
+						menuActive = false;
+						break;
+					}			
 					else if (input == 2) {
 						characterSheet();
-						continueGame();
+						break;
 					}
 					else if (input == 3) {
 						AdventureGame.saveGame();
-						typeToContinue();
+						menuActive = false;
+						break;
 					} 
 					else {
 						AdventureGame.saveGame();
 						isRunning = false;
+						menuActive = false;
+						break;
 					}
 				}
+	        }
 
-				// toggle boss fight if player moves into correct room
-				checkForBossEncounter();
+			// toggle boss fight if player moves into correct room
+			checkForBossEncounter();
 			
-				// random encounter logic
-				int movementsSinceLastFight = AdventureGame.getPlayer().getMovementCounter();
-				double encounterRate;
-				double encounterRateConstant = 0.1;				
-				// formula: R(n) = 1 - e^(-kn), where n = steps since last encounter and k is encounterRateConstant
-				// rates with k = 0.1:
-				// 1 step: 9.52% || 2 steps: 18.13% || 3 steps: 25.92% || 4 steps: 32.97% || 5 steps (if fight not forced): 39.35%
-				if (movementsSinceLastFight < 5) 
-					encounterRate = (1 - Math.exp(-1 * encounterRateConstant * movementsSinceLastFight));
-				else
-					encounterRate = 1.0;
-				if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
-					isInFight = true;
-					AdventureGame.getPlayer().resetMovementCounter();
-				}				
-			} while (!isInFight);
-			System.out.println("You've encountered a monster!");
-			GameLogic.typeToContinue();
-			randomEncounter();
-		}
+			// random encounter logic
+			int movementsSinceLastFight = AdventureGame.getPlayer().getMovementCounter();
+			double encounterRate;
+			double encounterRateConstant = 0.1;				
+			// formula: R(n) = 1 - e^(-kn), where n = steps since last encounter and k is encounterRateConstant
+			// rates with k = 0.1:
+			// 1 step: 9.52% || 2 steps: 18.13% || 3 steps: 25.92% || 4 steps: 32.97% || 5 steps (if fight not forced): 39.35%
+			if (movementsSinceLastFight < 5) 
+				encounterRate = (1 - Math.exp(-1 * encounterRateConstant * movementsSinceLastFight));
+			else
+				encounterRate = 1.0;
+			if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
+				GameLogic.clearConsole();
+				isInFight = true;
+				AdventureGame.getPlayer().resetMovementCounter();
+			}				
+		    while (isInFight) {
+		    	System.out.println("You've encountered a monster!");
+		    	GameLogic.typeToContinue();
+		    	randomEncounter();
+		    	isInFight = false;
+		    }
+	    }
 	}
 
 	// print character sheet

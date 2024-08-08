@@ -227,6 +227,7 @@ public class ActOneMap implements java.io.Serializable {
 	        else {
 	            System.out.println("Your path is blocked!");
 	            pathIsBlocked = true;
+	            GameLogic.typeToContinue();
 	        }
 	    }
 	        		
