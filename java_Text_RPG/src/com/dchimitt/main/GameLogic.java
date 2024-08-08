@@ -10,6 +10,7 @@ import maps.ActOneMap;
 import maps.ActOneMap.Direction;
 import gearAndItems.PlayerItems;
 import gearAndItems.PlayerGear;
+import gearAndItems.PlayerGear.Gear;
 
 // will never create object of this class
 public class GameLogic implements java.io.Serializable {
@@ -476,21 +477,41 @@ public class GameLogic implements java.io.Serializable {
 			System.out.println("--Gear--\n");
 			PlayerGear.printPlayerGearInInventory();
 		}
-		// player wants to view/change equipped gear
+		// player wants to change equipped gear
 		else if (input == 2) {
-			/*
-			String equipToPutOn;
-			PlayerGear.printEquippedGear();
-			System.out.println("Would you like to change your equipment?\n(1) Weapon\n(2) Chest");
-			int equipPieceInput = GameLogic.intUserInput("-->", 2);
-			if (equipPieceInput == 1) {
-				clearConsole();
-				PlayerGear.printEquippedGear();
-				GameLogic.printHyphenSeparator(20);
-				PlayerGear.printPlayerGearInInventory();
-				System.out.println("Please type the name of the piece of gear you want to equip. NOTE: must type names exactly as written");
-				equipToPutOn = in.nextLine();
-			*/
+			clearConsole();
+	        PlayerGear.printEquippedGear();
+	        GameLogic.printHyphenSeparator(20);
+	        PlayerGear.printPlayerGearInInventory();
+	        System.out.println("Would you like to change a piece of gear you are currently equipping? Y for yes, N for no");
+	        String equipDecision = in.nextLine().trim();
+	        
+	        if (equipDecision.trim().toUpperCase().equals("Y")) {
+	        	System.out.println("Please type the name of the piece of gear you want to equip. NOTE: must type names exactly as written");
+	        	String equipToPutOn = in.nextLine().trim();
+	        	
+	        	// Convert the input into Gear enum
+	        	Gear gearToEquip = null;
+	        	for (Gear gear : Gear.values()) {
+	        		if (gear.getGearName().equalsIgnoreCase(equipToPutOn)) {
+	        			gearToEquip = gear;
+	        			break;
+	        		}
+	        	}
+	        
+	        	if (gearToEquip == null) {
+	        		System.out.println("Invalid gear name. Please check the name and try again.");
+	        		GameLogic.typeToContinue();
+	        	}
+	        	else 
+	        		PlayerGear.equipGear(gearToEquip);
+	        }
+	        else if (equipDecision.trim().toUpperCase().equals("N")) {
+
+	        }
+	        else {
+	        	System.out.println("Invalid input. Returning to map.");
+	        }	        
 		}
 		// player wants to continue game
 		else {

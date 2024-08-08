@@ -221,7 +221,14 @@ public class PlayerGear {
     
     public static void printEquippedGear() {
 		System.out.println("--You are currently wearing--");
-		System.out.println("WEAPON: " + equippedWeapon.getGearName() + " " + equippedWeapon.getGearDescription());
-		System.out.println("CHEST: " + equippedChestArmor.getGearName() + " " + equippedChestArmor.getGearDescription());
+		if (equippedWeapon != null) 
+			System.out.println("WEAPON: " + equippedWeapon.getGearName() + " " + equippedWeapon.getGearDescription());
+		else 
+			System.out.println("WEAPON: None");
+		
+		if (equippedChestArmor != null)
+			System.out.println("CHEST: " + equippedChestArmor.getGearName() + " " + equippedChestArmor.getGearDescription());
+		else
+			System.out.println("CHEST: None");
 	}
 }
