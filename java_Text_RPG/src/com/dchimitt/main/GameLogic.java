@@ -478,7 +478,19 @@ public class GameLogic implements java.io.Serializable {
 		}
 		// player wants to view/change equipped gear
 		else if (input == 2) {
-			
+			/*
+			String equipToPutOn;
+			PlayerGear.printEquippedGear();
+			System.out.println("Would you like to change your equipment?\n(1) Weapon\n(2) Chest");
+			int equipPieceInput = GameLogic.intUserInput("-->", 2);
+			if (equipPieceInput == 1) {
+				clearConsole();
+				PlayerGear.printEquippedGear();
+				GameLogic.printHyphenSeparator(20);
+				PlayerGear.printPlayerGearInInventory();
+				System.out.println("Please type the name of the piece of gear you want to equip. NOTE: must type names exactly as written");
+				equipToPutOn = in.nextLine();
+			*/
 		}
 		// player wants to continue game
 		else {
