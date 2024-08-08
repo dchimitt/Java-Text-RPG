@@ -10,6 +10,10 @@ public class PlayerGear {
 	// enum map used to store gear quantities
 	private static final Map<Gear, Integer> gearQuantities = new EnumMap<>(Gear.class);
 	
+	// boolean values of whether player has a particular piece of gear already equipped
+	public static boolean isWeaponEquipped = false;
+	public static boolean isChestArmorEquipped = false;
+	
 	// Initialize quantity of 0 for each gear in the map
     static {
         for (Gear gear : Gear.values()) {
@@ -94,8 +98,10 @@ public class PlayerGear {
 		int currentQuantity = gearQuantities.getOrDefault(gear,  0);
 		gearQuantities.put(gear, currentQuantity + 1);
 	}
-			
+	
+	// TODO: possible bug if player tries to equip the exact same piece of gear they are already wearing
 	public static void equipGear(Gear gear) {
+		
 		// set starting quantity to default 0 or amount player has
 		int quantity = gearQuantities.getOrDefault(gear, 0);
 		
@@ -108,10 +114,14 @@ public class PlayerGear {
 		if ((quantity > 0) && (gear.getGearStatType().equals("strength")) && (AdventureGame.getPlayer().strength >= gear.getGearStatRequirement())) {
 			System.out.println("Equipping " + gear.getGearName() + "...");
 			gearQuantities.put(gear, quantity - 1);
-			if (gear.getGearName().trim().toUpperCase().equals("STARTING SWORD")) 
+			if ((gear.getGearName().trim().toUpperCase().equals("STARTING SWORD")) && !isWeaponEquipped) {
 				AdventureGame.getPlayer().strength += gear.getGearStatIncrease();
-			else if (gear.getGearName().trim().toUpperCase().equals("STARTING CHAINMAIL")) 
+				isWeaponEquipped = true;
+			}
+			else if ((gear.getGearName().trim().toUpperCase().equals("STARTING CHAINMAIL")) && !isChestArmorEquipped) {
 				AdventureGame.getPlayer().strength += gear.getGearStatIncrease();
+				isChestArmorEquipped = true;
+			}
 			// TODO: add as needed (maybe think of an easier way to equip vs. having to do this for every piece of gear...
 			//       OR just have a base stat requirement and player only needs one stat at that level to wear it?
 			else if ((quantity > 0) && (gear.getGearStatType().equals("strength")) && (AdventureGame.getPlayer().strength < gear.getGearStatRequirement()))
@@ -122,10 +132,14 @@ public class PlayerGear {
 		if ((quantity > 0) && (gear.getGearStatType().equals("dexterity")) && (AdventureGame.getPlayer().dexterity >= gear.getGearStatRequirement())) {
 			System.out.println("Equipping " + gear.getGearName() + "...");
 			gearQuantities.put(gear, quantity - 1);
-			if (gear.getGearName().trim().toUpperCase().equals("STARTING DAGGER")) 
+			if ((gear.getGearName().trim().toUpperCase().equals("STARTING DAGGER")) && !isWeaponEquipped) {
 				AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
-			else if (gear.getGearName().trim().toUpperCase().equals("STARTING VEST")) 
+				isWeaponEquipped = true;
+			}
+			else if (gear.getGearName().trim().toUpperCase().equals("STARTING VEST") && !isChestArmorEquipped) {
 				AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
+				isChestArmorEquipped = true;
+			}
 			// TODO: add as needed (maybe think of an easier way to equip vs. having to do this for every piece of gear...
 			//       OR just have a base stat requirement and player only needs one stat at that level to wear it?
 			else if ((quantity > 0) && (gear.getGearStatType().equals("dexterity")) && (AdventureGame.getPlayer().dexterity < gear.getGearStatRequirement()))
@@ -136,10 +150,14 @@ public class PlayerGear {
 		if ((quantity > 0) && (gear.getGearStatType().equals("intelligence")) && (AdventureGame.getPlayer().intelligence >= gear.getGearStatRequirement())) {
 			System.out.println("Equipping " + gear.getGearName() + "...");
 			gearQuantities.put(gear, quantity - 1);
-			if (gear.getGearName().trim().toUpperCase().equals("STARTING WAND")) 
+			if ((gear.getGearName().trim().toUpperCase().equals("STARTING WAND")) && !isWeaponEquipped) {
 				AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
-			else if (gear.getGearName().trim().toUpperCase().equals("STARTING ROBE")) 
+				isWeaponEquipped = true;
+			}
+			else if ((gear.getGearName().trim().toUpperCase().equals("STARTING ROBE")) && !isChestArmorEquipped) {
 				AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
+				isChestArmorEquipped = true;
+			}
 			// TODO: add as needed (maybe think of an easier way to equip vs. having to do this for every piece of gear...
 			//       OR just have a base stat requirement and player only needs one stat at that level to wear it?
 			else if ((quantity > 0) && (gear.getGearStatType().equals("intelligence")) && (AdventureGame.getPlayer().intelligence < gear.getGearStatRequirement()))
@@ -148,7 +166,28 @@ public class PlayerGear {
 	}
 			
 	public static void unequipGear(Gear gear) {
+		// quantity of gear prior to unequipping
 		int quantity = gearQuantities.getOrDefault(gear, 0);
+		
+		System.out.println("Removing " + gear.getGearName() + "...");
+		if (gear.getGearName().trim().toUpperCase().equals("STARTING SWORD")) {
+			
+		}
+		else if (gear.getGearName().trim().toUpperCase().equals("STARTING CHAINMAIL")) {
+			
+		}
+		else if (gear.getGearName().trim().toUpperCase().equals("STARTING DAGGER")) {
+			
+		}
+		else if (gear.getGearName().trim().toUpperCase().equals("STARTING VEST")) {
+			
+		}
+		else if (gear.getGearName().trim().toUpperCase().equals("STARTING WAND")) {
+			
+		}
+		else if (gear.getGearName().trim().toUpperCase().equals("STARTING ROBE")) {
+			
+		}
 	}
 	
 	// Method to print the gear a player currently owns
