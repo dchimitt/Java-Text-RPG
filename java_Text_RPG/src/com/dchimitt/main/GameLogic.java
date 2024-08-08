@@ -367,7 +367,7 @@ public class GameLogic implements java.io.Serializable {
 						break;
 					}			
 					else if (input == 2) {
-						GameLogic.characterSheet();
+						characterSheet();
 						break;
 					}
 					else if (input == 3) {

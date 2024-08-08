@@ -7,27 +7,30 @@ import java.io.Serializable;
 
 import com.dchimitt.main.AdventureGame;
 
+import gearAndItems.PlayerItems.Items;
+
 public class PlayerGear implements Serializable {
 	static Scanner in = new Scanner(System.in);
 	// enum map used to store gear quantities
-	private static final Map<Gear, Integer> gearQuantities;
+	private static final Map<Gear, Integer> gearQuantities = new EnumMap<>(Gear.class);
 	
 	// global boolean values of whether player has a particular piece of gear already equipped
-	public static boolean isWeaponEquipped = false;
-	public static boolean isChestArmorEquipped = false;
+	public static boolean isWeaponEquipped;
+	public static boolean isChestArmorEquipped;
 	
 	// global String values of player's equipped gear
 	public static Gear equippedWeapon;
 	public static Gear equippedChestArmor;
 	
-	// Initialize quantity of 0 for each gear in the map
+	// Constructor to initialize quantity of 0 for each gear in the map
     static {
-    	gearQuantities = new EnumMap<>(Gear.class);
         for (Gear gear : Gear.values()) {
             gearQuantities.put(gear, 0);
         }
         equippedWeapon = null;
         equippedChestArmor = null;
+        isWeaponEquipped = false;
+        isChestArmorEquipped = false;
     }
 	
 	public static enum Gear {
@@ -227,7 +230,7 @@ public class PlayerGear implements Serializable {
 					System.out.println("You chose not to equip " + gear.getGearName() + ".");
 			}
 		}
-		if (statType.equals("strength") && gear.gearType.equals("chest armor")) {
+		if (statType.equals("dexterity") && gear.gearType.equals("chest armor")) {
 			if (!isChestArmorEquipped) {
 				System.out.println("Equipping " + gear.getGearName() + "...");
 				gearQuantities.put(gear,  quantity - 1);
@@ -337,12 +340,12 @@ public class PlayerGear implements Serializable {
     public static void printEquippedGear() {
 		System.out.println("--You are currently wearing--");
 		if (equippedWeapon != null) 
-			System.out.println("WEAPON: " + equippedWeapon.getGearName() + " " + equippedWeapon.getGearDescription());
+			System.out.println("WEAPON: " + equippedWeapon.getGearName() + " (" + equippedWeapon.getGearDescription() + ")");
 		else 
 			System.out.println("WEAPON: None");
 		
 		if (equippedChestArmor != null)
-			System.out.println("CHEST: " + equippedChestArmor.getGearName() + " " + equippedChestArmor.getGearDescription());
+			System.out.println("CHEST: " + equippedChestArmor.getGearName() + " (" + equippedChestArmor.getGearDescription() + ")");
 		else
 			System.out.println("CHEST: None");
 	}
@@ -357,8 +360,8 @@ public class PlayerGear implements Serializable {
     }
     //
     public void setEquippedGear(Gear weapon, Gear armor) {
-    	this.equippedWeapon = weapon;
-    	this.equippedChestArmor = armor;
+    	equippedWeapon = weapon;
+    	equippedChestArmor = armor;
     }
 
 }
