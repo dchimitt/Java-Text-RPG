@@ -18,8 +18,8 @@ public class TownOptions {
 		GameLogic.lastTownVisited = ActOneMap.getCurrentPlayerPosition();
 		while (inTown) {
 			System.out.println("You are in " + GameLogic.lastTownVisited.getName() + "\nOPTIONS:");
-			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear vendor\n(4) Talk to NPC\n(5) Leave town");
-			int input = GameLogic.intUserInput("-->", 5);
+			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear vendor\n(4) Character sheet\n(5) Talk to NPC\n(6) Leave town");
+			int input = GameLogic.intUserInput("-->", 6);
 			// TODO implement methods
 			if (input == 1) {
 				if (ActOneMap.getCurrentPlayerPosition().getName().equals("Town of Reizart:")) {
@@ -103,6 +103,9 @@ public class TownOptions {
 				GameLogic.clearConsole();
 			} 
 			else if (input == 4) {
+				GameLogic.characterSheet();
+			}
+			else if (input == 5) {
 				GameLogic.clearConsole();
 				GameLogic.talkToNPC();
 			} 

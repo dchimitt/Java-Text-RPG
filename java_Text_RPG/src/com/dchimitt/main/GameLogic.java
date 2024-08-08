@@ -367,11 +367,12 @@ public class GameLogic implements java.io.Serializable {
 						break;
 					}			
 					else if (input == 2) {
-						characterSheet();
+						GameLogic.characterSheet();
 						break;
 					}
 					else if (input == 3) {
 						AdventureGame.saveGame();
+						GameLogic.typeToContinue();
 						menuActive = false;
 						break;
 					} 
@@ -425,7 +426,7 @@ public class GameLogic implements java.io.Serializable {
 		System.out.println("Intelligence " + AdventureGame.getPlayer().intelligence);
 		System.out.println("EXP: " + AdventureGame.getPlayer().currentExp + "/" + AdventureGame.getPlayer().expToLevel);
 		System.out.println("Gold: " + AdventureGame.getPlayer().gold);
-		printHyphenSeparator(20);
+		printTildeSeparator(20);
 
 		// print out abilities
 		boolean foundAbility = false;
@@ -473,7 +474,9 @@ public class GameLogic implements java.io.Serializable {
 		if (input == 1) {
 			System.out.println("--Consumable items--\n");
 			PlayerItems.printPlayerItems();
-			typeToContinue();
+			System.out.println();
+			GameLogic.printTildeSeparator(20);
+			System.out.println();
 			System.out.println("--Gear--\n");
 			PlayerGear.printPlayerGearInInventory();
 		}
@@ -515,9 +518,8 @@ public class GameLogic implements java.io.Serializable {
 		}
 		// player wants to continue game
 		else {
-			
+			GameLogic.clearConsole();
 		}
-		typeToContinue();
 	}
 
 	// print main menu
