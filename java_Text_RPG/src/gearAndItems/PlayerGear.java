@@ -100,8 +100,7 @@ public class PlayerGear {
 	}
 	
 	// TODO: possible bug if player tries to equip the exact same piece of gear they are already wearing
-	public static void equipGear(Gear gear) {
-		
+	public static void equipGear(Gear gear) {		
 		// set starting quantity to default 0 or amount player has
 		int quantity = gearQuantities.getOrDefault(gear, 0);
 		
@@ -126,8 +125,7 @@ public class PlayerGear {
 			//       OR just have a base stat requirement and player only needs one stat at that level to wear it?
 			else if ((quantity > 0) && (gear.getGearStatType().equals("strength")) && (AdventureGame.getPlayer().strength < gear.getGearStatRequirement()))
 				System.out.println("You do not have enough strength to wear that!");
-		}
-		
+		}		
 		// FOR DEXTERITY GEAR
 		if ((quantity > 0) && (gear.getGearStatType().equals("dexterity")) && (AdventureGame.getPlayer().dexterity >= gear.getGearStatRequirement())) {
 			System.out.println("Equipping " + gear.getGearName() + "...");
@@ -144,8 +142,7 @@ public class PlayerGear {
 			//       OR just have a base stat requirement and player only needs one stat at that level to wear it?
 			else if ((quantity > 0) && (gear.getGearStatType().equals("dexterity")) && (AdventureGame.getPlayer().dexterity < gear.getGearStatRequirement()))
 				System.out.println("You do not have enough dexterity to wear that!");
-		}
-		
+		}		
 		// FOR INTELLIGENCE GEAR
 		if ((quantity > 0) && (gear.getGearStatType().equals("intelligence")) && (AdventureGame.getPlayer().intelligence >= gear.getGearStatRequirement())) {
 			System.out.println("Equipping " + gear.getGearName() + "...");
@@ -166,27 +163,39 @@ public class PlayerGear {
 	}
 			
 	public static void unequipGear(Gear gear) {
-		// quantity of gear prior to unequipping
+		// find quantity of gear prior to unequipping and increment by 1
 		int quantity = gearQuantities.getOrDefault(gear, 0);
 		
 		System.out.println("Removing " + gear.getGearName() + "...");
 		if (gear.getGearName().trim().toUpperCase().equals("STARTING SWORD")) {
-			
+			AdventureGame.player.strength -= gear.getGearStatIncrease();
+			gearQuantities.put(gear, quantity + 1);
+			isWeaponEquipped = false;
 		}
 		else if (gear.getGearName().trim().toUpperCase().equals("STARTING CHAINMAIL")) {
-			
+			AdventureGame.player.strength -= gear.getGearStatIncrease();
+			gearQuantities.put(gear, quantity + 1);
+			isChestArmorEquipped = false;
 		}
 		else if (gear.getGearName().trim().toUpperCase().equals("STARTING DAGGER")) {
-			
+			AdventureGame.player.dexterity -= gear.getGearStatIncrease();
+			gearQuantities.put(gear, quantity + 1);
+			isWeaponEquipped = false;
 		}
 		else if (gear.getGearName().trim().toUpperCase().equals("STARTING VEST")) {
-			
+			AdventureGame.player.dexterity -= gear.getGearStatIncrease();
+			gearQuantities.put(gear, quantity + 1);
+			isChestArmorEquipped = false;
 		}
 		else if (gear.getGearName().trim().toUpperCase().equals("STARTING WAND")) {
-			
+			AdventureGame.player.intelligence -= gear.getGearStatIncrease();
+			gearQuantities.put(gear, quantity + 1);
+			isWeaponEquipped = false;
 		}
 		else if (gear.getGearName().trim().toUpperCase().equals("STARTING ROBE")) {
-			
+			AdventureGame.player.intelligence -= gear.getGearStatIncrease();
+			gearQuantities.put(gear, quantity + 1);
+			isChestArmorEquipped = false;
 		}
 	}
 	
