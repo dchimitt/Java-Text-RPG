@@ -231,4 +231,19 @@ public class PlayerGear {
 		else
 			System.out.println("CHEST: None");
 	}
+    
+    // getter and setter methods for equiping gear
+    public static Gear getEquippedWeapon() {
+    	return equippedWeapon;
+    }
+    public void setEquippedWeapon(Gear equippedWeapon) {
+    	this.equippedWeapon = equippedWeapon;
+    }
+    //
+    public static Gear getEquippedChestArmor() {
+    	return equippedChestArmor;
+    }
+    public void setEquippedChestArmor(Gear equippedChestArmor) {
+    	this.equippedChestArmor = equippedChestArmor;
+    }
 }
