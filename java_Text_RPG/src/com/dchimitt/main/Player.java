@@ -327,6 +327,7 @@ public class Player extends Character implements java.io.Serializable {
 		}
 	}
 	
+	// TODO: need a separate data structure to store CURRENT cooldowns on abilities so players can not spam them on load or start of every fight
 	public static enum Abilities {
 		STRENGTH("Strength", "Placeholder", 3, 1),
 		AGILITY("Agility", "Placeholder", 5, 3),
