@@ -7,7 +7,7 @@ import java.io.Serializable;
 public class PlainsGoblin extends Character implements java.io.Serializable {
 
 	public PlainsGoblin(String name, int currentAct) {
-		super(name, 1, 1, 1, 10, 0, 2);
+		super(name, 1, 1, 1, 10, 0, 1);
 		// TODO Auto-generated constructor stub
 	}
 
