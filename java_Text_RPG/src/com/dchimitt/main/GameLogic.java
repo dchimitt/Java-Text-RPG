@@ -342,20 +342,28 @@ public class GameLogic implements java.io.Serializable {
 
 	        GameLogic.clearConsole();
 	        checkAct();
-	        boolean isInFight = false;
+	        boolean hasMovedThisTurn = false; // variable used to prevent fights unless a player has actively moved
 	        ActOneMap.printPlayerPosition();
 	        System.out.println("Type N, S, E, or W to move in a direction.\nType M to access the menu.");
 
 	        String directionInput = in.nextLine().trim().toUpperCase();
 
-	        if (directionInput.equals("N"))
+	        if (directionInput.equals("N")) {
 	            ActOneMap.movePlayerTo(Direction.NORTH);
-	        else if (directionInput.equals("S"))
+	            hasMovedThisTurn = true;
+	        }
+	        else if (directionInput.equals("S")) {
 	            ActOneMap.movePlayerTo(Direction.SOUTH);
-	        else if (directionInput.equals("E"))
+	            hasMovedThisTurn = true;
+	        }
+	        else if (directionInput.equals("E")) {
 	            ActOneMap.movePlayerTo(Direction.EAST);
-	        else if (directionInput.equals("W"))
+	            hasMovedThisTurn = true;
+	        }
+	        else if (directionInput.equals("W")) {
 	            ActOneMap.movePlayerTo(Direction.WEST);
+	            hasMovedThisTurn = true;
+	        }
 	        else if (directionInput.equals("M")) {
 	            boolean menuActive = true;
 	            
@@ -385,31 +393,30 @@ public class GameLogic implements java.io.Serializable {
 				}
 	        }
 
-			// toggle boss fight if player moves into correct room
-			checkForBossEncounter();
+			// check for boss fight toggle if player moves into a boss-specific room; does not trigger if player has already beaten that specific boss once
+			if (hasMovedThisTurn)
+				checkForBossEncounter();
 			
-			// random encounter logic
-			int movementsSinceLastFight = AdventureGame.getPlayer().getMovementCounter();
-			double encounterRate;
-			double encounterRateConstant = 0.1;				
-			// formula: R(n) = 1 - e^(-kn), where n = steps since last encounter and k is encounterRateConstant
-			// rates with k = 0.1:
-			// 1 step: 9.52% || 2 steps: 18.13% || 3 steps: 25.92% || 4 steps: 32.97% || 5 steps (if fight not forced): 39.35%
-			if (movementsSinceLastFight < 5) 
-				encounterRate = (1 - Math.exp(-1 * encounterRateConstant * movementsSinceLastFight));
-			else
-				encounterRate = 1.0;
-			if (Math.random() <= encounterRate && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
-				GameLogic.clearConsole();
-				isInFight = true;
-				AdventureGame.getPlayer().resetMovementCounter();
-			}				
-		    while (isInFight) {
-		    	System.out.println("You've encountered a monster!");
-		    	GameLogic.typeToContinue();
-		    	randomEncounter();
-		    	isInFight = false;
-		    }
+			// random encounter logic that may occur if player has moved, if they are not in town, they are not blocked when moving, and are not moving to a safe room
+			if (hasMovedThisTurn && !isInTown() && !ActOneMap.playersPathIsBlocked() && !ActOneMap.playerMovingToSafeRoom()) {
+				int movementsSinceLastFight = AdventureGame.getPlayer().getMovementCounter();
+				double encounterRate;
+				double encounterRateConstant = 0.1;				
+				// formula: R(n) = 1 - e^(-kn), where n = steps since last encounter and k is encounterRateConstant
+				// rates with k = 0.1:
+				// 1 step: 9.52% || 2 steps: 18.13% || 3 steps: 25.92% || 4 steps: 32.97% || 5 steps (if fight not forced): 39.35%
+				if (movementsSinceLastFight < 5) 
+					encounterRate = (1 - Math.exp(-1 * encounterRateConstant * movementsSinceLastFight));
+				else
+					encounterRate = 1.0;
+				if (Math.random() <= encounterRate) {
+					GameLogic.clearConsole();
+					System.out.println("You've encountered a monster!");
+					GameLogic.typeToContinue();
+					randomEncounter();
+					AdventureGame.getPlayer().resetMovementCounter();
+				}
+			}
 	    }
 	}
 
