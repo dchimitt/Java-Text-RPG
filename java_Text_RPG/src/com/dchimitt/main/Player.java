@@ -2,14 +2,16 @@ package com.dchimitt.main;
 
 import gearAndItems.PlayerGear;
 import java.util.Scanner;
-import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.Random;
+import java.io.Serializable;
 
 // NOTE: @Override means inherited methods from abstract superclass differ
 public class Player extends Character implements java.io.Serializable {
 	public static Scanner in = new Scanner(System.in);
 	public static PlayerGear playerGear = new PlayerGear();
+	private static final Random RANDOM = new Random(); // single instance of random to use for all damage/defense calculations
 	
 	// define EnumMaps for learned states of abilities and spells
 	private EnumMap<Abilities, Boolean> learnedAbilities;
@@ -128,8 +130,23 @@ public class Player extends Character implements java.io.Serializable {
 	
 	// inherited methods from Character superclass
 	@Override
+	// TODO: possibly using same calculation for every enemy in game as well, with stat and level adjustments as needed. Putting formula explanation here, shortened elsewhere
 	public int attack() {
-		return (int) (Math.random() * (level / 2 + strength * 2) + dexterity * 2);
+		final double STRENGTH_WEIGHT = 0.75;
+		final double DEXTERITY_WEIGHT = 0.5;
+		
+		// base damage
+		double baseDamage = (AdventureGame.getPlayer().strength * STRENGTH_WEIGHT) + (AdventureGame.getPlayer().dexterity * DEXTERITY_WEIGHT);
+		
+		// level factor
+		double levelFactor = 1 + (level/10.0);
+		double damage = baseDamage * levelFactor;
+		
+		// add a random factor (between -5% and +5%)
+		double randomFactor = (RANDOM.nextDouble() * 0.1 - 0.05) * baseDamage;
+		damage += randomFactor;
+		
+		return (int) Math.round(damage);
 	}
 		
 	@Override
