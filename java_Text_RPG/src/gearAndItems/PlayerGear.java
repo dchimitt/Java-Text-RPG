@@ -6,6 +6,7 @@ import java.util.Map;
 import java.io.Serializable;
 
 import com.dchimitt.main.AdventureGame;
+import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.Player;
 
 public class PlayerGear implements Serializable {
@@ -114,26 +115,76 @@ public class PlayerGear implements Serializable {
 	
 	// TODO: possible bug if player tries to equip the exact same piece of gear they are already wearing
 	public static void equipGear(Gear gear) {
-        int quantity = gearQuantities.getOrDefault(gear, 0);
+        boolean keepEquipping = true;
 
-        if (quantity == 0) {
-            System.out.println("You cannot equip something you do not own!");
-            return;
+        while (keepEquipping) {
+            // Get the current quantity of the gear or default to 0
+            int quantity = gearQuantities.getOrDefault(gear, 0);
+
+            // Check if the player owns the gear
+            if (quantity == 0) {
+                System.out.println("You cannot equip something you do not own!");
+                return;
+            }
+
+            // Check the required stat type and player's stat value
+            String statType = gear.getGearStatType();
+            int playerStat = AdventureGame.player.getPlayerStat(statType);
+
+            // Check if the player meets the stat requirement
+            if (playerStat < gear.getGearStatRequirement()) {
+                System.out.println("You do not have enough " + statType + " to wear that!");
+                return;
+            }
+
+            // Handle equipping/unequipping of gear based on type
+            if (gear.gearType.equals("weapon")) {
+                handleGearSwap(gear, statType, "weapon", isWeaponEquipped, equippedWeapon);
+                isWeaponEquipped = true;
+                equippedWeapon = gear;
+            } else if (gear.gearType.equals("chest armor")) {
+                handleGearSwap(gear, statType, "chest armor", isChestArmorEquipped, equippedChestArmor);
+                isChestArmorEquipped = true;
+                equippedChestArmor = gear;
+            }
+
+            // Show equipped gear and ask if the player wants to change another piece of gear
+            GameLogic.clearConsole();
+            printEquippedGear();
+            GameLogic.printHyphenSeparator(20);
+            System.out.println();
+            printPlayerGearInInventory();
+            System.out.println("Would you like to change another piece of gear? Y for yes, N for no");
+            String decision = in.nextLine().trim().toUpperCase();
+
+            if (!decision.equals("Y")) {
+                keepEquipping = false;
+            } 
+            else {
+                printEquippedGear();
+                GameLogic.printHyphenSeparator(20);
+                printPlayerGearInInventory();
+                System.out.println("Please type the name of the piece of gear you want to equip. \nNOTE: must type names exactly as written");
+                String gearName = in.nextLine().trim().toUpperCase();
+
+                // Attempt to equip the next piece of gear
+                Gear nextGear = getGearByName(gearName);
+                if (nextGear != null) {
+                    gear = nextGear;
+                } else {
+                    System.out.println("Invalid gear name. Exiting gear menu.");
+                    keepEquipping = false;
+                }
+            }
         }
-
-        String statType = gear.getGearStatType();
-        int playerStat = AdventureGame.player.getPlayerStat(statType);
-
-        if (playerStat < gear.getGearStatRequirement()) {
-            System.out.println("You do not have enough " + statType + " to wear that!");
-            return;
+    }
+	
+	// Helper method to handle gear swap
+    private static void handleGearSwap(Gear newGear, String statType, String gearType, boolean isEquipped, Gear equippedGear) {
+        if (isEquipped) {
+            System.out.println("Unequipping current " + gearType + ": " + equippedGear.getGearName());
         }
-
-        if (gear.gearType.equals("weapon")) {
-            equipWeapon(gear);
-        } else if (gear.gearType.equals("chest armor")) {
-            equipChestArmor(gear);
-        }
+        System.out.println("Equipping new " + gearType + ": " + newGear.getGearName());
     }
 
     private static void equipWeapon(Gear newWeapon) {
@@ -163,6 +214,15 @@ public class PlayerGear implements Serializable {
         gearQuantities.put(gear, gearQuantities.getOrDefault(gear, 0) - 1);
         adjustPlayerStat(gear.getGearStatType(), gear.getGearStatIncrease());
     }
+    
+    // helper method to get a specific gear by its name
+    private static Gear getGearByName(String gearName) {
+    	for (Gear gear : Gear.values()) {
+    		if (gear.getGearName().toUpperCase().equals(gearName))
+    			return gear;
+    	}
+    	return null;
+    }
 
     private static void adjustPlayerStat(String statType, int statIncrease) {
         switch (statType) {
@@ -180,16 +240,18 @@ public class PlayerGear implements Serializable {
 	
 	// Method to print the gear a player currently owns in their inventory
     public static void printPlayerGearInInventory() {
+    	System.out.println("\\\\Gear in your inventory\\\\\n");
         for (Map.Entry<Gear, Integer> entry : gearQuantities.entrySet()) {
             Gear gear = entry.getKey();
             int quantity = entry.getValue();
             if (quantity > 0) 
                 System.out.println(gear.getGearName() + ": " + gear.getGearDescription() + " (" + quantity + ")");
         }
+        System.out.println();
     }
     
     public static void printEquippedGear() {
-		System.out.println("--You are currently wearing--");
+		System.out.println("\\\\You are currently wearing\\\\\n");
 		if (equippedWeapon != null) 
 			System.out.println("WEAPON: " + equippedWeapon.getGearName() + " (" + equippedWeapon.getGearDescription() + ")");
 		else 
@@ -199,6 +261,7 @@ public class PlayerGear implements Serializable {
 			System.out.println("CHEST : " + equippedChestArmor.getGearName() + " (" + equippedChestArmor.getGearDescription() + ")");
 		else
 			System.out.println("CHEST : None");
+		System.out.println();
 	}
     
     // getter and setter methods for equiping gear

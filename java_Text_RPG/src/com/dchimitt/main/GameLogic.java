@@ -493,12 +493,13 @@ public class GameLogic implements java.io.Serializable {
 			clearConsole();
 	        PlayerGear.printEquippedGear();
 	        GameLogic.printHyphenSeparator(20);
+	        System.out.println();
 	        PlayerGear.printPlayerGearInInventory();
 	        System.out.println("Would you like to change a piece of gear you are currently equipping? Y for yes, N for no");
 	        String equipDecision = in.nextLine().trim();
 	        
 	        if (equipDecision.trim().toUpperCase().equals("Y")) {
-	        	System.out.println("Please type the name of the piece of gear you want to equip. NOTE: must type names exactly as written");
+	        	System.out.println("Please type the name of the piece of gear you want to equip. \nNOTE: must type names exactly as written with spaces included");
 	        	String equipToPutOn = in.nextLine().trim();
 	        	
 	        	// Convert the input into Gear enum
