@@ -42,8 +42,8 @@ public class BattleLogic implements Serializable {
 					System.out.println("The " + enemy.name + " dealt " + damagePlayerTakes + " damage to you.");
 					
 					// player wins the battle
-					GameLogic.printTildeSeparator(30);
-					System.out.println("You defeated the " + enemy.name + "!");
+					System.out.println();
+					System.out.println("\\\\YOU WON THE BATTLE!!\\\\");
 					// TODO: edit experience values later
 					int experienceGained = enemy.level + 2;
 					AdventureGame.getPlayer().currentExp += experienceGained;
