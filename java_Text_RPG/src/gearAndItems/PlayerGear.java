@@ -113,207 +113,70 @@ public class PlayerGear implements Serializable {
 	}
 	
 	// TODO: possible bug if player tries to equip the exact same piece of gear they are already wearing
-	public static void equipGear(Gear gear) {		
-		// set starting quantity to default 0 or amount player has
-		int quantity = gearQuantities.getOrDefault(gear, 0);
-		
-		// check if player has the gear
-		if (quantity == 0) {
-			System.out.println("You cannot equip something you do not own!");
-			return;
-		}
-		
-		// check the stat type that is required for this piece of gear and check the corresponding stat the player has of that type
-		String statType = gear.getGearStatType();
-		int playerStat = AdventureGame.player.getPlayerStat(statType);
-		
-		// check if player meets the stat requirement for the piece of gear they want to equip
-		if (playerStat < gear.getGearStatRequirement()) {
-			System.out.println("You do not have enough " + statType + " to wear that!");
-			return;
-		}
-		
-		// handle logic for equipping/unequipping of strength gear
-		if (statType.equals("strength") && gear.gearType.equals("weapon")) {
-			if (!isWeaponEquipped) {
-				System.out.println("Equipping " + gear.getGearName() + "...");
-				gearQuantities.put(gear,  quantity - 1);
-				AdventureGame.getPlayer().strength += gear.getGearStatIncrease();
-				isWeaponEquipped = true;
-				equippedWeapon = gear;
-			}
-			else {
-				// weapon is already equipped, ask player if they want to remove it first
-				System.out.println("You already have a weapon equipped! Unequip it now? Y for yes, N for no");
-				String unequipDecision = in.nextLine().trim();
-				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					// unequip weapon and add back to inventory
-					System.out.println("Unequipping " + equippedWeapon.getGearName() + "...");
-					gearQuantities.put(equippedWeapon, gearQuantities.getOrDefault(equippedWeapon, 0) + 1);
-	                AdventureGame.getPlayer().strength -= equippedWeapon.getGearStatIncrease();
-	                isWeaponEquipped = false;
-	                equippedWeapon = null;
+	public static void equipGear(Gear gear) {
+        int quantity = gearQuantities.getOrDefault(gear, 0);
 
-	                // Equip the new weapon
-	                System.out.println("Equipping " + gear.getGearName() + "...");
-	                gearQuantities.put(gear, quantity - 1);
-	                AdventureGame.getPlayer().strength += gear.getGearStatIncrease();
-	                isWeaponEquipped = true;
-	                equippedWeapon = gear;
-	            } 
-				else 
-	                System.out.println("You chose not to equip " + gear.getGearName() + ".");
-			}
-		}
-		if (statType.equals("strength") && gear.gearType.equals("chest armor")) {
-			if (!isChestArmorEquipped) {
-				System.out.println("Equipping " + gear.getGearName() + "...");
-				gearQuantities.put(gear,  quantity - 1);
-				AdventureGame.getPlayer().strength += gear.getGearStatIncrease();
-				isChestArmorEquipped = true;
-				equippedChestArmor = gear;
-			}
-			else {
-				// chest armor is already equipped, ask player if they want to remove it first
-				System.out.println("You already have a chest piece equipped! Unequip it now? Y for yes, N for no");
-				String unequipDecision = in.nextLine().trim();
-				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					// unequip chest armor and add back to inventory
-					System.out.println("Unequipping " + equippedChestArmor.getGearName() + "...");
-					gearQuantities.put(equippedChestArmor, gearQuantities.getOrDefault(equippedChestArmor, 0) + 1);
-	                AdventureGame.getPlayer().strength -= equippedChestArmor.getGearStatIncrease();
-	                isChestArmorEquipped = false;
-	                equippedChestArmor = null;
+        if (quantity == 0) {
+            System.out.println("You cannot equip something you do not own!");
+            return;
+        }
 
-	                // Equip the new chest armor
-	                System.out.println("Equipping " + gear.getGearName() + "...");
-	                gearQuantities.put(gear, quantity - 1);
-	                AdventureGame.getPlayer().strength += gear.getGearStatIncrease();
-	                isChestArmorEquipped = true;
-	                equippedChestArmor = gear;
-	            } 
-				else 
-	                System.out.println("You chose not to equip " + gear.getGearName() + ".");
-			}
-		}
-		
-		// handle logic for equipping/unequipping of dexterity gear
-		if (statType.equals("dexterity") && gear.gearType.equals("weapon")) {
-			if (!isWeaponEquipped) {
-				System.out.println("Equipping " + gear.getGearName() + "...");
-				gearQuantities.put(gear,  quantity - 1);
-				AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
-				isWeaponEquipped = true;
-				equippedWeapon = gear;
-			}
-			else {
-				System.out.println("You already have a weapon equipped! Unequip it now? Y for yes, N for no");
-				String unequipDecision = in.nextLine().trim();
-				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					System.out.println("Unequipping " + equippedWeapon.getGearName() + "...");
-					gearQuantities.put(equippedWeapon, gearQuantities.getOrDefault(equippedWeapon, 0) + 1);
-			        AdventureGame.getPlayer().dexterity -= equippedWeapon.getGearStatIncrease();
-			        isWeaponEquipped = false;
-			        equippedWeapon = null;
+        String statType = gear.getGearStatType();
+        int playerStat = AdventureGame.player.getPlayerStat(statType);
 
-			        System.out.println("Equipping " + gear.getGearName() + "...");
-			        gearQuantities.put(gear, quantity - 1);
-			        AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
-			        isWeaponEquipped = true;
-			        equippedWeapon = gear;
-				} 
-				else 
-					System.out.println("You chose not to equip " + gear.getGearName() + ".");
-			}
-		}
-		if (statType.equals("dexterity") && gear.gearType.equals("chest armor")) {
-			if (!isChestArmorEquipped) {
-				System.out.println("Equipping " + gear.getGearName() + "...");
-				gearQuantities.put(gear,  quantity - 1);
-				AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
-				isChestArmorEquipped = true;
-				equippedChestArmor = gear;
-			}
-			else {
-				System.out.println("You already have a chest piece equipped! Unequip it now? Y for yes, N for no");
-				String unequipDecision = in.nextLine().trim();
-				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					System.out.println("Unequipping " + equippedChestArmor.getGearName() + "...");
-					gearQuantities.put(equippedChestArmor, gearQuantities.getOrDefault(equippedChestArmor, 0) + 1);
-			        AdventureGame.getPlayer().dexterity -= equippedChestArmor.getGearStatIncrease();
-			        isChestArmorEquipped = false;
-			        equippedChestArmor = null;
+        if (playerStat < gear.getGearStatRequirement()) {
+            System.out.println("You do not have enough " + statType + " to wear that!");
+            return;
+        }
 
-			        System.out.println("Equipping " + gear.getGearName() + "...");
-			        gearQuantities.put(gear, quantity - 1);
-			        AdventureGame.getPlayer().dexterity += gear.getGearStatIncrease();
-			        isChestArmorEquipped = true;
-			        equippedChestArmor = gear;
-			    } 
-				else 
-					System.out.println("You chose not to equip " + gear.getGearName() + ".");
-			}
-		}
-				
-		// handle logic for equipping/unequipping of intelligence gear
-		if (statType.equals("intelligence") && gear.gearType.equals("weapon")) {
-			if (!isWeaponEquipped) {
-				System.out.println("Equipping " + gear.getGearName() + "...");
-				gearQuantities.put(gear,  quantity - 1);
-				AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
-				isWeaponEquipped = true;
-				equippedWeapon = gear;
-			}
-			else {
-				System.out.println("You already have a weapon equipped! Unequip it now? Y for yes, N for no");
-				String unequipDecision = in.nextLine().trim();
-				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					System.out.println("Unequipping " + equippedWeapon.getGearName() + "...");
-					gearQuantities.put(equippedWeapon, gearQuantities.getOrDefault(equippedWeapon, 0) + 1);
-			        AdventureGame.getPlayer().intelligence -= equippedWeapon.getGearStatIncrease();
-			        isWeaponEquipped = false;
-			        equippedWeapon = null;
+        if (gear.gearType.equals("weapon")) {
+            equipWeapon(gear);
+        } else if (gear.gearType.equals("chest armor")) {
+            equipChestArmor(gear);
+        }
+    }
 
-			        System.out.println("Equipping " + gear.getGearName() + "...");
-			        gearQuantities.put(gear, quantity - 1);
-			        AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
-			        isWeaponEquipped = true;
-			        equippedWeapon = gear;
-				} 
-				else 
-					System.out.println("You chose not to equip " + gear.getGearName() + ".");
-			}
-		}
-		if (statType.equals("intelligence") && gear.gearType.equals("chest armor")) {
-			if (!isChestArmorEquipped) {
-				System.out.println("Equipping " + gear.getGearName() + "...");
-				gearQuantities.put(gear,  quantity - 1);
-				AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
-				isChestArmorEquipped = true;
-				equippedChestArmor = gear;
-			}
-			else {
-				System.out.println("You already have a chest piece equipped! Unequip it now? Y for yes, N for no");
-				String unequipDecision = in.nextLine().trim();
-				if (unequipDecision.trim().toUpperCase().equals("Y")) {
-					System.out.println("Unequipping " + equippedChestArmor.getGearName() + "...");
-					gearQuantities.put(equippedChestArmor, gearQuantities.getOrDefault(equippedChestArmor, 0) + 1);
-			        AdventureGame.getPlayer().intelligence -= equippedChestArmor.getGearStatIncrease();
-			        isChestArmorEquipped = false;
-			        equippedChestArmor = null;
+    private static void equipWeapon(Gear newWeapon) {
+        if (equippedWeapon != null) {
+            unequipGear(equippedWeapon);
+        }
+        equippedWeapon = newWeapon;
+        equipNewGear(newWeapon);
+    }
 
-			        System.out.println("Equipping " + gear.getGearName() + "...");
-			        gearQuantities.put(gear, quantity - 1);
-			        AdventureGame.getPlayer().intelligence += gear.getGearStatIncrease();
-			        isChestArmorEquipped = true;
-			        equippedChestArmor = gear;
-			    } 
-				else 
-					System.out.println("You chose not to equip " + gear.getGearName() + ".");
-			}
-		}
-		AdventureGame.getPlayer().setPlayerGear(Player.playerGear);
-	}
+    private static void equipChestArmor(Gear newChestArmor) {
+        if (equippedChestArmor != null) {
+            unequipGear(equippedChestArmor);
+        }
+        equippedChestArmor = newChestArmor;
+        equipNewGear(newChestArmor);
+    }
+
+    private static void unequipGear(Gear gear) {
+        System.out.println("Unequipping " + gear.getGearName() + "...");
+        increaseGearQuantity(gear);
+        adjustPlayerStat(gear.getGearStatType(), -gear.getGearStatIncrease());
+    }
+
+    private static void equipNewGear(Gear gear) {
+        System.out.println("Equipping " + gear.getGearName() + "...");
+        gearQuantities.put(gear, gearQuantities.getOrDefault(gear, 0) - 1);
+        adjustPlayerStat(gear.getGearStatType(), gear.getGearStatIncrease());
+    }
+
+    private static void adjustPlayerStat(String statType, int statIncrease) {
+        switch (statType) {
+            case "strength":
+                AdventureGame.getPlayer().strength += statIncrease;
+                break;
+            case "dexterity":
+                AdventureGame.getPlayer().dexterity += statIncrease;
+                break;
+            case "intelligence":
+                AdventureGame.getPlayer().intelligence += statIncrease;
+                break;
+        }
+    }
 	
 	// Method to print the gear a player currently owns in their inventory
     public static void printPlayerGearInInventory() {
@@ -333,9 +196,9 @@ public class PlayerGear implements Serializable {
 			System.out.println("WEAPON: None");
 		
 		if (equippedChestArmor != null)
-			System.out.println("CHEST: " + equippedChestArmor.getGearName() + " (" + equippedChestArmor.getGearDescription() + ")");
+			System.out.println("CHEST : " + equippedChestArmor.getGearName() + " (" + equippedChestArmor.getGearDescription() + ")");
 		else
-			System.out.println("CHEST: None");
+			System.out.println("CHEST : None");
 	}
     
     // getter and setter methods for equiping gear
