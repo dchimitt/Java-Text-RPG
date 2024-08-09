@@ -479,12 +479,11 @@ public class GameLogic implements java.io.Serializable {
 		
 		// player wants to view items (consumables and gear)
 		if (input == 1) {
-			System.out.println("--Consumable items--\n");
+			GameLogic.clearConsole();
 			PlayerItems.printPlayerItems();
 			System.out.println();
-			GameLogic.printTildeSeparator(20);
+			GameLogic.printHyphenSeparator(20);
 			System.out.println();
-			System.out.println("--Gear--\n");
 			PlayerGear.printPlayerGearInInventory();
 			GameLogic.typeToContinue();
 		}

@@ -100,6 +100,7 @@ public class PlayerItems implements Serializable {
 	
 	// method to print a list of the players items
 	public static void printPlayerItems() {
+		System.out.println("\\\\Consumable items\\\\\n");
 		for (Map.Entry<Items, Integer> entry : itemQuantities.entrySet()) {
 			Items item = entry.getKey();
 			int quantity = entry.getValue();
