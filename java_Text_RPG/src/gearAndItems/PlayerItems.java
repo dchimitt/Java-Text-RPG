@@ -1,11 +1,18 @@
 package gearAndItems;
 
 import com.dchimitt.main.AdventureGame;
+import com.dchimitt.main.GameLogic;
+
+import gearAndItems.PlayerGear.Gear;
+
 import java.util.Map;
 import java.util.EnumMap;
+import java.util.Scanner;
 import java.io.Serializable;
 
 public class PlayerItems implements Serializable {	
+	static Scanner in = new Scanner(System.in);
+	
 	// map to store item quantities
 	private static final Map<Items, Integer> itemQuantities = new EnumMap<>(Items.class);
 	
@@ -71,44 +78,104 @@ public class PlayerItems implements Serializable {
 		itemQuantities.put(item, itemQuantities.getOrDefault(item, 0) + 1);
 	}
 			
-	// methods to use a particular item using the item map
-	public static void useItem(Items item) {
-        int currentQuantity = itemQuantities.getOrDefault(item, 0);
-        if (currentQuantity > 0) {
-            // item use logic for each item here
-            if (item == Items.WEAK_HEALING_POTION) {
-                AdventureGame.getPlayer().currentHp += 10;
-                System.out.println("Current hitpoints increased by 10!\n" + AdventureGame.player.currentHp + "/" + AdventureGame.player.maximumHp);
-            }
-            else if (item == Items.HEALING_POTION) {
-                AdventureGame.getPlayer().currentHp += 25;
-                System.out.println("Current hitpoints increased by 25!\n" + AdventureGame.player.currentHp + "/" + AdventureGame.player.maximumHp);
-            }
-            else if (item == Items.INFUSED_HEALING_POTION) {
-                AdventureGame.getPlayer().currentHp += 50;
-                System.out.println("Current hitpoints increased by 50!\n" + AdventureGame.player.currentHp + "/" + AdventureGame.player.maximumHp);
-            }
-            else if (item == Items.WEAK_MANA_POTION) {
-                AdventureGame.getPlayer().currentMana += 5;
-                System.out.println("Current mana increased by 5!\n" + AdventureGame.player.currentMana + "/" + AdventureGame.player.maximumMana);
-            }
-            else if (item == Items.MANA_POTION) {
-                AdventureGame.getPlayer().currentMana += 15;
-                System.out.println("Current mana increased by 15!\n" + AdventureGame.player.currentMana + "/" + AdventureGame.player.maximumMana);
-            }
-            else if (item == Items.INFUSED_MANA_POTION) {
-                AdventureGame.getPlayer().currentMana += 30;
-                System.out.println("Current mana increased by 30!\n" + AdventureGame.player.currentMana + "/" + AdventureGame.player.maximumMana);
-            }
-            else if (item == Items.ANTIDOTE) { 
-                // add use logic later
-            }
-            else if (item == Items.REAPERS_BANE) {
-                // add use logic later
-            }
-            itemQuantities.put(item, currentQuantity - 1);
-        }
-    }
+	// method to use a particular item using the item map
+	public static void useItem() {
+	    boolean keepUsingItems = true;
+	    
+	    // Ask the player if they'd like to use a consumable item
+        System.out.println("Would you like to use a consumable item? (Y/N)");
+        String itemDecision = in.nextLine().trim().toUpperCase();
+
+	    while (keepUsingItems) {
+	        if (itemDecision.equals("Y")) {
+	            // show player their consumable items
+	            GameLogic.clearConsole();
+	            printPlayerItems();
+	            System.out.println();
+	            System.out.println("Please type the name of the item you'd like to use.\nNOTE: must type names exactly as written with spaces included");
+
+	            String itemToUse = in.nextLine().trim().toUpperCase();
+	            GameLogic.clearConsole();
+
+	            // Convert item name to Items enum
+	            PlayerItems.Items item = null;
+	            for (PlayerItems.Items i : PlayerItems.Items.values()) {
+	                if (i.getItemName().toUpperCase().equals(itemToUse)) {
+	                    item = i;
+	                    break;
+	                }
+	            }
+
+	            if (item != null) {
+	                // check if player has the item they want to use
+	                int currentQuantity = itemQuantities.getOrDefault(item, 0);
+	                if (currentQuantity > 0) {
+	                    // use item
+	                	// TODO: prevent player from overcapping hp/mp, change outputs to reflect actual amounts gained
+	                    switch (item) {
+	                        case WEAK_HEALING_POTION:
+	                            AdventureGame.getPlayer().currentHp += 10;
+	                            System.out.println("Hitpoints increased by 10!");  
+	                            break;
+	                        case HEALING_POTION:
+	                            AdventureGame.getPlayer().currentHp += 25;
+	                            System.out.println("Hitpoints increased by 25!");  
+	                            break;
+	                        case INFUSED_HEALING_POTION:
+	                            AdventureGame.getPlayer().currentHp += 50;
+	                            System.out.println("Hitpoints increased by 50!");  
+	                            break;
+	                        case WEAK_MANA_POTION:
+	                            AdventureGame.getPlayer().currentMana += 5;
+	                            System.out.println("Mana increased by 10!");  
+	                            break;
+	                        case MANA_POTION:
+	                            AdventureGame.getPlayer().currentMana += 15;
+	                            System.out.println("Mana increased by 15!"); 
+	                            break;
+	                        case INFUSED_MANA_POTION:
+	                            AdventureGame.getPlayer().currentMana += 30;
+	                            System.out.println("Mana increased by 30!"); 
+	                            break;
+	                        case ANTIDOTE:
+	                            // Add use logic for ANTIDOTE here
+	                            System.out.println("Used Antidote.");
+	                            break;
+	                        case REAPERS_BANE:
+	                            // Add use logic for REAPERS_BANE here
+	                            System.out.println("Used Reaper's Bane.");
+	                            break;
+	                    }
+	                    System.out.println();
+	                    
+	                    // print player hp/mana
+	                    // TODO: when adding items in combat will have to move this
+	                    System.out.println("Current HP: " + AdventureGame.getPlayer().currentHp + "/" + AdventureGame.getPlayer().maximumHp);
+                        System.out.println("Current MP: " + AdventureGame.getPlayer().currentMana + "/" + AdventureGame.getPlayer().maximumMana);
+
+	                    // update item quantity
+	                    itemQuantities.put(item, currentQuantity - 1);
+	                    System.out.println();
+
+	                    // ask player if they'd like to use another item
+	                    // TODO when in combat, player may not use more than one item in a row
+	                    System.out.println("Would you like to use another item? (Y/N)");
+	                    String decision = in.nextLine().trim().toUpperCase();
+	                    if (!decision.equals("Y")) 
+	                        keepUsingItems = false;
+	                }
+	                else 
+	                    System.out.println("You do not have any of that item left.");
+	        } 
+	        else 
+	        	System.out.println("Item was not found in your inventory. Moving back to the map.");
+	            GameLogic.typeToContinue();
+	            break;
+	        }
+	        else
+	        	keepUsingItems = false;
+	    }
+	}
 	
 	// method to print a list of the players items
 	public static void printPlayerItems() {

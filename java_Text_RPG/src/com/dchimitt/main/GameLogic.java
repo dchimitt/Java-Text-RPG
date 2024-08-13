@@ -485,37 +485,12 @@ public class GameLogic implements java.io.Serializable {
 			System.out.println();
 			GameLogic.printHyphenSeparator(20);
 			System.out.println();
-			PlayerGear.printPlayerGearInInventory();
+			PlayerGear.printPlayerGearInInventory();	
 			
-			// allow player the option to use items while in their inventory
-			System.out.println("Would you like to use a consumable item? (Y/N)");
-			String itemDecision = in.nextLine().trim().toUpperCase();
-			if (itemDecision.trim().toUpperCase().equals("Y")) {
-				System.out.println("Please type the name of the item you'd like to use. \nNOTE: must type names exactly as written with spaces included");
-				String itemToUse = in.nextLine().trim().toUpperCase();
-				
-				// convert item name to items enum
-				PlayerItems.Items item = null;
-				for (PlayerItems.Items i : PlayerItems.Items.values()) {
-					if (i.getItemName().toUpperCase().equals(itemToUse)) {
-						item = i;
-						break;
-					}
-				}
-				
-				if (item != null) {
-					// use item
-					PlayerItems.useItem(item);
-					System.out.println("Used: " + item.getItemName());
-					// TODO: in use method, add print statements to show what effect occurred
-				}
-				else
-					System.out.println("Item was not found in your inventory.");	
-				
-				GameLogic.typeToContinue();
-			}	
-			
+			// ask player if they'd like to use an item
+			PlayerItems.useItem();
 		}
+		
 		// player wants to change equipped gear
 		else if (input == 2) {
 			clearConsole();
