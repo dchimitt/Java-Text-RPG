@@ -477,15 +477,44 @@ public class GameLogic implements java.io.Serializable {
 		int input = intUserInput("-->", 3);
 		// TODO: add functionality for using items while in inventory
 		
-		// player wants to view items (consumables and gear)
+		// player wants to view items
 		if (input == 1) {
+			// show player their consumable items and gear
 			GameLogic.clearConsole();
 			PlayerItems.printPlayerItems();
 			System.out.println();
 			GameLogic.printHyphenSeparator(20);
 			System.out.println();
 			PlayerGear.printPlayerGearInInventory();
-			GameLogic.typeToContinue();
+			
+			// allow player the option to use items while in their inventory
+			System.out.println("Would you like to use a consumable item? (Y/N)");
+			String itemDecision = in.nextLine().trim().toUpperCase();
+			if (itemDecision.trim().toUpperCase().equals("Y")) {
+				System.out.println("Please type the name of the item you'd like to use. \nNOTE: must type names exactly as written with spaces included");
+				String itemToUse = in.nextLine().trim().toUpperCase();
+				
+				// convert item name to items enum
+				PlayerItems.Items item = null;
+				for (PlayerItems.Items i : PlayerItems.Items.values()) {
+					if (i.getItemName().toUpperCase().equals(itemToUse)) {
+						item = i;
+						break;
+					}
+				}
+				
+				if (item != null) {
+					// use item
+					PlayerItems.useItem(item);
+					System.out.println("Used: " + item.getItemName());
+					// TODO: in use method, add print statements to show what effect occurred
+				}
+				else
+					System.out.println("Item was not found in your inventory.");	
+				
+				GameLogic.typeToContinue();
+			}	
+			
 		}
 		// player wants to change equipped gear
 		else if (input == 2) {
@@ -524,7 +553,7 @@ public class GameLogic implements java.io.Serializable {
 	        }
 	        // player chooses no (do not equip gear)
 	        else if (equipDecision.trim().toUpperCase().equals("N")) {
-
+	        	// do nothing
 	        }
 	        else {
 	        	System.out.println("Invalid input. Returning to map.");

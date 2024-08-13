@@ -76,18 +76,30 @@ public class PlayerItems implements Serializable {
         int currentQuantity = itemQuantities.getOrDefault(item, 0);
         if (currentQuantity > 0) {
             // item use logic for each item here
-            if (item == Items.WEAK_HEALING_POTION) 
+            if (item == Items.WEAK_HEALING_POTION) {
                 AdventureGame.getPlayer().currentHp += 10;
-            else if (item == Items.HEALING_POTION) 
+                System.out.println("Current hitpoints increased by 10!\n" + AdventureGame.player.currentHp + "/" + AdventureGame.player.maximumHp);
+            }
+            else if (item == Items.HEALING_POTION) {
                 AdventureGame.getPlayer().currentHp += 25;
-            else if (item == Items.INFUSED_HEALING_POTION) 
+                System.out.println("Current hitpoints increased by 25!\n" + AdventureGame.player.currentHp + "/" + AdventureGame.player.maximumHp);
+            }
+            else if (item == Items.INFUSED_HEALING_POTION) {
                 AdventureGame.getPlayer().currentHp += 50;
-            else if (item == Items.WEAK_MANA_POTION) 
+                System.out.println("Current hitpoints increased by 50!\n" + AdventureGame.player.currentHp + "/" + AdventureGame.player.maximumHp);
+            }
+            else if (item == Items.WEAK_MANA_POTION) {
                 AdventureGame.getPlayer().currentMana += 5;
-            else if (item == Items.MANA_POTION) 
+                System.out.println("Current mana increased by 5!\n" + AdventureGame.player.currentMana + "/" + AdventureGame.player.maximumMana);
+            }
+            else if (item == Items.MANA_POTION) {
                 AdventureGame.getPlayer().currentMana += 15;
-            else if (item == Items.INFUSED_MANA_POTION) 
+                System.out.println("Current mana increased by 15!\n" + AdventureGame.player.currentMana + "/" + AdventureGame.player.maximumMana);
+            }
+            else if (item == Items.INFUSED_MANA_POTION) {
                 AdventureGame.getPlayer().currentMana += 30;
+                System.out.println("Current mana increased by 30!\n" + AdventureGame.player.currentMana + "/" + AdventureGame.player.maximumMana);
+            }
             else if (item == Items.ANTIDOTE) { 
                 // add use logic later
             }
