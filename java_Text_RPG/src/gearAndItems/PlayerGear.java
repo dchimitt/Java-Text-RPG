@@ -171,6 +171,7 @@ public class PlayerGear implements Serializable {
                 // Attempt to equip the next piece of gear
                 Gear nextGear = getGearByName(gearName);
                 if (nextGear != null) {
+                	GameLogic.clearConsole();
                     gear = nextGear;
                 } 
                 else {
