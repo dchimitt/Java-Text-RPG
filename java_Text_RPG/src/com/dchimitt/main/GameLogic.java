@@ -494,33 +494,35 @@ public class GameLogic implements java.io.Serializable {
 	        GameLogic.printHyphenSeparator(20);
 	        System.out.println();
 	        PlayerGear.printPlayerGearInInventory();
-	        System.out.println("Would you like to change a piece of gear you are currently equipping? Y for yes, N for no");
-	        String equipDecision = in.nextLine().trim();
+	        System.out.println("Would you like to change a piece of gear you are currently equipping? (Y/N)");
+	        String equipDecision = in.nextLine().trim().toUpperCase();
 	        
+	        // player chooses yes (equip gear)
 	        if (equipDecision.trim().toUpperCase().equals("Y")) {
 	        	System.out.println("Please type the name of the piece of gear you want to equip. \nNOTE: must type names exactly as written with spaces included");
-	        	String equipToPutOn = in.nextLine().trim();
+	        	String equipToPutOn = in.nextLine().trim().toUpperCase();
 	        	
 	        	// Convert the input into Gear enum
 	        	Gear gearToEquip = null;
 	        	for (Gear gear : Gear.values()) {
-	        		if (gear.getGearName().equalsIgnoreCase(equipToPutOn)) {
+	        		if (gear.getGearName().trim().equalsIgnoreCase(equipToPutOn)) {
+	        			GameLogic.clearConsole();
 	        			gearToEquip = gear;
-	        			System.out.println("The gear has been equipped!");
-	        			GameLogic.typeToContinue();
+	        			GameLogic.clearConsole();
 	        			break;
 	        		}
 	        	}
-	        
+	        	
+	        	// equip the gear is selection is valid, or print error message if it was incorrectly entered
 	        	if (gearToEquip == null) {
 	        		System.out.println("Invalid gear name. Please check the name and try again.");
 	        		GameLogic.typeToContinue();
 	        	}
 	        	else {
-	        		PlayerGear playerGear = AdventureGame.getPlayer().getPlayerGear();
 	        		PlayerGear.equipGear(gearToEquip);
 	        	}
 	        }
+	        // player chooses no (do not equip gear)
 	        else if (equipDecision.trim().toUpperCase().equals("N")) {
 
 	        }

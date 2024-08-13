@@ -22,6 +22,8 @@ public class SaveLoadLogic {
 			// Save player's currently equipped gear
 			out.writeObject(PlayerGear.getEquippedWeapon());
 			out.writeObject(PlayerGear.getEquippedChestArmor());
+			out.writeObject(PlayerGear.isWeaponEquipped);
+			out.writeObject(PlayerGear.isChestArmorEquipped);
 
 			// Save item quantities
 			out.writeObject(PlayerItems.getItemQuantities()); 
@@ -87,6 +89,12 @@ public class SaveLoadLogic {
 		        Gear equippedChestArmor = (Gear) in.readObject();
 		        Player.playerGear.setEquippedWeapon(equippedWeapon);
 		        Player.playerGear.setEquippedChestArmor(equippedChestArmor);
+		        
+		        // Load equipment boolean statuses
+		        boolean isWeaponEquipped = (boolean) in.readObject();
+		        boolean isChestArmorEquipped = (boolean) in.readObject();
+		        Player.playerGear.setWeaponEquippedStatus(isWeaponEquipped);
+		        Player.playerGear.setChestArmorEquippedStatus(isChestArmorEquipped);
 		        
 		        // Load item quantities
 		        Object itemQuantitiesObject = in.readObject();

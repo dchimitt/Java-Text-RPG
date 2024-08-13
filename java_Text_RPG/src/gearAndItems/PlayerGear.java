@@ -123,7 +123,7 @@ public class PlayerGear implements Serializable {
 
             // Check if the player owns the gear
             if (quantity == 0) {
-                System.out.println("You cannot equip something you do not own!");
+                System.out.println("Error: You cannot equip something you do not own!");
                 return;
             }
 
@@ -142,7 +142,8 @@ public class PlayerGear implements Serializable {
                 handleGearSwap(gear, statType, "weapon", isWeaponEquipped, equippedWeapon);
                 isWeaponEquipped = true;
                 equippedWeapon = gear;
-            } else if (gear.gearType.equals("chest armor")) {
+            } 
+            else if (gear.gearType.equals("chest armor")) {
                 handleGearSwap(gear, statType, "chest armor", isChestArmorEquipped, equippedChestArmor);
                 isChestArmorEquipped = true;
                 equippedChestArmor = gear;
@@ -157,10 +158,10 @@ public class PlayerGear implements Serializable {
             System.out.println("Would you like to change another piece of gear? Y for yes, N for no");
             String decision = in.nextLine().trim().toUpperCase();
 
-            if (!decision.equals("Y")) {
+            if (!decision.equals("Y")) 
                 keepEquipping = false;
-            } 
             else {
+            	GameLogic.clearConsole();
                 printEquippedGear();
                 GameLogic.printHyphenSeparator(20);
                 printPlayerGearInInventory();
@@ -171,7 +172,8 @@ public class PlayerGear implements Serializable {
                 Gear nextGear = getGearByName(gearName);
                 if (nextGear != null) {
                     gear = nextGear;
-                } else {
+                } 
+                else {
                     System.out.println("Invalid gear name. Exiting gear menu.");
                     keepEquipping = false;
                 }
@@ -182,14 +184,11 @@ public class PlayerGear implements Serializable {
 	// Helper method to handle gear swap
     private static void handleGearSwap(Gear newGear, String statType, String gearType, boolean isEquipped, Gear equippedGear) {
         if (isEquipped && equippedGear != null) {
-            System.out.println("Unequipping current " + gearType + ": " + equippedGear.getGearName());
             unequipGear(equippedGear);
         }
-        System.out.println("Equipping new " + gearType + ": " + newGear.getGearName());
         equipNewGear(newGear);
+        GameLogic.typeToContinue();
     }
-
-
 
     private static void unequipGear(Gear gear) {
         System.out.println("Unequipping " + gear.getGearName() + "...");
@@ -206,6 +205,7 @@ public class PlayerGear implements Serializable {
         int currentQuantity = gearQuantities.getOrDefault(gear,  0);
         if (currentQuantity <= 0) {
         	System.out.println("Error: You cannot equip something you do not own!");
+        	GameLogic.typeToContinue();
         	return;
         }
         
@@ -265,7 +265,7 @@ public class PlayerGear implements Serializable {
 		System.out.println();
 	}
     
-    // getter and setter methods for equiping gear
+    // getter and setter methods for saving/loading of gear and boolean statuses
     public static Gear getEquippedWeapon() {
     	return equippedWeapon;
     }
@@ -279,6 +279,12 @@ public class PlayerGear implements Serializable {
     }
     public void setEquippedChestArmor(Gear armor) {
     	equippedChestArmor = armor;
+    }
+    public void setWeaponEquippedStatus(boolean status) {
+    	isWeaponEquipped = status;
+    }
+    public void setChestArmorEquippedStatus(boolean status) {
+    	isChestArmorEquipped = status;
     }
 
 }
