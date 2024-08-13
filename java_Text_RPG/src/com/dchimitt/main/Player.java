@@ -351,6 +351,50 @@ public class Player extends Character implements Serializable {
 		}
 	}
 	
+	public void printUpgrades() {
+		// print out abilities
+		boolean foundAbility = false;
+		System.out.println("Abilities: ");
+		for (Player.Abilities ability : Player.Abilities.values()) {
+			if (AdventureGame.getPlayer().isAbilityLearned(ability)) {
+				System.out.println(ability.getAbilityName() + " - " + ability.getAbilityDescription());
+				foundAbility = true;
+			}
+		}
+		if (!foundAbility)
+			System.out.println("N/A");
+		
+		GameLogic.printHyphenSeparator(20);
+
+		// print out offensive magic
+		boolean foundOffMag = false;
+		System.out.println("Offensive Spells: ");
+		for (Player.OffMagSpells offMag : Player.OffMagSpells.values()) {
+			if (AdventureGame.getPlayer().isOffensiveSpellLearned(offMag)) {
+			System.out.println(offMag.getOffMagName() + " - " + offMag.getOffMagDescription());
+			foundOffMag = true;
+			}
+		}
+		if (!foundOffMag)
+			System.out.println("N/A");
+		
+		GameLogic.printHyphenSeparator(20);
+
+		// print out offensive magic
+		boolean foundSuppMag = false;
+		System.out.println("Support Spells: ");
+		for (Player.SuppMagSpells suppMag : Player.SuppMagSpells.values()) {
+			if (AdventureGame.getPlayer().isSupportSpellLearned(suppMag)) {
+			System.out.println(suppMag.getSuppMagName() + " - " + suppMag.getSuppMagDescription());
+			foundSuppMag = true;
+			}
+		}
+		if (foundSuppMag == false)
+			System.out.println("N/A");
+		
+		GameLogic.printHyphenSeparator(20);
+	}
+	
 	// TODO: need a separate data structure to store CURRENT cooldowns on abilities so players can not spam them on load or start of every fight
 	public static enum Abilities {
 		STRENGTH("Strength", "Placeholder", 3, 1),

@@ -435,44 +435,9 @@ public class GameLogic implements java.io.Serializable {
 		System.out.println("Gold: " + AdventureGame.getPlayer().gold);
 		printTildeSeparator(20);
 
-		// print out abilities
-		boolean foundAbility = false;
-		System.out.println("Abilities: ");
-		for (Player.Abilities ability : Player.Abilities.values()) {
-			if (AdventureGame.getPlayer().isAbilityLearned(ability)) {
-				System.out.println(ability.getAbilityName() + " - " + ability.getAbilityDescription());
-				foundAbility = true;
-			}
-		}
-		if (!foundAbility)
-			System.out.println("N/A");
-		GameLogic.printHyphenSeparator(20);
-
-		// print out offensive magic
-		boolean foundOffMag = false;
-		System.out.println("Offensive Spells: ");
-		for (Player.OffMagSpells offMag : Player.OffMagSpells.values()) {
-			if (AdventureGame.getPlayer().isOffensiveSpellLearned(offMag)) {
-				System.out.println(offMag.getOffMagName() + " - " + offMag.getOffMagDescription());
-				foundOffMag = true;
-			}
-		}
-		if (!foundOffMag)
-			System.out.println("N/A");
-		GameLogic.printHyphenSeparator(20);
-
-		// print out offensive magic
-		boolean foundSuppMag = false;
-		System.out.println("Support Spells: ");
-		for (Player.SuppMagSpells suppMag : Player.SuppMagSpells.values()) {
-			if (AdventureGame.getPlayer().isSupportSpellLearned(suppMag)) {
-				System.out.println(suppMag.getSuppMagName() + " - " + suppMag.getSuppMagDescription());
-				foundSuppMag = true;
-			}
-		}
-		if (foundSuppMag == false)
-			System.out.println("N/A");
-		GameLogic.printHyphenSeparator(20);
+		// print player's upgrades
+		AdventureGame.getPlayer().printUpgrades();
+		
 		System.out.println("(1) View inventory\n(2) View equipped gear\n(3) Continue game");
 		int input = intUserInput("-->", 3);
 		// TODO: add functionality for using items while in inventory
