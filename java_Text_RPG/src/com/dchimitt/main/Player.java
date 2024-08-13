@@ -212,7 +212,8 @@ public class Player extends Character implements Serializable {
 			intelligence++;			
 	}
 
-	// allows player to choose an upgrade
+	// allows player to choose an upgrade at start of game and every odd level
+	// TODO: allow player to back out of menu and choose upgrade later if they do not want to make a selection right away
 	public void chooseUpgrade() {
 		boolean playerMadeSelection = false; 
 		
@@ -225,21 +226,21 @@ public class Player extends Character implements Serializable {
 
 		    int input = GameLogic.intUserInput("--> ", 3);
 		    GameLogic.clearConsole();
-
-		    boolean learned = false;
-		        
+	        
 		    // TODO: when player selects no, program always outputs "no new _ to learn at the moment", even if player could learn something
 		    switch (input) {
 		    case 1:
+		    	boolean abilityUpgradeAvailable = false;
+		    	
 		        // Print abilities and their descriptions
 		        for (Abilities ability : Abilities.values()) 
 		            System.out.println(ability.getAbilityName() + ": " + ability.getAbilityDescription() + " - Level " + ability.requiredAbilityLevel + " required.");
 
-		        // Track if any ability was learned
-		        learned = false;
+		        // logic for learning ability
 		        for (int i = lastLearnedAbilityIndex + 1; i < Abilities.values().length; i++) {
 		            Abilities ability = Abilities.values()[i];
 		            if (ability.requiredAbilityLevel <= level && !learnedAbilities.getOrDefault(ability, false)) {
+		            	abilityUpgradeAvailable = true;
 		                System.out.println();
 		                System.out.println("Would you like to learn " + ability.getAbilityName() + "? (Y/N)");
 		                String response = in.nextLine().trim().toUpperCase();
@@ -248,7 +249,6 @@ public class Player extends Character implements Serializable {
 		                    learnedAbilities.put(ability, true);
 		                    System.out.println(ability.getAbilityName() + " learned!");
 		                    lastLearnedAbilityIndex = i;
-		                    learned = true;
 		                    playerMadeSelection = true;
 		                    break;
 		                }
@@ -262,22 +262,23 @@ public class Player extends Character implements Serializable {
 		                }
 		            }
 		        }
-		        if (!learned) {
+		        if (!abilityUpgradeAvailable) {
 		            System.out.println("No new abilities to learn at the moment.");
 		            GameLogic.typeToContinue();
 		        }
 		        break;
 
 		    case 2:
+		    	boolean offMagUpgradeAvailable = false;
 		        // Print offensive spells and their descriptions
 		        for (OffMagSpells offSpell : OffMagSpells.values()) 
 		            System.out.println(offSpell.getOffMagName() + ": " + offSpell.getOffMagDescription() + " - Level " + offSpell.requiredOffMagLevel + " required.");
 
-		        // Track if any offensive spell was learned
-		        learned = false;
+		        // logic for learning offensive spell
 		        for (int i = lastLearnedOffMagIndex + 1; i < OffMagSpells.values().length; i++) {
 		            OffMagSpells offSpell = OffMagSpells.values()[i];
 		            if (offSpell.requiredOffMagLevel <= level && !learnedOffensiveSpells.getOrDefault(offSpell, false)) {
+		            	offMagUpgradeAvailable = true;
 		                System.out.println();
 		                System.out.println("Would you like to learn " + offSpell.getOffMagName() + "? (Y/N)");
 		                String response = in.nextLine().trim().toUpperCase();
@@ -286,7 +287,6 @@ public class Player extends Character implements Serializable {
 		                    learnedOffensiveSpells.put(offSpell, true);
 		                    System.out.println(offSpell.getOffMagName() + " learned!");
 		                    lastLearnedOffMagIndex = i;
-		                    learned = true;
 		                    playerMadeSelection = true;
 		                    break;
 		                } 
@@ -300,22 +300,23 @@ public class Player extends Character implements Serializable {
 		                }
 		            }
 		        }
-		        if (!learned) {
+		        if (!offMagUpgradeAvailable) {
 		            System.out.println("No new offensive magic spells to learn at the moment.");
 		            GameLogic.typeToContinue();
 		        }
 		        break;
 
 		    case 3:
+		    	boolean suppMagUpgradeAvailable = false;
 		        // Print support spells and their descriptions
 		        for (SuppMagSpells suppSpell : SuppMagSpells.values()) 
 		            System.out.println(suppSpell.getSuppMagName() + ": " + suppSpell.getSuppMagDescription() + " - Level " + suppSpell.requiredSuppMagLevel + " required.");
 
-		        // Track if any support spell was learned
-		        learned = false;
+		        // logic for learning support spell
 		        for (int i = lastLearnedSuppMagIndex + 1; i < SuppMagSpells.values().length; i++) {
 		            SuppMagSpells suppSpell = SuppMagSpells.values()[i];
 		            if (suppSpell.requiredSuppMagLevel <= level && !learnedSupportSpells.getOrDefault(suppSpell, false)) {
+		            	suppMagUpgradeAvailable = true;
 		                System.out.println();
 		                System.out.println("Would you like to learn " + suppSpell.getSuppMagName() + "? (Y/N)");
 		                String response = in.nextLine().trim().toUpperCase();
@@ -324,7 +325,6 @@ public class Player extends Character implements Serializable {
 		                    learnedSupportSpells.put(suppSpell, true);
 		                    System.out.println(suppSpell.getSuppMagName() + " learned!");
 		                    lastLearnedSuppMagIndex = i;
-		                    learned = true;
 		                    playerMadeSelection = true;
 		                    break;
 		                } 
@@ -338,7 +338,7 @@ public class Player extends Character implements Serializable {
 		                }
 		            }
 		        }
-		        if (!learned) {
+		        if (!suppMagUpgradeAvailable) {
 		            System.out.println("No new support magic spells to learn at the moment.");
 		            GameLogic.typeToContinue();
 		        }
@@ -348,9 +348,6 @@ public class Player extends Character implements Serializable {
 		        System.out.println("Invalid choice, please select again.");
 		        break;
 		    }
-
-		    if (learned) 
-		    	GameLogic.typeToContinue();
 		}
 	}
 	
