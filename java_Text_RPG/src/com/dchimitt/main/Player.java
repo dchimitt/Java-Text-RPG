@@ -214,7 +214,9 @@ public class Player extends Character implements Serializable {
 
 	// allows player to choose an upgrade
 	public void chooseUpgrade() {
-		while (true) {
+		boolean playerMadeSelection = false; 
+		
+		while (!playerMadeSelection) {
 			GameLogic.clearConsole();
 		    GameLogic.printHyphenHeader("Choose an upgrade. You will be able to read a description of your selection before making your final choice: ");
 		    System.out.println("(1) Abilities --> Skills that utilize strength and dexterity to inflict damage. These have cooldowns.");
@@ -247,10 +249,13 @@ public class Player extends Character implements Serializable {
 		                    System.out.println(ability.getAbilityName() + " learned!");
 		                    lastLearnedAbilityIndex = i;
 		                    learned = true;
+		                    playerMadeSelection = true;
 		                    break;
-		                } else if (response.equals("N")) {
+		                }
+		                else if (response.equals("N")) {
 		                    break; 
-		                } else {
+		                } 
+		                else {
 		                    System.out.println("Invalid input, returning to selections.");
 		                    GameLogic.typeToContinue();
 		                    break; 
@@ -282,10 +287,13 @@ public class Player extends Character implements Serializable {
 		                    System.out.println(offSpell.getOffMagName() + " learned!");
 		                    lastLearnedOffMagIndex = i;
 		                    learned = true;
+		                    playerMadeSelection = true;
 		                    break;
-		                } else if (response.equals("N")) {
+		                } 
+		                else if (response.equals("N")) {
 		                    break; 
-		                } else {
+		                } 
+		                else {
 		                    System.out.println("Invalid input, returning to selections.");
 		                    GameLogic.typeToContinue();
 		                    break; 
@@ -317,10 +325,13 @@ public class Player extends Character implements Serializable {
 		                    System.out.println(suppSpell.getSuppMagName() + " learned!");
 		                    lastLearnedSuppMagIndex = i;
 		                    learned = true;
+		                    playerMadeSelection = true;
 		                    break;
-		                } else if (response.equals("N")) {
+		                } 
+		                else if (response.equals("N")) {
 		                    break; 
-		                } else {
+		                } 
+		                else {
 		                    System.out.println("Invalid input, returning to selections.");
 		                    GameLogic.typeToContinue();
 		                    break; 
@@ -340,7 +351,6 @@ public class Player extends Character implements Serializable {
 
 		    if (learned) 
 		    	GameLogic.typeToContinue();
-		    break;
 		}
 	}
 	
