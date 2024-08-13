@@ -113,7 +113,6 @@ public class PlayerGear implements Serializable {
 		gearQuantities.put(gear, currentQuantity + 1);
 	}
 	
-	// TODO: possible bug if player tries to equip the exact same piece of gear they are already wearing
 	public static void equipGear(Gear gear) {
         boolean keepEquipping = true;
 

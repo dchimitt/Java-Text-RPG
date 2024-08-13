@@ -13,7 +13,7 @@ import gearAndItems.PlayerGear;
 import gearAndItems.PlayerGear.Gear;
 
 // will never create object of this class
-public class GameLogic implements java.io.Serializable {
+public class GameLogic implements Serializable {
 	static Scanner in = new Scanner(System.in);
 	static int goldCost;
 	static ActOneMap mapOne = new ActOneMap(); // initializing act one map
@@ -110,7 +110,6 @@ public class GameLogic implements java.io.Serializable {
 		return lastTownVisited;
 	}
 
-	// TODO: implement playerIsDead method
 	public static void playerIsDead() {
 		GameLogic.clearConsole();
 		System.out.println("You have died...\nNow teleporting to your last visited town.");
@@ -438,7 +437,7 @@ public class GameLogic implements java.io.Serializable {
 		// print player's upgrades
 		AdventureGame.getPlayer().printUpgrades();
 		
-		System.out.println("(1) View/use consumable items\n(2) View equipment\n(3) Continue game");
+		System.out.println("(1) View/use consumable items\n(2) View/change equipment\n(3) Go back to map");
 		int input = intUserInput("-->", 3);
 		
 		// player wants to view or use consumable items
@@ -454,7 +453,8 @@ public class GameLogic implements java.io.Serializable {
 			PlayerItems.useItem();
 		}
 		
-		// player wants to change equipped gear
+		// player wants to view/change equipped gear
+		// TODO: make most of this a method in PlayerGear.java to reduce redundancy
 		else if (input == 2) {
 			clearConsole();
 	        PlayerGear.printEquippedGear();
