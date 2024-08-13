@@ -181,37 +181,38 @@ public class PlayerGear implements Serializable {
 	
 	// Helper method to handle gear swap
     private static void handleGearSwap(Gear newGear, String statType, String gearType, boolean isEquipped, Gear equippedGear) {
-        if (isEquipped) {
+        if (isEquipped && equippedGear != null) {
             System.out.println("Unequipping current " + gearType + ": " + equippedGear.getGearName());
+            unequipGear(equippedGear);
         }
         System.out.println("Equipping new " + gearType + ": " + newGear.getGearName());
+        equipNewGear(newGear);
     }
 
-    private static void equipWeapon(Gear newWeapon) {
-        if (equippedWeapon != null) {
-            unequipGear(equippedWeapon);
-        }
-        equippedWeapon = newWeapon;
-        equipNewGear(newWeapon);
-    }
 
-    private static void equipChestArmor(Gear newChestArmor) {
-        if (equippedChestArmor != null) {
-            unequipGear(equippedChestArmor);
-        }
-        equippedChestArmor = newChestArmor;
-        equipNewGear(newChestArmor);
-    }
 
     private static void unequipGear(Gear gear) {
         System.out.println("Unequipping " + gear.getGearName() + "...");
-        increaseGearQuantity(gear);
+        
+        // add gear back to inventory
+        increaseGearQuantity(gear); 
+        
+        // remove gear stats from player
         adjustPlayerStat(gear.getGearStatType(), -gear.getGearStatIncrease());
     }
 
     private static void equipNewGear(Gear gear) {
         System.out.println("Equipping " + gear.getGearName() + "...");
-        gearQuantities.put(gear, gearQuantities.getOrDefault(gear, 0) - 1);
+        int currentQuantity = gearQuantities.getOrDefault(gear,  0);
+        if (currentQuantity <= 0) {
+        	System.out.println("Error: You cannot equip something you do not own!");
+        	return;
+        }
+        
+        // remove the gear from player inventory
+        gearQuantities.put(gear, currentQuantity - 1);
+        
+        // increase player's stats by gear increase
         adjustPlayerStat(gear.getGearStatType(), gear.getGearStatIncrease());
     }
     
