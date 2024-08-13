@@ -438,13 +438,11 @@ public class GameLogic implements java.io.Serializable {
 		// print player's upgrades
 		AdventureGame.getPlayer().printUpgrades();
 		
-		System.out.println("(1) View inventory\n(2) View equipped gear\n(3) Continue game");
+		System.out.println("(1) View/use consumable items\n(2) View equipment\n(3) Continue game");
 		int input = intUserInput("-->", 3);
-		// TODO: add functionality for using items while in inventory
 		
-		// player wants to view items
+		// player wants to view or use consumable items
 		if (input == 1) {
-			// show player their consumable items and gear
 			GameLogic.clearConsole();
 			PlayerItems.printPlayerItems();
 			System.out.println();
