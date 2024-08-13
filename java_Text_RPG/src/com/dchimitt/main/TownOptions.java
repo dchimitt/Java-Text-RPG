@@ -9,8 +9,9 @@ import maps.ActOneMap;
 import maps.ActOneMap.Direction;
 
 public class TownOptions {
+	static Scanner in = new Scanner(System.in);
+	
 	public static void townOptions() {
-		Scanner in = new Scanner(System.in);
 		GameLogic.clearConsole();
 		boolean inTown = true;
 		ItemVendor itemVendor;
@@ -46,15 +47,15 @@ public class TownOptions {
 					int itemChoice = GameLogic.intUserInput("-->", 4);
 					switch (itemChoice) {
 						case 1:
-							itemVendor.purchaseItem(PlayerItems.Items.WEAK_HEALING_POTION);
+							ItemVendor.purchaseItem(PlayerItems.Items.WEAK_HEALING_POTION);
 							GameLogic.typeToContinue();
 							break;
 						case 2:
-							itemVendor.purchaseItem(PlayerItems.Items.WEAK_MANA_POTION);
+							ItemVendor.purchaseItem(PlayerItems.Items.WEAK_MANA_POTION);
 							GameLogic.typeToContinue();
 							break;
 						case 3:
-							itemVendor.purchaseItem(PlayerItems.Items.ANTIDOTE);
+							ItemVendor.purchaseItem(PlayerItems.Items.ANTIDOTE);
 							GameLogic.typeToContinue();
 							break;
 						case 4:
@@ -74,27 +75,27 @@ public class TownOptions {
 					int gearChoice = GameLogic.intUserInput("-->", 7);
 					switch (gearChoice) {
 						case 1:
-							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_SWORD);
+							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_SWORD);
 							GameLogic.typeToContinue();
 							break;
 						case 2:
-							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_DAGGER);
+							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_DAGGER);
 							GameLogic.typeToContinue();
 							break;
 						case 3:
-							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_WAND);
+							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_WAND);
 							GameLogic.typeToContinue();
 							break;
 						case 4:
-							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_CHAINMAIL);
+							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_CHAINMAIL);
 							GameLogic.typeToContinue();
 							break;
 						case 5:
-							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_VEST);
+							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_VEST);
 							GameLogic.typeToContinue();
 							break;
 						case 6:
-							gearVendor.purchaseGear(PlayerGear.Gear.STARTING_ROBE);
+							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_ROBE);
 							GameLogic.typeToContinue();
 							break;
 						case 7:
@@ -111,16 +112,6 @@ public class TownOptions {
 				GameLogic.talkToNPC();
 			} 
 			else {
-				/*
-				 * TODO: 
-				 *
-				 * 1) If leaving town by selecting a direction that results in player movement
-				 * being blocked, player will end up still on the town room but options no
-				 * longer show. Also, formatting prints movement blocked but instantly clears
-				 * console making it confusing for player.
-				 * 
-				 * 2) Random encounters possible when #1 occurs
-				 */
 				GameLogic.clearConsole();
 				boolean validDirection = false;
 				do {

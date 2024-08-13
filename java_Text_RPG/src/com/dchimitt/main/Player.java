@@ -8,7 +8,7 @@ import java.util.Random;
 import java.io.Serializable;
 
 // NOTE: @Override means inherited methods from abstract superclass differ
-public class Player extends Character implements java.io.Serializable {
+public class Player extends Character implements Serializable {
 	public static Scanner in = new Scanner(System.in);
 	public static PlayerGear playerGear = new PlayerGear();
 	private static final Random RANDOM = new Random(); // single instance of random to use for all damage/defense calculations

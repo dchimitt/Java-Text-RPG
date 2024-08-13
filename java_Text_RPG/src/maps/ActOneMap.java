@@ -11,7 +11,7 @@ import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.TownOptions;
 import com.dchimitt.main.Room;
 
-public class ActOneMap implements java.io.Serializable {
+public class ActOneMap implements Serializable {
 	
 	public enum Direction {
 		NORTH, 

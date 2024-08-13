@@ -1,7 +1,7 @@
 package com.dchimitt.main;
 import java.io.Serializable;
 
-public class Thing implements java.io.Serializable {
+public class Thing implements Serializable {
 	// superclass Thing to extend to all objects used
 	
 	private String name;

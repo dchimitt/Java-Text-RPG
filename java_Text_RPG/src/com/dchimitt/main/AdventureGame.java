@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class AdventureGame implements java.io.Serializable {
+public class AdventureGame implements Serializable {
 	
 	public static Player player;
 	static Scanner in = new Scanner(System.in);

@@ -4,7 +4,7 @@ import com.dchimitt.main.GameLogic;
 import com.dchimitt.main.AdventureGame;
 import java.io.Serializable;
 
-public class ActOneDialogue implements java.io.Serializable {
+public class ActOneDialogue implements Serializable {
 	public static void momIntroDialogue() {
 		GameLogic.clearConsole();
 		System.out.println("Mother:");

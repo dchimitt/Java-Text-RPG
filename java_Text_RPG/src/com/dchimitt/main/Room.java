@@ -1,7 +1,7 @@
 package com.dchimitt.main;
 import java.io.Serializable;
 
-public class Room extends Thing implements java.io.Serializable {
+public class Room extends Thing implements Serializable {
 	private int n, s, w, e;
 	private boolean isTown;
 	
