@@ -444,10 +444,7 @@ public class GameLogic implements Serializable {
 		if (input == 1) {
 			GameLogic.clearConsole();
 			PlayerItems.printPlayerItems();
-			System.out.println();
-			GameLogic.printHyphenSeparator(20);
-			System.out.println();
-			PlayerGear.printPlayerGearInInventory();	
+			System.out.println();	
 			
 			// ask player if they'd like to use an item
 			PlayerItems.useItem();
