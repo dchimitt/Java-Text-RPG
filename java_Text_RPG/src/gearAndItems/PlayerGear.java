@@ -154,7 +154,7 @@ public class PlayerGear implements Serializable {
             GameLogic.printHyphenSeparator(20);
             System.out.println();
             printPlayerGearInInventory();
-            System.out.println("Would you like to change another piece of gear? Y for yes, N for no");
+            System.out.println("Would you like to change another piece of gear? (Y/N)");
             String decision = in.nextLine().trim().toUpperCase();
 
             if (!decision.equals("Y")) 
