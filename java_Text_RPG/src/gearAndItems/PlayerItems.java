@@ -161,8 +161,10 @@ public class PlayerItems implements Serializable {
 	                    // TODO when in combat, player may not use more than one item in a row
 	                    System.out.println("Would you like to use another item? (Y/N)");
 	                    String decision = in.nextLine().trim().toUpperCase();
-	                    if (!decision.equals("Y")) 
+	                    if (!decision.equals("Y")) {
 	                        keepUsingItems = false;
+	                        GameLogic.clearConsole();
+	                    }
 	                }
 	                else 
 	                    System.out.println("You do not have any of that item left.");
@@ -172,8 +174,11 @@ public class PlayerItems implements Serializable {
 	            GameLogic.typeToContinue();
 	            break;
 	        }
-	        else
+	        else {
 	        	keepUsingItems = false;
+	        	GameLogic.clearConsole();
+	        }
+	
 	    }
 	}
 	
