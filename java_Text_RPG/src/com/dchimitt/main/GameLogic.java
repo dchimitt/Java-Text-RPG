@@ -437,7 +437,7 @@ public class GameLogic implements Serializable {
 		// print player's upgrades
 		AdventureGame.getPlayer().printUpgrades();
 		
-		System.out.println("(1) View/use consumable items\n(2) View/change equipment\n(3) Go back to map");
+		System.out.println("(1) View/use consumable items\n(2) View/change equipment\n(3) Exit character sheet");
 		int input = intUserInput("-->", 3);
 		
 		// player wants to view or use consumable items
