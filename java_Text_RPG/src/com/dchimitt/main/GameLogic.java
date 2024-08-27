@@ -481,6 +481,7 @@ public class GameLogic implements Serializable {
 	        	if (gearToEquip == null) {
 	        		System.out.println("Invalid gear name. Please check the name and try again.");
 	        		GameLogic.typeToContinue();
+	        		GameLogic.clearConsole();
 	        	}
 	        	else {
 	        		PlayerGear.equipGear(gearToEquip);
