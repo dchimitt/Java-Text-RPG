@@ -139,27 +139,15 @@ public class GameLogic implements Serializable {
 	
 	public static void wantsToRestAtInn() {
 		Room currentRoom = ActOneMap.getCurrentPlayerPosition();
-		int reizartCostToRest = 10;
 		int someTownCostToRest = 30;
 		System.out.println("Welcome! Would you like to rest here for the night? (Fully recovers HP and MP)");
-		if (currentRoom.getName().equals("Town of Reizart:"))
-			System.out.println("Cost: " + reizartCostToRest + " gold\nCurrent gold: " + AdventureGame.getPlayer().gold + " gold");
-		else if (currentRoom.getName().equals("Some Town:"))
+		
+		if (currentRoom.getName().equals("Some Town:"))
 			System.out.println("Cost: " + someTownCostToRest + " gold\nCurrent gold: " + AdventureGame.getPlayer().gold + " gold");
 		System.out.println("(1) Yes\n(2) No");
 		int userInput = intUserInput("-->", 2);
 		if (userInput == 1 && AdventureGame.getPlayer().currentAct == 1) {
-			if (currentRoom.getName().equals("Town of Reizart:")) {
-				if (AdventureGame.getPlayer().gold >= reizartCostToRest) {
-					restAtInn();
-				}
-				else {
-					notEnoughGold();
-					typeToContinue();
-					clearConsole();
-				}
-			}
-			else if (currentRoom.getName().equals("SOME TOWN:")) {
+			if (currentRoom.getName().equals("SOME TOWN:")) {
 				if (AdventureGame.getPlayer().gold >= someTownCostToRest) {
 					restAtInn();
 				}
