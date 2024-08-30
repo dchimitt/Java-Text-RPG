@@ -49,4 +49,6 @@ public class Room extends Thing implements Serializable {
 	public boolean isTown() {
 		return isTown;
 	}
+	
+	//TODO: add boolean method isSafeRoom variable and method to this class in order to reduce redundancy in code
 }
