@@ -1,6 +1,7 @@
 package com.dchimitt.main;
 
 import java.io.Serializable;
+import java.util.Scanner;
 
 import dialogue.ActOneDialogue;
 import mainStory.MainStory;
@@ -9,13 +10,7 @@ import gearAndItems.PlayerItems;
 import gearAndItems.PlayerGear;
 import com.dchimitt.main.Player;
 
-import java.util.Scanner;
-import java.util.Map;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 
 public class AdventureGame implements Serializable {
 	
