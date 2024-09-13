@@ -19,7 +19,7 @@ public class TownOptions {
 		GameLogic.lastTownVisited = ActOneMap.getCurrentPlayerPosition();
 		while (inTown) {
 			System.out.println("You are in " + GameLogic.lastTownVisited.getName() + "\nOPTIONS:");
-			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear vendor\n(4) Character sheet\n(5) Talk to NPC\n(6) Save game\n(7) Save and quit\n(8) Leave town");
+			System.out.println("(1) Rest at inn\n(2) Item vendor\n(3) Gear vendor\n(4) Talk to NPC\n(5) Character sheet\n(6) Save game\n(7) Save and quit\n(8) Leave town");
 			int input = GameLogic.intUserInput("-->", 8);
 			
 			// Player wants to rest at inn
@@ -129,11 +129,11 @@ public class TownOptions {
 				GameLogic.clearConsole();
 			}
 			else if (input == 4) {
-				GameLogic.characterSheet();
-			}
-			else if (input == 5) {
 				GameLogic.clearConsole();
 				GameLogic.talkToNPC();
+			}
+			else if (input == 5) {
+				GameLogic.characterSheet();
 			}
 			else if (input == 6) {
 				SaveLoadLogic.saveGame();
