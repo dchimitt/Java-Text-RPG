@@ -134,9 +134,11 @@ public class Player extends Character implements Serializable {
 	public int attack() {
 		final double STRENGTH_WEIGHT = 0.75;
 		final double DEXTERITY_WEIGHT = 0.5;
+		final double INTELLIGENCE_WEIGHT = 0.2;
 		
 		// base damage
-		double baseDamage = (AdventureGame.getPlayer().strength * STRENGTH_WEIGHT) + (AdventureGame.getPlayer().dexterity * DEXTERITY_WEIGHT);
+		double baseDamage = (AdventureGame.getPlayer().strength * STRENGTH_WEIGHT) + (AdventureGame.getPlayer().dexterity * DEXTERITY_WEIGHT) +
+																				     (AdventureGame.getPlayer().intelligence * INTELLIGENCE_WEIGHT);
 		
 		// level factor
 		double levelFactor = 1 + (level/10.0);
