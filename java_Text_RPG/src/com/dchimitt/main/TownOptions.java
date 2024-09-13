@@ -91,40 +91,43 @@ public class TownOptions {
 						int gearChoice = GameLogic.intUserInput("-->", 7);
 						switch (gearChoice) {
 							case 1:
+								GameLogic.clearConsole();
 								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_SWORD);
-								GameLogic.typeToContinue();
 								break;
 							case 2:
+								GameLogic.clearConsole();
 								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_DAGGER);
-								GameLogic.typeToContinue();
 								break;
 							case 3:
+								GameLogic.clearConsole();
 								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_WAND);
-								GameLogic.typeToContinue();
 								break;
 							case 4:
+								GameLogic.clearConsole();
 								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_CHAINMAIL);
-								GameLogic.typeToContinue();
 								break;
 							case 5:
+								GameLogic.clearConsole();
 								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_VEST);
-								GameLogic.typeToContinue();
 								break;
 							case 6:
+								GameLogic.clearConsole();
 								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_ROBE);
-								GameLogic.typeToContinue();
 								break;
 							case 7:
 								break;
 						}
+						if (gearChoice == 7)
+							break;
 					}
+					System.out.println("Would you like to purchase another piece of gear? (Y/N)");
+					String decision = in.nextLine().trim().toUpperCase();
+					if (!decision.equals("Y"))
+						keepPurchasingGear = false;
+					GameLogic.clearConsole();
 				}
-				System.out.println("Would you like to purchase another piece of gear? (Y/N)");
-				String decision = in.nextLine().trim().toUpperCase();
-				if (!decision.equals("Y"))
-					keepPurchasingGear = false;
 				GameLogic.clearConsole();
-			} 
+			}
 			else if (input == 4) {
 				GameLogic.characterSheet();
 			}
