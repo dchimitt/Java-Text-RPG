@@ -71,11 +71,13 @@ public class SaveLoadLogic {
 				out.writeBoolean(AdventureGame.player.isSupportSpellLearned(suppSpell)); 
 			}
 
-			System.out.println("Game saved successfully!");
 		    } catch (IOException e) {
 		    	e.printStackTrace();
 		    	System.out.println("Failed to save game.");
 		    }
+			GameLogic.clearConsole();
+			System.out.println("Game saved successfully!");
+			GameLogic.typeToContinue();
 		}
 
 		
@@ -149,11 +151,12 @@ public class SaveLoadLogic {
 		            boolean learned = in.readBoolean();
 		            AdventureGame.player.setSupportSpellLearned(suppSpell, learned);
 		        }
-
-		        System.out.println("Game loaded successfully!");
 		    } catch (IOException | ClassNotFoundException e) {
 		        e.printStackTrace();
 		        System.out.println("Failed to load game.");
 		    }
+		    GameLogic.clearConsole();
+		    System.out.println("Game loaded successfully!");
+		    GameLogic.typeToContinue();
 		}	
 }
