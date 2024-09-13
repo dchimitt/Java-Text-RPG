@@ -41,69 +41,88 @@ public class TownOptions {
 			// TODO: add formatting so text aligns for readability
 			// TODO: add selling functionality
 			else if (input == 2) {
-				GameLogic.clearConsole();
-				if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
-					itemVendor = ActOneMap.getReizartItemVendor();
-					itemVendor.displayItems();
-					int itemChoice = GameLogic.intUserInput("-->", 4);
-					switch (itemChoice) {
-						case 1:
-							ItemVendor.purchaseItem(PlayerItems.Items.WEAK_HEALING_POTION);
-							GameLogic.typeToContinue();
-							break;
-						case 2:
-							ItemVendor.purchaseItem(PlayerItems.Items.WEAK_MANA_POTION);
-							GameLogic.typeToContinue();
-							break;
-						case 3:
-							ItemVendor.purchaseItem(PlayerItems.Items.ANTIDOTE);
-							GameLogic.typeToContinue();
-							break;
-						case 4:
+				boolean keepPurchasingItems = true;
+				while (keepPurchasingItems) {
+					GameLogic.clearConsole();
+					if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
+						itemVendor = ActOneMap.getReizartItemVendor();
+						itemVendor.displayItems();
+						int itemChoice = GameLogic.intUserInput("-->", 4);
+						switch (itemChoice) {
+							case 1:
+								GameLogic.clearConsole();
+								ItemVendor.purchaseItem(PlayerItems.Items.WEAK_HEALING_POTION);
+								break;
+							case 2:
+								GameLogic.clearConsole();
+								ItemVendor.purchaseItem(PlayerItems.Items.WEAK_MANA_POTION);
+								break;
+							case 3:
+								GameLogic.clearConsole();
+								ItemVendor.purchaseItem(PlayerItems.Items.ANTIDOTE);
+								break;
+							case 4:
+								break;
+						}
+						// Second break to return to town menu properly if player selected option 4
+						if (itemChoice == 4)
 							break;
 					}
+					System.out.println("Would you like to purchase another item? (Y/N)");
+					String decision = in.nextLine().trim().toUpperCase();
+					if (!decision.equals("Y"))
+						keepPurchasingItems = false;
+					GameLogic.clearConsole();
 				}
 				GameLogic.clearConsole();
-			} 
+			}
+			
 			// player visits gear vendor
 			// TODO: add functionality to make multiple purchases at a time before leaving menu
 			// TODO: add formatting so text aligns for readability
 			// TODO: add selling functionality
 			else if (input == 3) {
-				GameLogic.clearConsole();
-				if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
-					gearVendor = ActOneMap.getReizartGearVendor();
-					gearVendor.displayGear();
-					int gearChoice = GameLogic.intUserInput("-->", 7);
-					switch (gearChoice) {
-						case 1:
-							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_SWORD);
-							GameLogic.typeToContinue();
-							break;
-						case 2:
-							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_DAGGER);
-							GameLogic.typeToContinue();
-							break;
-						case 3:
-							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_WAND);
-							GameLogic.typeToContinue();
-							break;
-						case 4:
-							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_CHAINMAIL);
-							GameLogic.typeToContinue();
-							break;
-						case 5:
-							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_VEST);
-							GameLogic.typeToContinue();
-							break;
-						case 6:
-							GearVendor.purchaseGear(PlayerGear.Gear.STARTING_ROBE);
-							GameLogic.typeToContinue();
-							break;
-						case 7:
-							break;
+				boolean keepPurchasingGear = true;
+				while (keepPurchasingGear) {
+					GameLogic.clearConsole();
+					if (GameLogic.lastTownVisited.getName().equals("Town of Reizart:")) {
+						gearVendor = ActOneMap.getReizartGearVendor();
+						gearVendor.displayGear();
+						int gearChoice = GameLogic.intUserInput("-->", 7);
+						switch (gearChoice) {
+							case 1:
+								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_SWORD);
+								GameLogic.typeToContinue();
+								break;
+							case 2:
+								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_DAGGER);
+								GameLogic.typeToContinue();
+								break;
+							case 3:
+								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_WAND);
+								GameLogic.typeToContinue();
+								break;
+							case 4:
+								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_CHAINMAIL);
+								GameLogic.typeToContinue();
+								break;
+							case 5:
+								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_VEST);
+								GameLogic.typeToContinue();
+								break;
+							case 6:
+								GearVendor.purchaseGear(PlayerGear.Gear.STARTING_ROBE);
+								GameLogic.typeToContinue();
+								break;
+							case 7:
+								break;
+						}
 					}
 				}
+				System.out.println("Would you like to purchase another piece of gear? (Y/N)");
+				String decision = in.nextLine().trim().toUpperCase();
+				if (!decision.equals("Y"))
+					keepPurchasingGear = false;
 				GameLogic.clearConsole();
 			} 
 			else if (input == 4) {
