@@ -324,8 +324,13 @@ public class GameLogic implements Serializable {
 	// method to continue game
 	public static void continueGame() {
 	    while (isRunning) {
-	        if (isInTown()) 
+	        if (isInTown()) {
 	            TownOptions.townOptions();
+	            
+	            // Add check to see if player selected save and exit. If so, exit game loop and terminate program.
+	            if (isRunning == false)
+	            	break;
+	        }
 
 	        GameLogic.clearConsole();
 	        checkAct();

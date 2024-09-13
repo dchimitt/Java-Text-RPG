@@ -20,7 +20,7 @@ public class TownOptions {
 		while (inTown) {
 			System.out.println("You are in " + GameLogic.lastTownVisited.getName() + "\nOPTIONS:");
 			System.out.println("(1) Rest at an inn\n(2) Item vendor\n(3) Gear vendor\n(4) Character sheet\n(5) Talk to NPC\n(6) Save game\n(7) Save and quit\n(8) Leave town");
-			int input = GameLogic.intUserInput("-->", 6);
+			int input = GameLogic.intUserInput("-->", 8);
 			
 			// Player wants to rest at inn
 			if (input == 1) {
