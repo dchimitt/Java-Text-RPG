@@ -38,6 +38,7 @@ public class TownOptions {
 			} 
 			// player visits item vendor
 			// TODO: add functionality to make multiple purchases at a time before leaving menu
+			// TODO: add formatting so text aligns for readability
 			// TODO: add selling functionality
 			else if (input == 2) {
 				GameLogic.clearConsole();
@@ -66,6 +67,7 @@ public class TownOptions {
 			} 
 			// player visits gear vendor
 			// TODO: add functionality to make multiple purchases at a time before leaving menu
+			// TODO: add formatting so text aligns for readability
 			// TODO: add selling functionality
 			else if (input == 3) {
 				GameLogic.clearConsole();
