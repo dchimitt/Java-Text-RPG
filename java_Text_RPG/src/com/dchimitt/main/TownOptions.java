@@ -114,10 +114,10 @@ public class TownOptions {
 			            	int currentItemQuantity = PlayerItems.getItemQuantities().getOrDefault(itemToSell, 0);
 			            	
 			            	if (currentItemQuantity > 0) {
-			            		int sellingPrice = itemToSell.getItemSellingPrice();
+			            		int itemSellingPrice = itemToSell.getItemSellingPrice();
 			            		
 			            		// Add the selling price of item to player's gold
-			            		AdventureGame.getPlayer().gold += sellingPrice;
+			            		AdventureGame.getPlayer().gold += itemSellingPrice;
 			            		// TODO: print player's gold after each item sold
 			            		
 			            		// Decrease quantity of the item by 1 and tell player how many remain
@@ -147,7 +147,7 @@ public class TownOptions {
 			            
 			            // Player misspells item
 			            else {
-			            	System.out.println("No such item exists (please check spelling and try again.");
+			            	System.out.println("No such item exists (please check spelling and try again)");
 			            	GameLogic.typeToContinue();
 			            	break;
 			            }
@@ -218,10 +218,70 @@ public class TownOptions {
 					}
 					GameLogic.clearConsole();
 				}
-				else if (buyOrSellGearDecision.equals("S")) {
-					// implement gear selling logic here
-					boolean keepSellingGear = true;
+				else if (buyOrSellGearDecision.equals("S")) {					
 					GameLogic.clearConsole();
+					boolean keepSellingGear = true;
+					while (keepSellingGear) {
+					    System.out.println("Please type the name of the piece of gear you'd like to sell exactly as written!");
+						System.out.println();
+						
+						// Show player their inventory of gear and get input for the piece of gear to sell
+						PlayerGear.printPlayerGearInInventory();						
+						String gearToSellDecision = in.nextLine().trim().toUpperCase();
+			            GameLogic.clearConsole();
+
+			            // Find the typed gear in the Gear enum and check if the player has at least one of that piece of gear
+			            PlayerGear.Gear gearToSell = null;
+			            for (PlayerGear.Gear gear : PlayerGear.Gear.values()) {
+			            	if (gear.getGearName().trim().equalsIgnoreCase(gearToSellDecision)) {
+			            		gearToSell = gear;
+			            		break;
+			            	}
+			            }
+			            
+			            // Player has at least one of the selected pieces of gear to sell
+			            if (gearToSell != null) {
+			            	int currentGearQuantity = PlayerGear.getGearQuantities().getOrDefault(gearToSell, 0);
+			            	
+			            	if (currentGearQuantity > 0) {
+			            		int gearSellingPrice = gearToSell.getGearSellingPrice();
+			            		
+			            		// Add the selling price of item to player's gold
+			            		AdventureGame.getPlayer().gold += gearSellingPrice;
+			            		// TODO: print player's gold after each item sold
+			            		
+			            		// Decrease quantity of the item by 1 and tell player how many remain
+			            		PlayerGear.decreaseGearQuantity(gearToSell);
+			            		System.out.println("You now have " + (currentGearQuantity - 1) + " " + gearToSell.getGearName() + "(s) left.");
+			            		
+			            		// Ask player if they would like to sell another item
+			            		System.out.println("Would you like to sell another piece of gear? (Y/N)");
+			            		String sellMoreGearDecision = in.nextLine().trim().toUpperCase();
+			            		if (!sellMoreGearDecision.equals("Y")) {
+			            			keepSellingGear = false;
+			            			GameLogic.clearConsole();
+			            		}
+			            		else 
+			            			GameLogic.clearConsole();
+			            		}
+			            	
+			            	// Player tries to sell a piece of gear they no longer have at least one of
+			            	else {
+			            		System.out.println("Piece of gear was not found in your inventory.");
+			            		GameLogic.typeToContinue();
+			            		keepSellingGear = false;
+			            	}
+			            	
+			            	GameLogic.clearConsole();
+			            }
+			            
+			            // Player misspells piece of gear
+			            else {
+			            	System.out.println("No such piece of gear exists (please check spelling and try again)");
+			            	GameLogic.typeToContinue();
+			            	break;
+			            }
+					}
 				}
 				else {
 					GameLogic.clearConsole();

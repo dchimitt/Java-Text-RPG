@@ -441,7 +441,7 @@ public class GameLogic implements Serializable {
 		}
 		
 		// player wants to view/change equipped gear
-		// TODO: make most of this a method in PlayerGear.java to reduce redundancy
+		// TODO: make most of this a method in PlayerGear.java to reduce redundancy. Why did I put this here? :(
 		else if (input == 2) {
 			clearConsole();
 	        PlayerGear.printEquippedGear();
@@ -479,7 +479,7 @@ public class GameLogic implements Serializable {
 	        }
 	        // player chooses no (do not equip gear)
 	        else if (equipDecision.trim().toUpperCase().equals("N")) {
-	        	// do nothing
+	        	clearConsole();
 	        }
 	        else {
 	        	System.out.println("Invalid input. Returning to map.");
