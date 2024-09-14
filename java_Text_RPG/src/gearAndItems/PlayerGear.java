@@ -100,8 +100,7 @@ public class PlayerGear implements Serializable {
 		}
 		public int getGearSellingPrice() {
 			return gearSellingPrice;
-		}
-		
+		}		
 	}
 	
 	// Methods for saving and loading gear quantities
@@ -118,6 +117,12 @@ public class PlayerGear implements Serializable {
 	public static void increaseGearQuantity(Gear gear) {
 		int currentQuantity = gearQuantities.getOrDefault(gear,  0);
 		gearQuantities.put(gear, currentQuantity + 1);
+	}
+	
+	// method to decrease gear quantity for selling or sacrificial purposes
+	public static void decreaseGearQuantity(Gear gear) {
+		int currentQuantity = gearQuantities.getOrDefault(gear,  0);
+		gearQuantities.put(gear, currentQuantity - 1);
 	}
 	
 	public static void equipGear(Gear gear) {
