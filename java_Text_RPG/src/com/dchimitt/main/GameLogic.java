@@ -441,7 +441,7 @@ public class GameLogic implements Serializable {
 		}
 		
 		// player wants to view/change equipped gear
-		// TODO: make most of this a method in PlayerGear.java to reduce redundancy. Why did I put this here? :(
+		// TODO: make most of this a method in PlayerGear class to reduce redundancy. Why did I put this here? :(
 		else if (input == 2) {
 			clearConsole();
 	        PlayerGear.printEquippedGear();
