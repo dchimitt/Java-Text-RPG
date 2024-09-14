@@ -86,6 +86,9 @@ public class PlayerGear implements Serializable {
 		public String getGearStatType() {
 			return gearStatType;
 		}
+		public String getGearType() {
+			return gearType;
+		}
 		public int getGearStatRequirement() {
 			return gearStatRequirement;
 		}
@@ -95,6 +98,10 @@ public class PlayerGear implements Serializable {
 		public int getGearCostInGold() {
 			return gearCostInGold;
 		}
+		public int getGearSellingPrice() {
+			return gearSellingPrice;
+		}
+		
 	}
 	
 	// Methods for saving and loading gear quantities
