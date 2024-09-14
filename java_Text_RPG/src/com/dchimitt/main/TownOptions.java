@@ -39,12 +39,16 @@ public class TownOptions {
 			} 
 			
 			// Player visits item vendor
+			// TODO: change to do-while loop to prevent exit if player does not type B/S
 			// TODO: add formatting so text aligns for readability
 			// TODO: add selling functionality
+			// TODO: minimize redundant code
 			else if (input == 2) {
 				GameLogic.clearConsole();
 				System.out.println("Would you like to buy or sell items? (B/S)");
 				String buyOrSellItemsDecision = in.nextLine().trim().toUpperCase();
+				
+				// Player chooses to buy items 
 				if (buyOrSellItemsDecision.equals("B")) {
 					boolean keepPurchasingItems = true;
 					while (keepPurchasingItems) {
@@ -69,10 +73,13 @@ public class TownOptions {
 								case 4:
 									break;
 							}
-							// Second break to return to town menu properly if player selected option 4
+							// Second break to prevent asking player to purchase another item if selecting return to town option
 							if (itemChoice == 4)
 								break;
 						}
+						
+						// TODO: add more item vendors in each town here as necessary
+						
 						System.out.println("Would you like to purchase another item? (Y/N)");
 						String purchaseDecision = in.nextLine().trim().toUpperCase();
 						if (!purchaseDecision.equals("Y"))
@@ -81,10 +88,70 @@ public class TownOptions {
 					}
 					GameLogic.clearConsole();
 				}
-				else if (buyOrSellItemsDecision.equals("S")) {
-					// TODO: logic for selling consumable items here
-					boolean keepSellingItems = true;
+				else if (buyOrSellItemsDecision.equals("S")) {					
 					GameLogic.clearConsole();
+					boolean keepSellingItems = true;
+					while (keepSellingItems) {
+					    System.out.println("Please type the name of the item you'd like to sell exactly as written!");
+						System.out.println();
+						
+						// Show player their inventory of items and get input for the item to sell
+						PlayerItems.printPlayerItems();						
+						String itemToSellDecision = in.nextLine().trim().toUpperCase();
+			            GameLogic.clearConsole();
+
+			            // Find the typed item in the Item enum and check if the player has at least one of that item
+			            PlayerItems.Items itemToSell = null;
+			            for (PlayerItems.Items item : PlayerItems.Items.values()) {
+			            	if (item.getItemName().trim().equalsIgnoreCase(itemToSellDecision)) {
+			            		itemToSell = item;
+			            		break;
+			            	}
+			            }
+			            
+			            // Player has at least one of the selected item to sell
+			            if (itemToSell != null) {
+			            	int currentItemQuantity = PlayerItems.getItemQuantities().getOrDefault(itemToSell, 0);
+			            	
+			            	if (currentItemQuantity > 0) {
+			            		int sellingPrice = itemToSell.getItemSellingPrice();
+			            		
+			            		// Add the selling price of item to player's gold
+			            		AdventureGame.getPlayer().gold += sellingPrice;
+			            		// TODO: print player's gold after each item sold
+			            		
+			            		// Decrease quantity of the item by 1 and tell player how many remain
+			            		PlayerItems.decreaseItemQuantity(itemToSell);
+			            		System.out.println("You now have " + (currentItemQuantity - 1) + " " + itemToSell.getItemName() + "(s) left.");
+			            		
+			            		// Ask player if they would like to sell another item
+			            		System.out.println("Would you like to sell another item? (Y/N)");
+			            		String sellMoreItemsDecision = in.nextLine().trim().toUpperCase();
+			            		if (!sellMoreItemsDecision.equals("Y")) {
+			            			keepSellingItems = false;
+			            			GameLogic.clearConsole();
+			            		}
+			            		else 
+			            			GameLogic.clearConsole();
+			            		}
+			            	
+			            	// Player tries to sell an item they no longer have at least one of
+			            	else {
+			            		System.out.println("Item was not found in your inventory.");
+			            		GameLogic.typeToContinue();
+			            		keepSellingItems = false;
+			            	}
+			            	
+			            	GameLogic.clearConsole();
+			            }
+			            
+			            // Player misspells item
+			            else {
+			            	System.out.println("No such item exists (please check spelling and try again.");
+			            	GameLogic.typeToContinue();
+			            	break;
+			            }
+					}
 				}
 				else {
 					GameLogic.clearConsole();
@@ -95,8 +162,10 @@ public class TownOptions {
 			}
 			
 			// Player visits gear vendor
+			// TODO: change to do-while loop to prevent exit if player does not type B/S
 			// TODO: add formatting so text aligns for readability
 			// TODO: add selling functionality
+			// TODO: minimize redundant code
 			else if (input == 3) {
 				GameLogic.clearConsole();
 				System.out.println("Would you like to buy or sell gear? (B/S)");
@@ -137,6 +206,7 @@ public class TownOptions {
 								case 7:
 									break;
 							}
+							// Second break to prevent asking player to purchase another piece of gear if selecting return to town option
 							if (gearChoice == 7)
 								break;
 						}
