@@ -173,12 +173,9 @@ public class GameLogic implements Serializable {
 		Room currentRoom = ActOneMap.getCurrentPlayerPosition();
 		if (currentRoom.getName().equals("Town of Reizart:")) 
 			ActOneDialogue.momTalkText();
-		// TODO: add more NPC dialogue options
 		// else if (currentRoom.getName().equals("SOME TOWN:"))
 	}
 
-	// TODO: fix random encounters starting on various rooms such as Cave Entrance
-	// or towns
 	public static void randomEncounter() {
 		if (AdventureGame.getPlayer().currentAct == 1) {
 			Room currentRoom = ActOneMap.getCurrentPlayerPosition();

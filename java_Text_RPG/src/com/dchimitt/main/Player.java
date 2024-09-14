@@ -229,7 +229,6 @@ public class Player extends Character implements Serializable {
 		    int input = GameLogic.intUserInput("--> ", 3);
 		    GameLogic.clearConsole();
 	        
-		    // TODO: when player selects no, program always outputs "no new _ to learn at the moment", even if player could learn something
 		    switch (input) {
 		    case 1:
 		    	boolean abilityUpgradeAvailable = false;
