@@ -158,7 +158,7 @@ public class PlayerItems implements Serializable {
                         System.out.println("Current MP: " + AdventureGame.getPlayer().currentMana + "/" + AdventureGame.getPlayer().maximumMana);
 
 	                    // update item quantity
-	                    itemQuantities.put(item, currentQuantity - 1);
+	                    decreaseItemQuantity(item);
 	                    System.out.println();
 
 	                    // ask player if they'd like to use another item
