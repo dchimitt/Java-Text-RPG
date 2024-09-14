@@ -59,9 +59,9 @@ public class AdventureGame implements Serializable {
 			} while (!pickedName);
 
 			// create new player object
-			// params: name, current exp, exp to level, starting gold, starting act, movement counter since last fight
+			// params: name, current exp, exp to level, starting gold, starting act, movement counter since last fight, ability 1-4 cooldowns (initialize w/ 0)
 			// TODO: change starting gold back to some small amount (increased for testing purposes)
-			Player player = new Player(name, 0, 11, 9999999, 1, 0);
+			Player player = new Player(name, 0, 11, 9999999, 1, 0, 0, 0, 0, 0);
 			
 			// set the player in the game instance
 			setPlayer(player);

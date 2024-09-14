@@ -23,7 +23,8 @@ public class Player extends Character implements Serializable {
 	private static int lastLearnedSuppMagIndex = -1;
 	
 	// Player constructor -- currentExp, expToLevel, gold, and currentAct are specific to player
-	public Player (String name, int currentExp, int expToLevel, int gold, int currentAct, int playerMovementCounter) {
+	public Player (String name, int currentExp, int expToLevel, int gold, int currentAct, int playerMovementCounter, 
+				   int ability1Cooldown, int ability2Cooldown, int ability3Cooldown, int ability4Cooldown) {
 		// super keyword to use the constructor from superclass
 	    // params: name, str, dex, int, starting hp pool, starting mana pool, level
 		super(name, 1, 1, 1, 16, 5, 1); 
@@ -33,6 +34,11 @@ public class Player extends Character implements Serializable {
 		this.gold = gold;
 		this.currentAct = currentAct;
 		this.playerMovementCounter = playerMovementCounter;
+		this.ability1Cooldown = ability1Cooldown;
+		this.ability2Cooldown = ability2Cooldown;
+		this.ability3Cooldown = ability3Cooldown;
+		this.ability4Cooldown = ability4Cooldown;
+		
 		
 		// create EnumMaps for learned states of abilities and spells, then initialize all values to not learned
 		learnedAbilities = new EnumMap<>(Abilities.class);
@@ -396,7 +402,6 @@ public class Player extends Character implements Serializable {
 		GameLogic.printHyphenSeparator(20);
 	}
 	
-	// TODO: need a separate data structure to store CURRENT cooldowns on abilities so players can not spam them on load or start of every fight
 	public static enum Abilities {
 		STRENGTH("Strength", "Placeholder", 3, 1),
 		AGILITY("Agility", "Placeholder", 5, 3),

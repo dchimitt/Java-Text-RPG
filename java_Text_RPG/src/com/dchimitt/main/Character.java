@@ -5,7 +5,8 @@ import java.io.Serializable;
 public abstract class Character implements Serializable {
 	// all possible future attributes that players/enemies may or may not have
 	public String name;
-	public int strength, dexterity, intelligence, maximumHp, currentHp, maximumMana, currentMana, level, currentExp, expToLevel, gold, currentAct, playerMovementCounter;
+	public int strength, dexterity, intelligence, maximumHp, currentHp, maximumMana, currentMana, level, currentExp, expToLevel, gold, currentAct, playerMovementCounter,
+			   ability1Cooldown, ability2Cooldown, ability3Cooldown, ability4Cooldown;
 	public Room currentRoomInAct;
 	
 	// Character constructor
