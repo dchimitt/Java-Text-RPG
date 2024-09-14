@@ -77,6 +77,10 @@ public class PlayerItems implements Serializable {
 	public static void increaseItemQuantity(Items item) {
 		itemQuantities.put(item, itemQuantities.getOrDefault(item, 0) + 1);
 	}
+	
+	public static void decreaseItemQuantity(Items item) {
+		itemQuantities.put(item, itemQuantities.getOrDefault(item, 0) - 1);
+	}
 			
 	// method to use a particular item using the item map
 	public static void useItem() {
